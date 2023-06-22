@@ -1,0 +1,13 @@
+{
+  "based_on": {
+    "data": [
+      "cp23",
+      "funcontest",
+      "rattlegang"
+    ],
+    "type": "rad-problem"
+  },
+  "description": "Maximum Matching on regular bipartit graph",
+  "difficulty": 1,
+  "tags": ["graph", "mullet"]
+}
