@@ -1,0 +1,62 @@
+\input{template.tex}
+
+\begin{document}
+
+\makeheader
+
+One day, Christian, the CEO of \textit{Super Arrangement Productions}, entered one of their offices
+to talk to an employee who complained about the lack of motivation in their company. 
+Christian was quite surprised, that not only the department, but the whole company was not motivated
+at all.
+
+That is why Christian made the decision to hire a motivation agency to send the best of their coaches
+to help motivate the people again.
+
+In a brief knowledge exchange with the head of the coaches, Christian learned the following things:
+
+\begin{itemize}
+  \item Employees have to be motivated by coaches individually, but an employee will not allow getting motivated
+        by a coach that their boss did not get motivated by.
+  \item Employees are as motivated as the coach motivating them, after they got coached.
+  \item Each employee has a demotivational level, which tells how much effort it needs for a coach to
+        motivate the employee again.
+  \item After being motivated again, employees are willing to motivate other employees, but only if those
+        employees are directly or indirectly under their current position.
+  \item Motivating employees is exhausting, which means that coaches and employees motivating other employees
+        will be less motivated, equally to the level of demotivation.
+  \item The agency sends their best coaches with each having a motivational level of 20.
+\end{itemize}
+
+Since Christian enforced saving measures, he wants to spend as little as possible. Therfore, as few coaches 
+as possible should be sent. They will start working with Christian himself.
+
+Even though the whole company should become motivated again, some people simply might not be motivatable.
+Christian wants to know who these people are.
+
+\paragraph*{Input}
+
+The input consists of three lines, describing a single test case.
+The first line contains an integer $n$ ($1 \leq n \leq 10^5$), the number of employees.
+The second line contains $n$ integers. The $i$th integer is $mi$ ($0 \leq mi \leq 20$), the motivational level of employee $i$.
+The third line contains $n - 1$ integers. The $i$th integer is $bi+1$ ($1 \leq bi+1 < i + 1$), the direct boss of colleague $i + 1$.
+
+\paragraph*{Output}
+
+Firstly, output the minimal number of coaches required to motivate the company. Secondly, output the number of 
+unmotivatable employees, followed by the numbers of those employees.
+
+
+\begin{samples}
+  \sample1
+  \begin{verbatim}
+    11
+    2 5 3 7 2 1 10 4 1 8 2
+    1 2 2 2 5 5 1 8 8 8
+
+    3
+    0
+    ~
+  \end{verbatim}
+\end{samples}
+
+\end{document}
