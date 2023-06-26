@@ -4,19 +4,54 @@
 
 \makeheader
 
-\placeholder{Problem description}
+Since Hasso wants to expand his institute to the whole of Potsdam, he built $n$ new buildings in and around Potsdam. He also wants his campus network to be fully autonomous and independent from the already existent public street network. That is why he decides to build a new street network just for his institute. For this, he hires an external planning agency and receives a building plan which specifies $m$ streets that have to be built. In the plan, any building can be reached from any other building directly or indirectly through the street network. 
+However, Hasso has a problem. Since Potsdam has so many lakes and waters, many bridges have to be built in order for the campus network to be connected. A bridge is a particularly expensive kind of street which is only built if some buildings get completely disconnected from other parts of the campus without it.
+Can you identify which streets are bridges based on the given plan? 
 
 \paragraph*{Input}
 
-\placeholder{Input description}
+The first line contains $n$ and $m$, ($2 \leq n \leq 2\cdot 10^5$, $1 \leq m \leq 2 \cdot 10^5$), the number of buildings and streets. 
+Each of the next $m$ lines contains two integers, $b_1$, $b_2$ ($1 \leq b_1,b_2\leq n$, $b_1 \neq b_2$), the two buildings connected by a street.
 
 \paragraph*{Output}
 
-\placeholder{Output description}
+Write a line containing the number of bridges, followed by another
+containing the ids ($1$ to $m$) of the bridges in ascending order.
 
 \begin{samples}
   \sample{sample1}
+  \begin{verbatim}
+    4 4
+    1 2
+    2 3
+    3 1
+    3 4
+    
+    1
+    4
+  \end{verbatim}
   \sample{sample2}
+  \begin{verbatim}
+    5 4
+    1 2
+    2 3
+    3 4
+    4 5
+    
+    4
+    1 2 3 4
+  \end{verbatim}
+  \sample{sample3}
+  \begin{verbatim}
+    4 4
+    1 2
+    2 3
+    3 4
+    4 1
+    
+    0
+    
+  \end{verbatim}
 \end{samples}
 
 \end{document}
