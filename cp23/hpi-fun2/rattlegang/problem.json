@@ -7,7 +7,7 @@
     ],
     "type": "rad-problem"
   },
-  "description": "Maximum Matching on regular bipartit graph",
+  "description": "Maximum Matching on regular bipartite graph",
   "difficulty": 1,
   "tags": ["graph", "mullet"]
 }
