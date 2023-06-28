@@ -27,16 +27,22 @@ Idea: the final graph of all events and their connections will have n nodes, n-1
 
 \paragraph*{Input}
 
-$n$, the number of events. Because Mabel's time-traveller’s notebook is bigger on the inside, she can note up to xxx events
-Timeline of $n$ event IDs id with $id \in {0,...,n-1}$, the last event is the invention of the vegetable lasagna
-$n-2$ connections as cause-effect-pairs $(a.b)$ with $a,b \in {0,...,n-1}$.
+The first line contains $n$, the number of events.
+Because Mabel's time-traveller’s notebook is bigger on the inside, she can note $2 \leq n \leq 10^6$ events.
+
+The second line is the timeline and contains events in the order they occurred in.
+Events are given by their ID $e_i \in {0,...,n-1}$.
+The last event in the timeline is the invention of the vegetable lasagna.
+
+Next, there are $n-2$ connections as cause-effect-pairs \texttt{a b} with $a,b \in {0, \ldots ,n-1}$.
 
 \paragraph*{Output}
 
-If the given connections already contradict the given timeline, print: “ask historians again”
-else:
+If the given connections already contradict the given timeline, print \texttt{ask historians again}.
+
+Otherwise, print two lines:
 $p$, the number of possibilities for the last connection
-$a, b$ an arbitrary possible connection
+\texttt{a b} an arbitrary possible connection
 
 \begin{samples}
     \sample{sample1}
