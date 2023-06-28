@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     rnd.setSeed(553905892603446589ll);
 
     sample(1, SAMPLE1);
-    sample(1, SAMPLE2);
+    sample(2, SAMPLE2);
 
     return 0;
 }
