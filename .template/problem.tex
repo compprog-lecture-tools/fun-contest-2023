@@ -40,4 +40,47 @@ If there are multiple options with the same sum choose the larger area.
   
 \end{samples}
 
+Solution sketch:
+
+Kadane's algorithm for 1D array: returns the maximum sum and stores starting and ending indexes of the maximum sum subarray at addresses pointed by start and finish pointers respectively.
+int kadane(array, start, finish, n){
+    initialize sum = 0, maxSum = max int 
+
+
+    for every field i in row:
+        sum += arr[i];
+        if sum < 0:
+            sum = 0
+            local_start = i + 1
+        else if sum > maxSum:
+            maxSum = sum
+            start = local_start
+            finish = i
+    }
+
+  If there is at-least one non-negative number: return 
+    
+  If all numbers in array are negative: return max element in array
+    
+    
+
+finds maximum sum rectangle
+findMaxSum(int M[][COL]):
+    Set the left column
+    for every column (indicated by left which goes from 0 to number of columns COL):
+        Initialize all elements of temp as 0
+
+        Set the right column for the left column set by outer loop
+        for(right = left; right < COL; ++right) {
+
+            Calculate sum between current left and right for every row 'i' in temp[i]
+
+            Find the maximum sum subarray in temp[] with kadane() function. 
+            'sum' is sum of rectangle between (start, left) and (finish, right) which is the maximum sum with boundary 
+            columns strictly as left and right.
+           
+            sum = kadane(temp, &start, &finish, ROW);
+
+            Compare this sum withour maximum sum. If new sum > max sum: update max sum
+
 \end{document}
