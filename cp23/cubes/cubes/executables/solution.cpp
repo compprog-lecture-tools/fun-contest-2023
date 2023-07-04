@@ -43,11 +43,6 @@ int main()
         cubes.push_back(cube);
     }
 
-    // sort cubes after y
-    sort(cubes.begin(), cubes.end(), [](Cube a, Cube b) {
-        return a.y < b.y;
-    });
-
     cout << getSurfaceArea() << endl;
 
     return 0;
