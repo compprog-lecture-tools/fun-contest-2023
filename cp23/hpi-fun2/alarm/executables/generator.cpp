@@ -1,6 +1,8 @@
 #include <testlib.h>
 #include <bits/stdc++.h>
 
+#define rep(a,b) for (int a = 0; a < (b); a++) 
+
 using namespace std;
 
 
@@ -57,43 +59,43 @@ int main(int argc, char* argv[]) {
     registerGen(argc, argv, 1);
     rnd.setSeed(7368683479736286663ll);
 
-    const int MAX = 1e6;
+    const int MAX = 1e3;
 
     sample(1, SAMPLE1);
     sample(2, SAMPLE2);
     sample(3, SAMPLE3);
     sample(4, SAMPLE4);
 
-    testcase("possible small S shape", "possible with a S shaped path", HSAMPLE1);
+    predefined("possible_small_S_shape", "possible with a S shaped path", HSAMPLE1);
 
-    testcase("possible small with double", "fails if floats are used for the radius", HSAMPLE2);
+    predefined("possible_small_with_double", "fails if floats are used for the radius", HSAMPLE2);
 
-    testcase("many random points", "random ranges", []{
-        cout << Max << endl;
+    testcase("many_random_points", "random ranges", []{
+        cout << MAX << endl;
         rep(i, MAX){
-            int x = rnd.next(0.0, 100.0);
-            int y = rnd.next(0.0, 10.0);
-            int r = rnd.next(0.0, 0.005);
+            double x = rnd.next(0.0, 100.0);
+            double y = rnd.next(0.0, 10.0);
+            double r = rnd.next(0.0, 0.005);
             cout << x << " " << y << " " << r << endl;
         }
     });
 
-    testcase("many random points with relative high radius", "random ranges", []{
-        cout << Max << endl;
+    testcase("many_random_points_with_relative_high_radius", "random ranges", []{
+        cout << MAX << endl;
         rep(i, MAX){
-            int x = rnd.next(0.0, 100.0);
-            int y = rnd.next(0.0, 10.0);
-            int r = rnd.next(5.0, 10.0);
+            double x = rnd.next(0.0, 100.0);
+            double y = rnd.next(0.0, 10.0);
+            double r = rnd.next(5.0, 10.0);
             cout << x << " " << y << " " << r << endl;
         }
     });
 
-    testcase("many random points with a corridor on top", "random ranges", []{
-        cout << Max << endl;
+    testcase("many_random_points_with_a_corridor_on_top", "random ranges", []{
+        cout << MAX << endl;
         rep(i, MAX){
-            int x = rnd.next(0.0, 100.0);
-            int y = rnd.next(0.0, 9.5);
-            int r = rnd.next(0.0, 0.05);
+            double x = rnd.next(0.0, 100.0);
+            double y = rnd.next(0.0, 9.5);
+            double r = rnd.next(0.0, 0.05);
             cout << x << " " << y << " " << r << endl;
 
         }

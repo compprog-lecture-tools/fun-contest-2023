@@ -11,38 +11,36 @@ using ld = long double;
 using vld = vector<ld>;
 
 struct UF {
-  vector<int> par;
-  UF(int n) : par(n, -1) {}
-  int find(int i) { return par[i] < 0 ? i : par[i] = find(par[i]); }
-  void join(int i, int j) { par[find(i)] = find(j); }
+    vector<int> par;
+    UF(int n) : par(n) { iota(begin(par), end(par), 0); }
+    int find(int i) { return par[i] == i ? i : par[i] = find(par[i]); }
+    void join(int i, int j) { par[find(i)] = find(j); }
 };
 
 int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cout.precision(10);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.precision(10);
 
-  int n;
-  cin >> n;
-  vld x(n), y(n), r(n);
-  rep(i, n) cin >> x[i] >> y[i] >> r[i];
+    int n;
+    cin >> n;
+    vld x(n), y(n), r(n);
+    rep(i, n) cin >> x[i] >> y[i] >> r[i];
 
-  UF uf(n + 2);
+    UF uf(n + 2);
 
-  rep(i, n) {
-    if (y[i] <= r[i])
-      uf.join(i, n);
-    if (y[i] + r[i] >= 10)
-      uf.join(i, n + 1);
-    rep(j, n) {
-      if (i < j &&
-          (x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]) <=
-              (r[i] + r[j]) * (r[i] + r[j]))
-        uf.join(i, j);
+    rep(i, n) {
+        if (y[i] <= r[i])
+            uf.join(i, n);
+        if (y[i] + r[i] >= 10)
+            uf.join(i, n + 1);
+        rep(j, n) {
+            if ((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]) <= (r[i] + r[j]) * (r[i] + r[j]))
+                uf.join(i, j);
+        }
     }
-  }
 
-  cout << (uf.find(n) != uf.find(n+1) ? "YES" : "NO") << endl;
+    cout << (uf.find(n) != uf.find(n+1) ? "YES" : "NO") << endl;
 
-  return 0;
+    return 0;
 }
