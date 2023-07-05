@@ -4,11 +4,26 @@
 using namespace std;
 
 
-const string_view SAMPLE1 = R"(SOME
-MULTI LINE
-SAMPLE
-HERE
+const string_view SAMPLE1 = R"(3
+50 10 2.5
+40 5 2.5
+50 0 2.5 
 )";
+
+const string_view SAMPLE2 = R"(1 
+50 5 4.999
+)";
+
+const string_view SAMPLE3 = R"(1
+50 5 5
+)";
+
+const string_view SAMPLE4 = R"(3
+50 10 2.5
+50 5 2.5
+50 0 2.5 
+)";
+
 
 
 template <class F>
@@ -34,6 +49,9 @@ int main(int argc, char* argv[]) {
     rnd.setSeed(7368683479736286663ll);
 
     sample(1, SAMPLE1);
+    sample(2, SAMPLE2);
+    sample(3, SAMPLE3);
+    sample(4, SAMPLE4);
 
     return 0;
 }
