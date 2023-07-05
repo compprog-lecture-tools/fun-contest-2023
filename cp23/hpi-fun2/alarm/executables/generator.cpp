@@ -36,6 +36,7 @@ const string_view HSAMPLE1 = R"(3
 const string_view HSAMPLE2 = R"(1 
 50 5 4.999999999)";
 
+const string_view HSAMPLE3 = R"(0)";
 
 template <class F>
 void testcase(string name, string desc, F f) {
@@ -70,6 +71,8 @@ int main(int argc, char* argv[]) {
 
     predefined("possible_small_with_double", "fails if floats are used for the radius", HSAMPLE2);
 
+    predefined("possible_zero_alarm", "possile because of no alarm", HSAMPLE3);
+    
     testcase("many_random_points", "random ranges", []{
         cout << MAX << endl;
         rep(i, MAX){
