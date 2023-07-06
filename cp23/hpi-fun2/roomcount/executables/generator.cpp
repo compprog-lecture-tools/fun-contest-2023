@@ -4,10 +4,15 @@
 using namespace std;
 
 
-const string_view SAMPLE1 = R"(SOME
-MULTI LINE
-SAMPLE
-HERE
+const string_view SAMPLE1 = R"(5 8
+1 2
+1 3
+2 3
+2 4
+2 5
+3 4
+3 5
+4 5
 )";
 
 
