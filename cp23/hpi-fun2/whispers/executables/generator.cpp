@@ -4,26 +4,37 @@
 using namespace std;
 
 
-const string_view SAMPLE1 = R"(2 3
+const string_view SAMPLE1 = R"(3 4
 0 1 1
-1 2 1)";
+1 2 1
+2 3 2
+2 4 1)";
 
-const string_view SAMPLE2 = R"(2 1)";
-
-const string_view SAMPLE3 = R"(2 4
-0 1 1
-2 1 1
-3 1 1)";
-
-const string_view SAMPLE4 = R"(1 4
+const string_view SAMPLE2 = R"(2 4
 0 1 1
 2 1 1
-3 1 1)";
+3 1 1
+4 3 1)";
 
-const string_view SAMPLE5 = R"(0 4
+const string_view NO_EDGE = R"(2 1)";
+
+const string_view STAR = R"(1 8
 0 1 1
 2 1 1
-3 1 1)";
+3 1 1
+4 1 1
+5 1 1
+6 1 1
+7 1 1)";
+
+const string_view WEIGHT_0 = R"(1 8
+0 1 0
+2 1 0
+3 1 0
+4 1 0
+5 1 0
+6 1 0
+7 1 0)";
 
 
 template <class F>
@@ -50,9 +61,9 @@ int main(int argc, char* argv[]) {
 
     sample(1, SAMPLE1);
     sample(2, SAMPLE2);
-    sample(3, SAMPLE3);
-    sample(4, SAMPLE4);
-    sample(5, SAMPLE5);
+    sample(3, NO_EDGE);
+    sample(4, STAR);
+    sample(5, WEIGHT_0);
 
 
     for (int i = 0; i < 20; i++) {
@@ -65,8 +76,8 @@ int main(int argc, char* argv[]) {
 
 
     testcase("random", "random ranges", []{
-        int n = 1000000;
-        long long max_w = 10000;
+        int n = 10000000;
+        long long max_w = 100;
         long long c = 100000;
         cout << c << " " << n << endl;
 
@@ -89,26 +100,13 @@ int main(int argc, char* argv[]) {
 
 
 	testcase("big", "big weights", []{
-        int n = 100000;
-        long long max_w = 10000000000;
-        long long c = 10000000;
+        int n = 1000000;
+        long long max_w = 10000000000000;
+        long long c = 1;
         cout << c << " " << n << endl;
 
-        vector<int> nodes(n);
-        iota(nodes.begin(), nodes.end(), 0);
-
-        vector<int> parents(n-1, -1);
-        vector<long long> weights(n-1, 0);
-
-        for (int i = 0; i < n-1; i++) {
-            int parent = rnd.next(i+1, n-1);
-            parents[i] = parent;
-            weights[i] = rnd.next(1, int(max_w));
-        }
-
-        for (int i = 1; i < n-1; i++) {
-            cout << parents[i] << " " << i << " " << weights[i] << endl;
-        }
+        for(int i = 0; i < n-1; i++)
+            cout << i << " " << i+1 << " " << max_w << endl;
     });
 
     return 0;
