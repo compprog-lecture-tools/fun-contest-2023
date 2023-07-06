@@ -1,0 +1,9 @@
+{
+  "description": "Find the longest path in a weighted undirected tree",
+  "difficulty": 2,
+  "tags": [
+    "dfs and similar",
+    "graphs",
+    "trees"
+  ]
+}
