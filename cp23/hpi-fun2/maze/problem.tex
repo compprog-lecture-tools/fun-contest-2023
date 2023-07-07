@@ -21,12 +21,11 @@ standard input.
 
 In the first line, you recieve two integer values $w$ and $h$ ($1\leq w, h \leq 10^9$), the width and height of the maze.
 
-In the next line you will get a sequence of length $4$ with each character being either $_$ (for a free room) or $#$ (for a blocked room) in the order $north$, $east$, $south$, $west$.
+In the next line you will get a sequence of length $4$ with each character being either \texttt{_} for a free room or \texttt{#} for a blocked room in the order north, east, south, west.
 
-You can then perform up to $5 \cdot w \cdot h$ operations navigate Alice through the maze. To do this just print
-\texttt{"<direction>"} to \texttt{stdout} where \texttt{"<direction>"} is one of $"N"$, $"E"$, $"S"$, $"W"$. The description of the room that Alcie went into will be print to \texttt{stdin}. 
-When you take too much time you will read \texttt{-1} meaning Alice is trapped forever. In this case, your program should immediately exit in order to make sure that your submission
-receives the WRONG ANSWER verdict instead of TIMELIMIT.
+You can then perform up to $5 \cdot w \cdot h$ operations in order to navigate Alice through the maze. To do so just print \texttt{<direction>} to \texttt{stdout} where \texttt{<direction>} is one of \texttt{N}, \texttt{E}, \texttt{S}, \texttt{W}. Alice then answers you with the description of the room that she went into will using \texttt{stdin}. 
+
+When you take too much time, you will read \texttt{-1} meaning Alice is trapped forever. In this case, your program should immediately exit in order to make sure that your submission receives the WRONG ANSWER verdict instead of TIMELIMIT.
 
 As this problem is interactive, you need to flush \texttt{stdout} after each operation, because otherwise Alice won't be able to receive your move request.
 \begin{description}
@@ -38,9 +37,9 @@ As this problem is interactive, you need to flush \texttt{stdout} after each ope
 
 \paragraph*{Output}
 
-Print the abreviation of one of the four directions $N$, $E$, $S$, $W$ to move Alice in this direction. If you send her in a direction where there's no room, she will stay in her current room.
+Print the abreviation of one of the four directions \texttt{N}, \texttt{E}, \texttt{S}, \texttt{W} to move Alice in this direction. If you send her in a direction where there's no room, she will stay in her current room.
 
-If Alice reaches the exit of the maze, she will print \texttt{"EXIT"}. Otherwise, she will look around in the room telling you for each of the directions if there is a room availalbe or not.
+If Alice reaches the exit of the maze, she will print \texttt{EXIT}. Otherwise, she will look around in the room telling you for each of the directions if there is a room availalbe or not.
 
 \paragraph*{Sample interaction}
 
