@@ -4,28 +4,23 @@
 
 \makeheader
 
-One night Alice wakes up in a dark room. She has read about this place in one of her books. It is a large maze that has exactly one place where she can exit it. But the time is running low. If she doesn't find her way out of the maze she will be trapped there forever.
+One night Alice wakes up in a dark room. She has read about this place in one of her books. It is a large maze that is known to have exactly one exit in it. But Alice is running out of time. If she doesn't find her way to the exit soon, she will be trapped in it forever.
 
-The only thing that Alice knows about this place is that the maze is build in a grid style. Each place in the grid is either a room or blocked and she can only travel to one of the four rooms directly adjacent to her current room.
+The only thing that Alice knows about this place is that it is build in a grid style. Each room in the grid is either a room or completely blocked. She can only travel to one of the four rooms directly adjacent to her current room.
 
-Since it is very dark, she can only tell for the room she is currently in in which directions she can go.
-
-Can you help Alice find a way out of the maze before she will get trapped there forever?
+Since it is very dark, she can only feel in the room she is currently in, if the adjacent rooms are open or blocked. Can you help Alice find a way out of the maze before she will get trapped there forever?
 
 \paragraph*{Interaction}
 
-This is an interactive problem. This means that your program will not first
-read all intput and then write some output, but instead communicates with
-the jury by writing queries to standard output and reading the answers from
-standard input.
+This is an interactive problem. This means that your program will not first read all intput and then write some output, but instead communicates with the jury by writing queries to standard output and reading the answers from standard input.
 
-In the first line, you recieve two integer values $w$ and $h$ ($1\leq w, h \leq 10^9$), the width and height of the maze.
+In the first line, you recieve two integer values $w$ and $h$ ($3\leq w, h \leq 10^9$), the width and height of the maze.
 
 In the next line you will get a sequence of length $4$ with each character being either \texttt{\_} for a free room or \texttt{\#} for a blocked room in the order north, east, south, west.
 
 You can then perform up to $5 \cdot w \cdot h$ operations in order to navigate Alice through the maze. To do so just print \texttt{<direction>} to \texttt{stdout} where \texttt{<direction>} is one of \texttt{N}, \texttt{E}, \texttt{S}, \texttt{W}. Alice then answers you with the description of the room that she went into will using \texttt{stdin}. 
 
-When you take too much time, you will read \texttt{-1} meaning Alice is trapped forever. In this case, your program should immediately exit in order to make sure that your submission receives the WRONG ANSWER verdict instead of TIMELIMIT.
+When you take too much time or send Alice in the direction of a blocked room, you will read \texttt{-1} meaning Alice is trapped forever. In this case, your program should immediately exit in order to make sure that your submission receives the WRONG ANSWER verdict instead of TIMELIMIT.
 
 As this problem is interactive, you need to flush \texttt{stdout} after each operation, because otherwise Alice won't be able to receive your move request.
 \begin{description}
@@ -37,7 +32,7 @@ As this problem is interactive, you need to flush \texttt{stdout} after each ope
 
 \paragraph*{Output}
 
-Print the abreviation of one of the four directions \texttt{N}, \texttt{E}, \texttt{S}, \texttt{W} to move Alice in this direction. If you send her in a direction where there's no room, she will stay in her current room.
+Print the abreviation of one of the four directions \texttt{N}, \texttt{E}, \texttt{S}, \texttt{W} to move Alice in this direction. If you send her in a direction where the room is blocked, she will be mad at you and respond with \texttt{-1}.
 
 If Alice reaches the exit of the maze, she will print \texttt{EXIT}. Otherwise, she will look around in the room telling you for each of the directions if there is a room availalbe or not.
 
