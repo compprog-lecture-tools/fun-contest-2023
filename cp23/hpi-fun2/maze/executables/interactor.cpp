@@ -13,7 +13,7 @@ void send_neighbor_info(int x, int y, vector<vector<bool>>& maze) {
   char left = (x == 0 || maze[y][x - 1]) ? WALL : FREE;
   char right = (x == maze.front().size() - 1 || maze[y][x + 1]) ? WALL : FREE;
 
-  cout << up << " " << right << " " << down << " " << left << endl;
+  cout << up  << right << down << left << endl;
 }
 
 bool is_valid_move(int x, int y, int width, int height, vector<vector<bool>>& maze) {
