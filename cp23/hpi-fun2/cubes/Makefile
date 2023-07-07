@@ -1,1 +1,1 @@
-../../tools/make/ContestMakefile
+../../../tools/make/Makefile
