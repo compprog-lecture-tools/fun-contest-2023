@@ -49,9 +49,14 @@ int main(int argc, char* argv[]) {
     maze[y][x] = true;
   }
 
-  auto fail = []() {
+  auto fail_move = []() {
     cout << -1 << endl;
     quit(_wa, "invalid move");
+  };
+
+  auto fail_input = []() {
+    cout << -1 << endl;
+    quit(_wa, "invalid input");
   };
 
   const auto max_queries = uint64_t{5} * width * height;
@@ -64,32 +69,32 @@ int main(int argc, char* argv[]) {
         if (is_valid_move(x, y + 1, width, height, maze)) {
           ++y;
         } else {
-          fail();
+          fail_move();
         }
         break;
       case 'E':
         if (is_valid_move(x + 1, y, width, height, maze)) {
           ++x;
         } else {
-          fail();
+          fail_move();
         }
         break;
       case 'S':
         if (is_valid_move(x, y - 1, width, height, maze)) {
           --y;
         } else {
-          fail();
+          fail_move();
         }
         break;
       case 'W':
         if (is_valid_move(x - 1, y, width, height, maze)) {
           --x;
         } else {
-          fail();
+          fail_move();
         }
         break;
       default:
-        fail();
+        fail_input();
     }
 
     if (x == end_x && y == end_y) {
