@@ -43,9 +43,13 @@ bool visit(int x, int y, char backtracking) {
     if (direction == backtracking) continue; // Dont go back here
     if (visited[target_y][target_x]) continue; // We have been there before, dont need to check again
     cout << direction << endl;
-    if (visit(target_x, target_y, back_direction)) return true;
+    if (visit(target_x, target_y, back_direction)) return true; // We found a solution -> return to end
   }
+  // The subgraph behind this node doesn't yield to the exit so we can return to where we came from.
   cout << backtracking << endl;
+  // Read the input from the backtracking step that is already known from the previous call.
+  cin >> input;
+  // Then we can return false and go back
   return false;
 }
 
