@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
 
 
     const long long MAX_COORDINATE = 10e12;
-    const int MAX_N = 10e4;
+    const int MAX_N = 10e5;
 
     for (int i = 0; i < 10; i++) {
 		testcase("random"+to_string(i), "random", []{
