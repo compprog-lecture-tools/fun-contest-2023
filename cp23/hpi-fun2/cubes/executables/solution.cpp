@@ -33,44 +33,44 @@ static ll getSurfaceArea()
     ll total = 6 * cubes.size();
 
     // sort cubes after x, y, z
-    sort(cubes.begin(), cubes.end(), [](Cube a, Cube b) {
+    sort(cubes.begin(), cubes.end(), [](Cube a, Cube b)
+         {
         if (a.x != b.x)
             return a.x < b.x;
         if (a.y != b.y)
             return a.y < b.y;
-        return a.z < b.z;
-    });
+        return a.z < b.z; });
 
     for (int i = 0; i < cubes.size() - 1; i++)
         if (adjacentZ(cubes[i], cubes[i + 1]))
             total -= 2;
 
     // sort cubes after y, z, x
-    sort(cubes.begin(), cubes.end(), [](Cube a, Cube b) {
+    sort(cubes.begin(), cubes.end(), [](Cube a, Cube b)
+         {
         if (a.y != b.y)
             return a.y < b.y;
         if (a.z != b.z)
             return a.z < b.z;
-        return a.x < b.x;
-    }); 
+        return a.x < b.x; });
 
     for (int i = 0; i < cubes.size() - 1; i++)
         if (adjacentX(cubes[i], cubes[i + 1]))
             total -= 2;
 
     // sort cubes after z, x, y
-    sort(cubes.begin(), cubes.end(), [](Cube a, Cube b) {
+    sort(cubes.begin(), cubes.end(), [](Cube a, Cube b)
+         {
         if (a.z != b.z)
             return a.z < b.z;
         if (a.x != b.x)
             return a.x < b.x;
-        return a.y < b.y;
-    });
+        return a.y < b.y; });
 
     for (int i = 0; i < cubes.size() - 1; i++)
         if (adjacentY(cubes[i], cubes[i + 1]))
             total -= 2;
-    
+
     return total;
 }
 
@@ -81,6 +81,13 @@ int main()
 
     int n;
     cin >> n;
+
+    if (n == 0)
+    {
+        cout << 0 << endl;
+        return 0;
+    }
+
     while (n--)
     {
         Cube cube;
