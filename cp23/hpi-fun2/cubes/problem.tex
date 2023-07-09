@@ -1,29 +1,35 @@
 \input{template.tex}
 
+\usepackage{epigraph}
+
 \begin{document}
 
 \makeheader
 
-``Setz dich nicht so nah vor den Fernseher - du bekommst noch viereckige Augen!''
-``Don't sit so close to the TV - you'll get square eyes!''
+\epigraph{``Setz dich nicht so nah vor den Fernseher - du bekommst noch
+  viereckige Augen!\\ \textit{Don't sit so close to the TV - you'll get square
+    eyes!}''}{Your parents}
 
 You were told often enough by your parents, but of course you didn't believe them.
-Now, staring on computer screen all day to solve compettive programming tasks, the threat has turned into bitter reality.
 
-You only see the world as 1cm x 1cm x 1cm large aligned blocks, even after switching profession to be a meterologist, your sight hasn't cleared.
+Now, staring on computer screens all day to solve competitive programming tasks, the threat has turned into bitter reality.
 
-One day, your new boss asks you to calculate the surface area of a large cloud on the sky, so the National Weather Modification Service can shoot the right amount of Silver iodide into the sky to let the cloud rain down.
+You only see the world as 1cm x 1cm x 1cm large aligned blocks, even after switching profession to be a meteorologist, your sight hasn't cleared.
+
+One day, your new boss asks you to calculate the surface area of a large cloud in the sky, so the National Weather Modification Service can shoot the right amount of silver iodide into the sky to let the cloud rain down.
+
+It might be no cloud at all if the weather is good, but if it is a cloud, it can be also disconnected. Also, since you're bad at counting, you count a block sometimes twice, but luckily you never miss one.
 
 Can you calculate the surface area of the water drops in the cloud, which you only see as little cubes?
 
 \paragraph*{Input}
 
-In the first line, you get $n \leq 10^5$ - number of water drop blocks.
-In every one in the next $n$ lines you get a list of integer coordinates $(x, y, z)$ of each of the water blocks. The coordinates are non-negatvive integers smaller than $10^{12}$.
+In the first line, you get $0 \leq n \leq 10^5$ - number of water drop blocks.
+Each of the next $n$ lines contain 3 integer coordinates $0 \leq x, y, z \leq 10^{12}$ of a water block. It is not garanteed that the blocks are connected or all different.
 
 \paragraph*{Output}
 
-The surface area of the water drops in the cloud.
+The surface area of the cloud.
 
 \begin{samples}
   \sample{sample1}
