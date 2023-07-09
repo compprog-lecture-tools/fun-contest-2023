@@ -60,7 +60,7 @@ int main() {
   int w, h;
   cin >> w >> h;
 
-  visited = vector<vector<bool>>(2 * (h + 1), vector<bool>(2 * (w + 1), false));
+  visited = vector<vector<bool>>(2 * (h + 2), vector<bool>(2 * (w + 2), false)); // Make sure that the structure is large enough
   visit(w + 1, h + 1, ' ');
 
   return 0;
