@@ -18,14 +18,14 @@ You only see the world as 1cm x 1cm x 1cm large aligned blocks, even after switc
 
 One day, your new boss asks you to calculate the surface area of a large cloud in the sky, so the National Weather Modification Service can shoot the right amount of silver iodide into the sky to let the cloud rain down.
 
-It might be no cloud at all if the weather is good, but if it is a cloud, it can be also disconnected. Also, since you're bad at counting, you count a block sometimes twice, but luckily you never miss one.
+It might be no cloud at all if the weather is good, but if it is a cloud, it can be also disconnected.
 
 Can you calculate the surface area of the water drops in the cloud, which you only see as little cubes?
 
 \paragraph*{Input}
 
 In the first line, you get $0 \leq n \leq 10^5$ - number of water drop blocks.
-Each of the next $n$ lines contain 3 integer coordinates $0 \leq x, y, z \leq 10^{12}$ of a water block. It is not garanteed that the blocks are connected or all different.
+Each of the next $n$ lines contain 3 integer coordinates $0 \leq x, y, z \leq 10^{12}$ of a water block. It is not garanteed that the blocks are connected, but they are pairwise distinct.
 
 \paragraph*{Output}
 
@@ -33,6 +33,7 @@ The surface area of the cloud.
 
 \begin{samples}
   \sample{sample1}
+  \sample{sample2}
 \end{samples}
 
 \end{document}
