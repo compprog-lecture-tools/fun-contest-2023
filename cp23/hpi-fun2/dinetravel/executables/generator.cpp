@@ -35,7 +35,8 @@ void sample(int num, string_view content) {
   predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-#define MAX 1000000
+#define MAX 10000000
+#define MIDI 10000
 
 int main(int argc, char *argv[]) {
   registerGen(argc, argv, 1);
@@ -44,35 +45,26 @@ int main(int argc, char *argv[]) {
   sample(1, SAMPLE1);
   sample(2, SAMPLE2);
 
-  // testcase("big ask historians again", "big ask historians again", []
-  //          {
-  // 		int prefix = rnd.next(1, 9);
-  // 		prefix = prefix*(MAX/10) + prefix*(MAX/100);
-  // 		int l = rnd.next(MAX/100);
-  // 		int r = rnd.next(l, MAX/100);
-  // 		assert(r<=MAX/100);
-  // 		assert(l<=r);
-  // 		println(l+prefix, r+prefix); });
+  testcase("big-impossible", "big ask historians again", [] {
+    ll n = MAX;
 
-  // testcase("big with many possibilities", "big with many possibilities ", []
-  //          {
-  // 		int prefix = rnd.next(1, 9);
-  // 		prefix = prefix*(MAX/10) + prefix*(MAX/100);
-  // 		int l = rnd.next(MAX/100);
-  // 		int r = rnd.next(l, MAX/100);
-  // 		assert(r<=MAX/100);
-  // 		assert(l<=r);
-  // 		println(l+prefix, r+prefix); });
+    vector<ll> timeline;
+    rep(n, i) timeline.push_back(i);
+    shuffle(timeline.begin(), timeline.end());
 
-  // testcase("big with few possibilities", "big with few possibilities ", []
-  //          {
-  // 		int prefix = rnd.next(1, 9);
-  // 		prefix = prefix*(MAX/10) + prefix*(MAX/100);
-  // 		int l = rnd.next(MAX/100);
-  // 		int r = rnd.next(l, MAX/100);
-  // 		assert(r<=MAX/100);
-  // 		assert(l<=r);
-  // 		println(l+prefix, r+prefix); });
+    vector<pair<ll, ll>> edges;
+    rep(n - 1, i) { edges.push_back({i, i + 1 + rnd.next(n - 1 - i)}); }
+    shuffle(edges.begin(), edges.end());
+    edges.pop_back();
+    
+    swap(edges[rnd.next(n - 2)].first, edges[rnd.next(n - 2)].second);
+
+    cout << n << "\n";
+    rep(n, i) cout << timeline[i] << " \n"[i == n - 1];
+    for (auto edge : edges) {
+      cout << timeline[edge.first] << " " << timeline[edge.second] << "\n";
+    }
+  });
 
   testcase("big-lasagna-separate", "big with unconnected lasagna", [] {
     ll n = MAX;
@@ -81,11 +73,8 @@ int main(int argc, char *argv[]) {
     rep(n, i) timeline.push_back(i);
     shuffle(timeline.begin(), timeline.end());
 
-    vector<ll> causes;
-    rep(n - 2, i) { causes.push_back(i + 1 + rnd.next(n - 2 - i)); }
-
     vector<pair<ll, ll>> edges;
-    rep(n - 2, i) { edges.push_back({i, causes[i]}); }
+    rep(n - 2, i) { edges.push_back({i, i + 1 + rnd.next(n - 2 - i)}); }
     shuffle(edges.begin(), edges.end());
 
     cout << n << "\n";
@@ -102,13 +91,9 @@ int main(int argc, char *argv[]) {
     rep(n, i) timeline.push_back(i);
     shuffle(timeline.begin(), timeline.end());
 
-    vector<ll> causes;
-    rep(n - 1, i) { causes.push_back(i + 1 + rnd.next(n - 1 - i)); }
-
     vector<pair<ll, ll>> edges;
-    rep(n - 1, i) { edges.push_back({i, causes[i]}); }
+    rep(n - 1, i) { edges.push_back({i, i + 1 + rnd.next(n - 1 - i)}); }
     shuffle(edges.begin(), edges.end());
-    auto removed = edges[n - 2];
     edges.pop_back();
 
     cout << n << "\n";
@@ -116,8 +101,6 @@ int main(int argc, char *argv[]) {
     for (auto edge : edges) {
       cout << timeline[edge.first] << " " << timeline[edge.second] << "\n";
     }
-
-    cout << "removed: " << timeline[removed.first] << "(" << removed.first << ") " << timeline[removed.second] << " (" << removed.second << ")\n";
   });
 
   return 0;
