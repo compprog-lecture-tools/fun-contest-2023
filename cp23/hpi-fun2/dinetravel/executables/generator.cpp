@@ -35,7 +35,7 @@ void sample(int num, string_view content) {
   predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-#define MAX 10000000
+#define MAX 200000
 #define MIDI 10000
 
 int main(int argc, char *argv[]) {
