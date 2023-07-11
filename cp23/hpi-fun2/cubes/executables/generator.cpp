@@ -45,16 +45,13 @@ void sample(int num, string_view content)
     predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-vector<array<long long, 3>> generate_coords(int width, int length, int height)
+vector<array<long long, 3>> generate_coords(int width, int length, int height, float threshold = 0.4)
 {
     vector<array<long long, 3>> coords;
 
     const long long base_x_coordinate = rnd.next(MAX_COORDINATE);
     const long long base_y_coordinate = rnd.next(MAX_COORDINATE);
     const long long base_z_coordinate = rnd.next(MAX_COORDINATE);
-
-    // Threshold for the cloud block
-    const float THRESHOLD = 0.4;
 
     FastNoiseLite noiseGenerator;
 
@@ -72,14 +69,19 @@ vector<array<long long, 3>> generate_coords(int width, int length, int height)
                 float noise = noiseGenerator.GetNoise((float)x, (float)y, (float)z);
 
                 // If noise value is above threshold, generate a cloud block
-                if (noise > THRESHOLD)
+                if (noise > threshold)
                     coords.push_back({base_x_coordinate + x, base_y_coordinate + y, base_z_coordinate + z});
 
+                // break if we have enough coordinates
                 if (coords.size() == MAX_N)
-                    break;
+                    goto end;
             }
         }
     }
+
+end:
+    // shuffle the coordinates
+    shuffle(coords.begin(), coords.end(), default_random_engine(42));
 
     return coords;
 };
@@ -137,7 +139,7 @@ int main(int argc, char *argv[])
 
     testcase("max_n", "max n", []
              {
-    auto coords = generate_coords(1000, 1000, 1000);
+    auto coords = generate_coords(1000, 1000, 1000, 0.3);
     int n = coords.size();
     println(n);
     for (int i = 0; i < n; i++)
@@ -145,10 +147,12 @@ int main(int argc, char *argv[])
 
     for (int j = 0; j < 10; j++)
     {
-
         testcase("random" + to_string(j), "random", []
                  {
-            auto coords = generate_coords(100 + rnd.next(100), 100 + rnd.next(100), 100 + rnd.next(100));
+            // define threshold to be a float between 0.3 and 0.4
+            float threshold = 0.3 + rnd.next(10) / 100.0;
+
+            auto coords = generate_coords(100 + rnd.next(100), 100 + rnd.next(100), 100 + rnd.next(100), threshold);
             int n = coords.size();
             println(n);
             for(int i = 0; i < n; i++)
