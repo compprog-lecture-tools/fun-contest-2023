@@ -2,8 +2,7 @@
 
 using namespace std;
 
-#define ll long long
-#define rep(a, b) for (ll a = 0; a < (b); a++)
+#define rep(a, b) for (int a = 0; a < (b); a++)
 
 int main() {
   ios::sync_with_stdio(false);
@@ -12,8 +11,7 @@ int main() {
   int n;
   cin >> n;
 
-  vector<int> time(n), rank(n);
-  vector<vector<int>> adj(n);
+  vector<int> time(n), rank(n), deg(n);
   rep(i, n) {
     cin >> time[i];
     rank[time[i]] = i;
@@ -21,13 +19,13 @@ int main() {
 
   rep(i,n-2) {
     int a,b; cin >> a >> b;
-    adj[a].push_back(b);
-    if (a == b || rank[a] > rank[b] || adj[a].size() > 1 || adj[time.back()].size() > 0)
+    deg[a]++;
+    if (a == b || rank[a] > rank[b] || deg[a] > 1 || deg[time.back()] > 0)
       return cout << "ask historians again", 0;
   }
 
   rep(i,n) {
-    if (adj[i].size() == 0 && i != time.back()) {
+    if (deg[i] == 0 && i != time.back()) {
       cout << n - rank[i] - 1 << endl << i << ' ' << time.back() << endl;
       return 0;
     }
