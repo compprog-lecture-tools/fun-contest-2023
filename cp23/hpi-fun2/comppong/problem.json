@@ -1,0 +1,13 @@
+{
+  "based_on": {
+    "data": [
+      "geeksforgeeks DP-27"
+    ],
+    "type": "other"
+  },
+  "description": "maximum sum rectangle in a 2D matrix",
+  "difficulty": 3,
+  "tags": [
+    "dp"
+  ]
+}
