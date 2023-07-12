@@ -6,7 +6,8 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    // TODO: Solution
+    int n; cin >> n;
+    cout << n;
 
     return 0;
 }
