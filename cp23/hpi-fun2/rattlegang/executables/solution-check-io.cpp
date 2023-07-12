@@ -7,7 +7,7 @@ int main() {
 
     int n; cin >> n;
 
-    assert(6 <= n && n <= 10000);
+    assert(6 <= n && n <= 1e6);
     assert(n % 2 == 0);
     vector<int> cnt(n,0);
 
