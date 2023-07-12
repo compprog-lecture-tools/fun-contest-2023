@@ -46,7 +46,7 @@ void maxWidthTestcase(int maxSize) {
   }
 }
 
-void intervalGraph(vector<int> &intervalStarts; int intervalLength, vector<pair<int, int>> &edges) {
+void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges) {
   sort(intervalStarts.begin(), intervalStarts.end());
   for (int i = 0; i < intervalStarts.size(); i++) {
     int end = intervalStarts[i] + intervalLength;
@@ -67,7 +67,7 @@ void randomTestcase(int intervalLength, int n, int maxStart) {
 
   random_device rd;
   mt19937 g(rd());
-  shuffle(intervalGraph.begin(), intervalGraph.end(), g);
+  shuffle(intervalStarts.begin(), intervalStarts.end(), g);
 
   cout << n << " " << edges.size() << endl;
   for (auto& edge : edges) {
@@ -101,7 +101,7 @@ int main(int argc, char* argv[]) {
     sample(2, SAMPLE2);
 
     for (int i = 0; i < 10; i++) {
-      int n = rnd.next(100, 1001);
+      int n = rnd.next(100, 1000);
       testcase("random_testcase_" + to_string(i), "random_testcase", [&n](){
         randomTestcase(100, n, n * n / 100);
       });
