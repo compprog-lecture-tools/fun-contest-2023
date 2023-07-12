@@ -11,6 +11,14 @@ const string_view SAMPLE1 = R"(1
 -1 -2  2  6  9
 )";
 
+const string_view SAMPLE2 = R"(
+5 4
+1 2 -1 -4 -20
+-8 -3 4 2 1
+3 8 10 1 3
+-4 -1 1 7 -6
+)";
+
 template <class F> void testcase(string name, string desc, F f) {
   ofstream desc_file(name + ".desc");
   desc_file << desc;
@@ -32,7 +40,7 @@ int main(int argc, char *argv[]) {
   registerGen(argc, argv, 1);
   rnd.setSeed(5120471233170915017ll);
 
-  sample(1, SAMPLE1);
+  sample(1, SAMPLE2);
 
   testcase("random", "random", []() {
     int n = 1000;
