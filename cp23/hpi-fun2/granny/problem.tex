@@ -1,0 +1,23 @@
+\input{template.tex}
+
+\begin{document}
+
+\makeheader
+
+Madeline has baked a delicious strawberry cake for Granny and now wants to bring it to her as fast as possible. Both Granny and Madeline live in Celeste National Park, where there are a lot of bus connections. These connections are numbered incrementally. Looking on the bus plan, Madeline tries to figure out the best way to get to Granny with the cake. Thanks to the wonderful service at the National Park, there is always a bus available at a station to advance in its designated station sequence if anyone gets on it - meaning Madeline won't have to wait for a next bus at a station. In order to save even more time, Madeline can instantly dash from one station to another - but only if the station's numbers are adjacent to another. For example, she can dash from station 5 to either station 4 or station 6. Since dashing exhausts Madeline very much, she can only dash once. Madeline currently lives at the first station and Granny lives at the very last station, but since she already visited her in the past, she knows that there is a way for her to get there. What should she do to get to Granny the fastest?
+
+\paragraph*{Input}
+
+The first line contains two integers $n$ and $m$: the number of bus stations and connections.
+The following $m$ lines each give you the start and end point of the connection, as well as the time required for the transfer.
+
+\paragraph*{Output}
+
+Output the length of the shortest path between the first and the $n$-th station.
+
+\begin{samples}
+  \sample{sample1}
+  \sample{sample2}
+\end{samples}
+
+\end{document}
