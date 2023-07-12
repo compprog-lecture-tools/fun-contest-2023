@@ -15,6 +15,12 @@ const string_view SAMPLE1 = R"(5 8
 4 5
 )";
 
+const string_view SAMPLE2 = R"(5 4
+3 1
+2 5
+4 2
+4 5
+)";
 
 void maxLengthTestcase(int maxSize) {
   int n = maxSize;
@@ -92,6 +98,7 @@ int main(int argc, char* argv[]) {
     rnd.setSeed(7889991971352209491ll);
 
     sample(1, SAMPLE1);
+    sample(2, SAMPLE2);
 
     for (int i = 0; i < 10; i++) {
       int n = rnd.next(100, 1001);
