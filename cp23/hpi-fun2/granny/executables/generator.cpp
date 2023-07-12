@@ -44,7 +44,6 @@ void bigCase(){
     ll n = pow(10,6);
     ll maxL = pow(10,5);
 
-    std::srand(42);
     Graph g(n);
     ll m = 0;
     vector<int> backlog;
@@ -59,15 +58,15 @@ void bigCase(){
     // build tree
     for(int i = 1; i < n; i++){
         m++;
-        int r = rand()%inTreeIndex.size();
-        ll t = rand()% maxL;
+        int r = rnd.next(inTreeIndex.size());
+        ll t = rnd.next(maxL);
         g[r].emplace_back(t,backlog[i]);
         inTreeIndex.push_back(backlog[i]);
     }
 
     for (int i = 0; i < 5000; ++i) {
-        int a = rand()%inTreeIndex.size();
-        int b = rand()%inTreeIndex.size();
+        int a = rnd.next(inTreeIndex.size());
+        int b = rnd.next(inTreeIndex.size());
 
         if(a == b) continue;
         bool found = false;
@@ -78,7 +77,7 @@ void bigCase(){
             }
         }
         if(!found) {
-            ll t = rand()% maxL;
+            ll t = rnd.next(maxL);
             g[a].emplace_back(t,b);
             m++;
         }
