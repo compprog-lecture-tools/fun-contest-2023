@@ -95,17 +95,17 @@ int main(int argc, char* argv[]) {
 
     for (int i = 0; i < 10; i++) {
       int n = rnd.next(100, 1001);
-      testcase("random_testcase_" + to_string(i), "random_testcase", [](){
+      testcase("random_testcase_" + to_string(i), "random_testcase", [&n](){
         randomTestcase(100, n, n * n / 100);
       });
     }
 
     int maxSize = 1000000;
-    testcase("max_size_length", "max_size_length", [](){
+    testcase("max_size_length", "max_size_length", [&maxSize](){
       maxLengthTestcase(maxSize);
     });
 
-    testcase("max_size_width", "max_size_width", [](){
+    testcase("max_size_width", "max_size_width", [&maxSize](){
       maxWidthTestcase(maxSize);
     });
 
