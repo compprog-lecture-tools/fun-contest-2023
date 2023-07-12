@@ -4,7 +4,15 @@
 using namespace std;
 
 // @ CALLISTA PUT THING HERE
-const string_view SAMPLE_ON_PDF = R"(
+const string_view SAMPLE_ON_PDF = R"(6 8
+1 2 5
+1 3 7
+1 4 3
+2 6 4
+3 2 5
+3 4 2
+4 5 1
+5 6 2
 )";
 
 
