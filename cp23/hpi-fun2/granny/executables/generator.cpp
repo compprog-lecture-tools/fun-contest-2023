@@ -86,7 +86,7 @@ void bigCase(){
     cout << n << " " << m << endl;
     for (int a = 0; a < n; ++a) {
         for (auto &b: g[a]) {
-            cout << a << " " << b.second << " " << b.first << endl;
+            cout << (a+1) << " " << (b.second+1) << " " << b.first << endl;
         }
     }
 }
@@ -96,11 +96,11 @@ int main(int argc, char* argv[]) {
     rnd.setSeed(-2611193603731665810ll);
 
     // small examples
-    
-    sample(1, SAMPLE1);
-    sample(2, SAMPLE2);
-    sample(3, SAMPLE3);
-    sample(4, SAMPLE4);
+    sample(1, SAMPLE_ON_PDF);
+    testcase("smallTestcase1", "Jump and then take", SAMPLE1);
+    testcase("smallTestcase2", "Take and then jump", SAMPLE2);
+    testcase("smallTestcase3", "Take and then jump even tho there is a connection", SAMPLE3);
+    testcase("smallTestcase4", "Jump and then take even tho there is a connection", SAMPLE4);
 
     // big sample
     testcase("bigTestcase","Its a big testcase",bigCase);
