@@ -36,6 +36,62 @@ void sample(int num, string_view content) {
     predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
+void bigCase(){
+    using namespace std;
+    using ll = long long;
+    using Graph = vector<vector<pair<ll,int> > >;
+
+    ll n = pow(10,6);
+    ll maxL = pow(10,5);
+
+    std::srand(42);
+    Graph g(n);
+    ll m = 0;
+    vector<int> backlog;
+    vector<int> inTreeIndex;
+    inTreeIndex.push_back(0);
+
+    // backlog
+    for(int i = 1; i < n; i++){
+        backlog.push_back(i);
+    }
+
+    // build tree
+    for(int i = 1; i < n; i++){
+        m++;
+        int r = rand()%inTreeIndex.size();
+        ll t = rand()% maxL;
+        g[r].emplace_back(t,backlog[i]);
+        inTreeIndex.push_back(backlog[i]);
+    }
+
+    for (int i = 0; i < 5000; ++i) {
+        int a = rand()%inTreeIndex.size();
+        int b = rand()%inTreeIndex.size();
+
+        if(a == b) continue;
+        bool found = false;
+        for (auto &e: g[a]) {
+            if(e.second == b) {
+                found = true;
+                break;
+            }
+        }
+        if(!found) {
+            ll t = rand()% maxL;
+            g[a].emplace_back(t,b);
+            m++;
+        }
+    }
+
+    cout << n << " " << m << endl;
+    for (int a = 0; a < n; ++a) {
+        for (auto &b: g[a]) {
+            cout << a << " " << b.second << " " << b.first << endl;
+        }
+    }
+}
+
 int main(int argc, char* argv[]) {
     registerGen(argc, argv, 1);
     rnd.setSeed(-2611193603731665810ll);
@@ -48,7 +104,7 @@ int main(int argc, char* argv[]) {
     sample(4, SAMPLE4);
 
     // big sample
-    // supposed to be read from bigsample.txt but it just didnt want to work
+    testcase("bigTestcase","Its a big testcase",bigCase);
     
     return 0;
 }
