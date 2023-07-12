@@ -93,7 +93,7 @@ int main() {
     }
   }
 
-  cout << 3 << endl;
+  cout << 1 << endl;
 
   return 0;
 }

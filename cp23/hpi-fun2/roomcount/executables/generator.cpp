@@ -52,7 +52,7 @@ void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<
     int end = intervalStarts[i] + intervalLength;
     int iterator = i + 1;
     while (iterator < intervalStarts.size() && intervalStarts[iterator] < end) {
-      edges.push_back({i + 1, iterator + 1});
+      edges.push_back({i + 1, ++iterator});
     }
   }
 }
@@ -64,7 +64,6 @@ void randomTestcase(int intervalLength, int n, int maxStart) {
   }
   vector<pair<int, int>> edges;
   intervalGraph(intervalStarts, intervalLength, edges);
-
   random_device rd;
   mt19937 g(rd());
   shuffle(intervalStarts.begin(), intervalStarts.end(), g);
@@ -115,7 +114,6 @@ int main(int argc, char* argv[]) {
     testcase("max_size_width", "max_size_width", [&maxSize](){
       maxWidthTestcase(maxSize);
     });
-
 
     return 0;
 }
