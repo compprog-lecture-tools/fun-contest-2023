@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
     sample(2, SAMPLE2);
 
     const int MAX_RANDOM_SIZE = 1e2;
-    const int MAX_SIZE = 1e4;
+    const int MAX_SIZE = 1e6;
 
     for(int i = 0; i < 20; i++) {
         testcase("small_random_size_" + to_string(i), "small_random_size", [](){
