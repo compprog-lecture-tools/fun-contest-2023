@@ -81,7 +81,7 @@ vector<array<long long, 3>> generate_coords(int width, int length, int height, f
 
 end:
     // shuffle the coordinates
-    shuffle(coords.begin(), coords.end(), default_random_engine(42));
+    shuffle(coords.begin(), coords.end());
 
     return coords;
 };
