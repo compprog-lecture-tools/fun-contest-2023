@@ -1,0 +1,32 @@
+\input{template.tex}
+
+\begin{document}
+
+\makeheader
+
+Platypus Web Services (PWS) is the largest cloud-provider around and you have the honor to work as their lead network engineer.
+Although PWS has many, many data centers, two of them are very important to your customers.
+The data centers may have multiple uplinks to increase the maximum data rate and to ensure redundancy.
+Moreover, they are connected via multiple \href{https://en.wikipedia.org/wiki/Internet_exchange_point}{internet exchange points}.
+As usual, the links operate at different data rates.
+
+It just so happens, that some links fail or are affected by maintenance, but PWS wants to provide a Service Level Agreement (SLA) to their customers.
+Therefore, you are tasked to determine the maximum data rate that you can achieve between the two datacenters, if any single link in the network fails.
+
+\paragraph*{Input}
+
+The first line contains $n, m ~ (2 \leq n \leq 50; 0 \leq m \leq 1000)$. The next $m$ lines
+contain integers $a, b, r$ denoting a bidirectional link between $a$ and $b$ with data rate $r ~ (1 \leq a, b \leq n;
+1 \leq r \leq 10^6)$ in $MiB / s$.
+
+\paragraph*{Output}
+
+Output a single line containing the maximum data rate at which you can send traffic between the nodes $1$ and $n$
+if any link in the network may fail.
+
+\begin{samples}
+  \sample{sample1}
+  \sample{sample2}
+\end{samples}
+
+\end{document}
