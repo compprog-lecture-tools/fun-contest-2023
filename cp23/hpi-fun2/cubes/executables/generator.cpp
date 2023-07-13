@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
         testcase("random" + to_string(j), "random", []
                  {
             // define threshold to be a float between 0.3 and 0.4
-            float threshold = 0.3 + rnd.next(10) / 100.0;
+            float threshold = rnd.next(0.3, 0.4);
 
             auto coords = generate_coords(100 + rnd.next(100), 100 + rnd.next(100), 100 + rnd.next(100), threshold);
             int n = coords.size();
