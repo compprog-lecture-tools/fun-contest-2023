@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
         println(MAX_COORDINATE, MAX_COORDINATE, MAX_COORDINATE);
         println(MAX_COORDINATE - 1, MAX_COORDINATE - 1, MAX_COORDINATE - 1); });
 
-    testcase("max_n", "max n", []
+    testcase("max_n", "base = (1000, 1000, 1000), threshold = 0.3", []
              {
     auto coords = generate_coords(1000, 1000, 1000, 0.3);
     int n = coords.size();
@@ -147,12 +147,15 @@ int main(int argc, char *argv[])
 
     for (int j = 0; j < 10; j++)
     {
-        testcase("random" + to_string(j), "random", []
-                 {
-            // define threshold to be a float between 0.3 and 0.4
-            float threshold = rnd.next(0.3, 0.4);
+        // define threshold to be a float between 0.3 and 0.4
+        float threshold = rnd.next(0.3, 0.4);
+        // define base coordinates to be a random number between 100 and 200
+        int base_x = 100 + rnd.next(100), base_y = 100 + rnd.next(100), base_z = 100 + rnd.next(100);
 
-            auto coords = generate_coords(100 + rnd.next(100), 100 + rnd.next(100), 100 + rnd.next(100), threshold);
+        testcase("random" + to_string(j), "base = (" + to_string(base_x) + ", " + to_string(base_y) + ", " + to_string(base_z) + "), threshold = " + to_string(threshold),
+                 [base_x, base_y, base_z, threshold]
+                 {
+            auto coords = generate_coords(base_x, base_y, base_z, threshold);
             int n = coords.size();
             println(n);
             for(int i = 0; i < n; i++)
