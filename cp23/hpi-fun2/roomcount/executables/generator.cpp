@@ -34,7 +34,7 @@ void maxLengthTestcase(int maxSize) {
 }
 
 void maxWidthTestcase(int maxSize) {
-  int n = sqrt(maxSize);
+  int n = sqrt(2 * maxSize);
   int m = n * (n-1) / 2;
 
   cout << n << " " << m << endl;
@@ -66,7 +66,7 @@ void randomTestcase(int intervalLength, int n, int maxStart) {
   intervalGraph(intervalStarts, intervalLength, edges);
   random_device rd;
   mt19937 g(rd());
-  shuffle(intervalStarts.begin(), intervalStarts.end(), g);
+  shuffle(edges.begin(), edges.end(), g);
 
   cout << n << " " << edges.size() << endl;
   for (auto& edge : edges) {
