@@ -4,9 +4,7 @@
 
 \makeheader
 
-ProPong
-
-Since you heard about a trend at your University to make highly competitive games out of seemingly simple drinking games you created a new upgraded version of the famous Beerpong game. Unlike in the original game, the rules here are a bit different to eliminate every chance of winning the game just by luck. 
+Since you have heard about a trend at your University to make highly competitive games out of seemingly simple drinking games you created a new upgraded version of the famous Beerpong game. Unlike in the original game, the rules here are a bit different to eliminate every chance of winning the game just by luck. 
 
 The setup consists of a long table with a team on each of the two shorter sides of it. As in the original game, teams take turns throwing a ping pong ball at some cups placed on the table. Every time a team hits a cup the team owning that cup has to drink its content and take the cup from the table. This also holds if someone manages to hit his/her own cup. The team who first manages to throw a ball into all the cups belonging to their opponents wins the game. 
 
@@ -16,62 +14,16 @@ Since your friends now expect you to perform in this game which might not be tot
 
 
 \paragraph*{Input}
-
-A single line containing $1\leq k \leq 10^{tbd}$  which denotes the number of games that will be played.
-$k$ lines containing the dimensions of the cup matrix ($w h$) in each game $1 \leq w,h \leq 10^{tbd}$, followed by each $h$ rows containing each $w$ numbers $-10^{tbd} \leq x \leq 10^{tbd}$ of which a positive value means that the cup belongs to you and a negative value that it belongs to your opponents.
+One line containing the dimensions of the cup matrix ($w,h$) in each game $1 \leq w,h \leq 25$, followed by each $h$ rows containing each $w$ numbers $-100 \leq x \leq 100$ of which a positive value means that the cup belongs to you and a negative value that it belongs to your opponents.
+It is guaranteed that both players own at least one cup.
 
 \paragraph*{Output}
-
-For each game print out four numbers $0\leq x_1 < w, 0\leq y_1 < h, 0\leq x_2 < w, 0 \leq y_2 < h$ denoting the upper left and the lower right corner of the submatrix that contains the biggest sum.
-If there are multiple options with the same sum choose the larger area.
-
-\placeholder{Output description}
+One integer $x$ indicating the difference between the number of sips you have to take and the number of sips your opponents have to take if you aim for the area of the cup matrix with that fits best into your strategy.
 
 \begin{samples}
+  \sample{sample1}
   \sample{sample2}
+  \sample{sample3}
 \end{samples}
-
-% Solution sketch:
-
-% Kadane's algorithm for 1D array: returns the maximum sum and stores starting and ending indexes of the maximum sum subarray at addresses pointed by start and finish pointers respectively.
-% int kadane(array, start, finish, n){
-%     initialize sum = 0, maxSum = max int 
-
-
-%     for every field i in row:
-%         sum += arr[i];
-%         if sum < 0:
-%             sum = 0
-%             local_start = i + 1
-%         else if sum > maxSum:
-%             maxSum = sum
-%             start = local_start
-%             finish = i
-%     }
-
-%   If there is at-least one non-negative number: return 
-    
-%   If all numbers in array are negative: return max element in array
-    
-    
-
-% finds maximum sum rectangle
-% findMaxSum(int M[][COL]):
-%     Set the left column
-%     for every column (indicated by left which goes from 0 to number of columns COL):
-%         Initialize all elements of temp as 0
-
-%         Set the right column for the left column set by outer loop
-%         for(right = left; right < COL; ++right) {
-
-%             Calculate sum between current left and right for every row 'i' in temp[i]
-
-%             Find the maximum sum subarray in temp[] with kadane() function. 
-%             'sum' is sum of rectangle between (start, left) and (finish, right) which is the maximum sum with boundary 
-%             columns strictly as left and right.
-           
-%             sum = kadane(temp, \&start, \&finish, ROW);
-
-%             Compare this sum withour maximum sum. If new sum > max sum: update max sum
 
 \end{document}

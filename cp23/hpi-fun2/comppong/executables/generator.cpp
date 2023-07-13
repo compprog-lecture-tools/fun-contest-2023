@@ -3,30 +3,48 @@
 
 using namespace std;
 
-const string_view SAMPLE1 = R"(5 4
+const string_view SAMPLE2 = R"(5 4
 2  3  1  4 -2
 -2  2 -4 -1  2
 -3 -5 -1  6 -5
 -1 -2  2  6  9
 )";
 
-const string_view SAMPLE2 = R"(5 4
-1 2 -1 -4 -20
--8 -3 4 2 1
-3 8 10 1 3
--4 -1 1 7 -6
+const string_view SAMPLE1 = R"(3 3
+-2 -1 -1
+1 -1 1
+1 2 -2
 )";
 
-const string_view SINGLECUP = R"(1 1
-100
+const string_view SAMPLE3 = R"(1 8
+-3
+4
+-1
+-5
+2
+5
+-1
+2
 )";
 
-const string_view ONLYOWNCUPS = R"(5 5
-2 2 2 2 2
-2 2 2 2 2
-2 2 2 2 2
-2 2 2 2 2
-2 2 2 2 2
+const string_view MULTIPLESOLUTIONS = R"(3 1
+1 -1 1
+)";
+
+const string_view MULTIPLESOLUTIONS2 = R"(3 1
+1 -3 1
+)";
+
+const string_view WHOLEFIELD = R"(4 4
+1 1 1 1 
+1 -1 -1 1
+1 -1 -1 1
+1 1 1 1
+)";
+
+const string_view SINGLECUP = R"(2 2
+1 -1
+-1 -1
 )";
 
 template <class F>
@@ -56,18 +74,61 @@ int main(int argc, char *argv[])
   registerGen(argc, argv, 1);
   rnd.setSeed(5120471233170915017ll);
 
-  sample(1, SAMPLE2);
-  sample(2, SAMPLE1);
-  sample(3, SINGLECUP);
-  sample(4, ONLYOWNCUPS);
+  sample(1, SAMPLE1);
+  sample(2, SAMPLE2);
+  sample(3, SAMPLE3);
+  predefined("multiple_solutions", "multiple_solutions", MULTIPLESOLUTIONS);
+  predefined("multiple_solutions2", "multiple_solutions2", MULTIPLESOLUTIONS2);
+  predefined("whole_field", "whole_field", WHOLEFIELD);
+  predefined("single_cup", "single_cup", SINGLECUP);
 
-  testcase("random", "random", []()
+  testcase("random_nonquadratic", "random_nonquadratic", []()
            {
-    int n = 1000;
-    cout << n << endl;
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        cout << rnd.next(-10, 10) << ' ';
+    int w = 20;
+    int h = 25;
+    cout << w << " " << h << endl;
+    for (int i = 0; i < h; i++) {
+      for (int j = 0; j < w; j++) {
+        if (i == 0 && j == 0)
+          cout << 1 << ' ';
+        else if (i == h - 1 && j == w - 1)
+          cout << -1 << ' ';
+        else
+          cout << rnd.next(-100, 100) << ' ';
+      }
+      cout << endl;
+    } });
+
+  testcase("random_quadratic", "random_quadratic", []()
+           {
+    int w = 15;
+    int h = 15;
+    cout << w << " " << h << endl;
+    for (int i = 0; i < h; i++) {
+      for (int j = 0; j < w; j++) {
+        if (i == 0 && j == 0)
+          cout << 1 << ' ';
+        else if (i == h - 1 && j == w - 1)
+          cout << -1 << ' ';
+        else
+          cout << rnd.next(-100, 100) << ' ';
+      }
+      cout << endl;
+    } });
+
+  testcase("random_row", "random_row", []()
+           {
+    int w = 100;
+    int h = 1;
+    cout << w << " " << h << endl;
+    for (int i = 0; i < h; i++) {
+      for (int j = 0; j < w; j++) {
+        if (i == 0 && j == 0)
+          cout << 1 << ' ';
+        else if (i == h - 1 && j == w - 1)
+          cout << -1 << ' ';
+        else
+          cout << rnd.next(-100, 100) << ' ';
       }
       cout << endl;
     } });

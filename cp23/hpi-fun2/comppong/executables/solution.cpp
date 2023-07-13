@@ -51,7 +51,7 @@ int kadane(vector<int> &arr, int &start, int &finish, int n)
 void findMaxSum(vector<vector<int>> &M, ll h, ll w)
 {
     // Variables to store the final output
-    int maxSum = INT_MIN, finalLeft, finalRight, finalTop, finalBottom;
+    int maxSum = INT_MIN;
 
     int left, right, i;
     int sum, start, finish;
@@ -87,20 +87,10 @@ void findMaxSum(vector<vector<int>> &M, ll h, ll w)
             if (sum > maxSum)
             {
                 maxSum = sum;
-                finalLeft = left;
-                finalRight = right;
-                finalTop = start;
-                finalBottom = finish;
             }
         }
     }
-
-    // Print final values
-    cout << "(Top, Left) (" << finalTop << ", " << finalLeft
-         << ")" << endl;
-    cout << "(Bottom, Right) (" << finalBottom << ", "
-         << finalRight << ")" << endl;
-    cout << "Max sum is: " << maxSum << endl;
+    cout << maxSum;
 }
 
 // Driver Code
