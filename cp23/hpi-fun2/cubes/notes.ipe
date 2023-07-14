@@ -403,7 +403,14 @@ h
 <page title="Cubes">
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<text layer="alpha" matrix="1 0 0 1 0 -96" transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top" style="item">TODO: create notes</text>
-<text transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top">\textbf{Problem:} formally restate problem here...</text>
+
+<text layer="alpha" matrix="1 0 0 1 0 -96" transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top" style="item">If none of the cubes are connected, the output will be $6n$.</text>
+<text layer="alpha" matrix="1 0 0 1 0 -160" transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top" style="item">However, if two cubes are adjacent, two surface units become hidden.</text>
+<text layer="alpha" matrix="1 0 0 1 0 -224" transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top" style="item">Cubes are considered adjacent if exactly one coordinate differs by exactly one.</text>
+<text layer="alpha" matrix="1 0 0 1 0 -288" transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top" style="item">Approach: Sort all cubes by $(x, y, z)$; this will place adjacent cubes on the $z$-axis consecutively. Then, loop through the cubes and compare each pair.</text>
+<text layer="alpha" matrix="1 0 0 1 0 -384" transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top" style="item">Repeat this procedure after sorting by $(y, z, x)$ and $(z, x, y)$ respectively.</text>
+<text layer="alpha" matrix="1 0 0 1 0 -448" transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top" style="item">Run time: $O(n\log(n))$</text>
+
+<text transformations="translations" pos="32 496" stroke="black" type="minipage" width="670" valign="top">\textbf{Problem:} Calculate the outer surface of $n$ cubes in 3D space</text>
 </page>
 </ipe>
