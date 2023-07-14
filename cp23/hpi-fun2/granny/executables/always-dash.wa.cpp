@@ -20,7 +20,6 @@ int main() {
         adj[v+n].emplace_back(u+n, w);
     }
     rep(i, n) {
-        adj[i].emplace_back(i+n, 0);
         if (i > 0) adj[i].emplace_back(i-1+n, 0);
         if (i+1 < n) adj[i].emplace_back(i+1+n, 0);
     }
