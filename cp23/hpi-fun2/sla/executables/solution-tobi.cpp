@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-using namespace std;
 #define rep(i,a,b) for (int i = (a); i < (b); ++i)
 #define sz(x) (int)(x).size()
+using namespace std;
 using ll = long long;
 using vi = vector<int>;
 
@@ -60,6 +60,11 @@ int main() {
     rep(i,0,m) {
         ll a, b, c; cin >> a >> b >> c;
         edges[i] = {a-1, b-1, c};
+    }
+
+    if (m == 0) {
+        cout << 0 << '\n';
+        return 0;
     }
 
     cout << ranges::min(views::iota(0, m) | views::transform([&](ll i) {
