@@ -62,10 +62,7 @@ int main() {
         edges[i] = {a-1, b-1, c};
     }
 
-    if (m == 0) {
-        cout << 0 << '\n';
-        return 0;
-    }
+    if (!m) return cout << 0 << '\n', 0;
 
     cout << ranges::min(views::iota(0, m) | views::transform([&](ll i) {
         PushRelabel pr(n);
