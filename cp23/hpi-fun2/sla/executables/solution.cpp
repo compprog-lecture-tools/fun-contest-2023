@@ -88,6 +88,11 @@ int main() {
     links.push_back({a, b, r});
   }
 
+  if (m == 0) {
+    cout << 0 << endl;
+    return 0;
+  }
+
   ll min_rate = LONG_LONG_MAX;
 
   rep(i, 0, m) {

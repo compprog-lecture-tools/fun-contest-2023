@@ -55,10 +55,19 @@ SAMPLE2 = '''\
 6 7 2000\
 '''
 
+NO_EDGES = '2 0\n'
+
+NO_PATH = '''\
+3 1
+1 2 1337\
+'''
+
 TESTCASES = [
     ('sample1', SAMPLE1, 'Sample 1'),
     ('sample2', SAMPLE2, 'Sample 2'),
     ('large', generate_random_test_case(N_MAX, M_MAX, R_MAX), f'Maximum input n = {N_MAX}, m = {M_MAX}, r = {R_MAX}'),
+    ('no-edges', NO_EDGES, 'Sample without any edges m = 0'),
+    ('no-path', NO_PATH, 'Sample with edges but no s-t-path'),
 ]
 
 for name, in_data, description in TESTCASES:
