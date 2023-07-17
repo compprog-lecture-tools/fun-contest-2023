@@ -10,10 +10,10 @@ N_MAX = 50
 M_MIN = 0
 M_MAX = 1000
 
-def generate_random_test_case(n = None, m = None, r = None):
-    n = n if n is not None else random.randint(N_MIN, N_MAX)
+def generate_random_test_case(n, m, r = None):
     max_possible_edges = n * (n-1) / 2
-    m = m if m is not None else random.randint(M_MIN, min(max_possible_edges, M_MAX))
+
+    assert(m <= max_possible_edges)
 
     nodes = list(range(1,n+1))
     edges = []
@@ -58,7 +58,7 @@ SAMPLE2 = '''\
 TESTCASES = [
     ('sample1', SAMPLE1, 'Sample 1'),
     ('sample2', SAMPLE2, 'Sample 2'),
-    ('large', generate_random_test_case(50, 1000, R_MAX), 'Sample filling n,m bounds'),
+    ('large', generate_random_test_case(N_MAX, M_MAX, R_MAX), f'Maximum input n = {N_MAX}, m = {M_MAX}, r = {R_MAX}'),
 ]
 
 for name, in_data, description in TESTCASES:
@@ -67,5 +67,14 @@ for name, in_data, description in TESTCASES:
 
 for i in range(1, 21):
     print(f'Generating random case {i}')
-    Path(f'random{i}.in').write_text(generate_random_test_case())
-    Path(f'random{i}.desc').write_text(f'random testcase {i}\n')
+
+    n = random.randint(N_MIN, N_MAX)
+    # While the result is theoretically always an integer, Python still represents it as a float.
+    # This results in the m below possibly becoming a float, which the `range(m)` in
+    # generate_random_test_case doesn't like.
+    # Hence, we convert to an int explicitly without loosing precision.
+    max_possible_edges = int(n * (n-1) / 2)
+    m = min(max_possible_edges, random.randint(M_MIN, M_MAX))
+
+    Path(f'random{i}.in').write_text(generate_random_test_case(n, m))
+    Path(f'random{i}.desc').write_text(f'random testcase {i}: n = {n}, m = {m}\n')
