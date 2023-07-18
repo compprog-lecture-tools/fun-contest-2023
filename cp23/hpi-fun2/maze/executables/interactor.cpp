@@ -49,9 +49,10 @@ int main(int argc, char* argv[]) {
     maze[y][x] = true;
   }
 
-  auto fail_move = []() {
+  auto fail_move = [&](char move_direction) {
     cout << -1 << endl;
-    quit(_wa, "invalid move");
+    string msg = "invalid move: Trying to move '" + string(1, move_direction) + "' with x: " + to_string(x) + " and y: " + to_string(y);
+    quit(_wa, msg);
   };
 
   auto fail_input = []() {
@@ -66,31 +67,31 @@ int main(int argc, char* argv[]) {
     char move_direction = ouf.readToken("N|E|S|W").front();
     switch (move_direction) {
       case 'N':
-        if (is_valid_move(x, y + 1, width, height, maze)) {
-          ++y;
+        if (is_valid_move(x, y - 1, width, height, maze)) {
+          --y;
         } else {
-          fail_move();
+          fail_move(move_direction);
         }
         break;
       case 'E':
         if (is_valid_move(x + 1, y, width, height, maze)) {
           ++x;
         } else {
-          fail_move();
+          fail_move(move_direction);
         }
         break;
       case 'S':
-        if (is_valid_move(x, y - 1, width, height, maze)) {
-          --y;
+        if (is_valid_move(x, y + 1, width, height, maze)) {
+          ++y;
         } else {
-          fail_move();
+          fail_move(move_direction);
         }
         break;
       case 'W':
         if (is_valid_move(x - 1, y, width, height, maze)) {
           --x;
         } else {
-          fail_move();
+          fail_move(move_direction);
         }
         break;
       default:
