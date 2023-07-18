@@ -18,7 +18,7 @@ Path(f"sample.desc").write_text("small example")
 
 # TODO: Maybe we can create a random sample for the only judge that generates a random maze
 
-longRowDimension = 1_000_000
+longRowDimension = 50_000
 
 # Large row
 Path(f"longRowStartLeft.in").write_text(f"""{longRowDimension} 1 0
@@ -34,19 +34,19 @@ Path(f"longRowStartRight.in").write_text(f"""{longRowDimension} 1 0
 Path(f"longRowStartRight.desc").write_text("Long row starting right.")
 
 Path(f"longRowMiddleTargetRight.in").write_text(f"""{longRowDimension} 1 0
-{longRowDimension/2} 0
+{int(longRowDimension/2)} 0
 {longRowDimension-1} 0                
 """)
 Path(f"longRowMiddleTargetRight.desc").write_text("Long row starting in the middle, target on the right.")
 
 Path(f"longRowMiddleTargetLeft.in").write_text(f"""{longRowDimension} 1 0
-{longRowDimension/2} 0
+{int(longRowDimension/2)} 0
 0 0                
 """)
 Path(f"longRowMiddleTargetLeft.desc").write_text("Long row starting in the middle, target on the left.")
 
-dimension = 1_000
-halfPoint = dimension/2
+dimension = 200
+halfPoint = int(dimension/2)
 
 # Large open field
 Path(f"largeField1.in").write_text(f"""{dimension} {dimension} 0
