@@ -11,7 +11,7 @@ M_MIN = 0
 M_MAX = 1000
 
 def generate_random_test_case(n, m, r = None):
-    max_possible_edges = n * (n-1) / 2
+    max_possible_edges = n * (n-1) // 2
 
     assert(m <= max_possible_edges)
 
@@ -78,11 +78,7 @@ for i in range(1, 21):
     print(f'Generating random case {i}')
 
     n = random.randint(N_MIN, N_MAX)
-    # While the result is theoretically always an integer, Python still represents it as a float.
-    # This results in the m below possibly becoming a float, which the `range(m)` in
-    # generate_random_test_case doesn't like.
-    # Hence, we convert to an int explicitly without loosing precision.
-    max_possible_edges = int(n * (n-1) / 2)
+    max_possible_edges = n * (n-1) // 2
     m = min(max_possible_edges, random.randint(M_MIN, M_MAX))
 
     Path(f'random{i}.in').write_text(generate_random_test_case(n, m))
