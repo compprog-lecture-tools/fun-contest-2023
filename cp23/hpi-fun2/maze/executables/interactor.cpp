@@ -17,7 +17,7 @@ void send_neighbor_info(int x, int y, vector<vector<bool>>& maze) {
 }
 
 bool is_valid_move(int x, int y, int width, int height, vector<vector<bool>>& maze) {
-  return x >= 0 && x < width && y >= 0 && y < height;
+  return x >= 0 && x < width && y >= 0 && y < height && !maze[y][x];
 }
 
 int main(int argc, char* argv[]) {
