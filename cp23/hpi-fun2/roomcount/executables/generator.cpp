@@ -64,9 +64,7 @@ void randomTestcase(int intervalLength, int n, int maxStart) {
   }
   vector<pair<int, int>> edges;
   intervalGraph(intervalStarts, intervalLength, edges);
-  random_device rd;
-  mt19937 g(rd());
-  shuffle(edges.begin(), edges.end(), g);
+  shuffle(edges.begin(), edges.end());
 
   cout << n << " " << edges.size() << endl;
   for (auto& edge : edges) {
