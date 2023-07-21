@@ -23,24 +23,21 @@ int main() {
     vi seen(n);
     ll ans = 0;
     rep(i, n) sort(all(adj[i]), [&](ll a, ll b) { return sz(adj[a]) > sz(adj[b]); });
-    rep(S, n) {
-        if (seen[S]) continue;
-        vi q{S};
-        seen[S] = 1;
+    rep(s, n) {
+        if (seen[s]) continue;
+        vi q{s};
+        seen[s] = true;
         rep(j, sz(q))
             for (ll v: adj[q[j]])
                 if (!seen[v]++) q.push_back(v);
         rep(i, sz(q)) reverse(all(adj[q[i]]));
         rep(i, sz(q)-1) seen[q[i]] = 0;
-        vi evt(sz(q));
-        q = {q.back()};
-        ll open = 0;
-        rep(i, sz(q)) {
-            evt[i + sz(adj[q[i]]) - open++]++;
-            ans = max(ans, open);
-            open -= evt[i];
-            for (ll v: adj[q[i]])
-                if (!seen[v]++) q.push_back(v);
+        queue<ll> Q({q.back()});
+        while (!Q.empty()) {
+            ll u = Q.front(); Q.pop();
+            for (ll v: adj[u])
+                if (!seen[v]++) Q.push(v);
+            ans = max(ans, sz(Q)+1);
         }
     }
     cout << ans << endl;
