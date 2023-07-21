@@ -69,6 +69,24 @@ void sample(int num, string_view content)
   predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
+void make_testcase_input(int w, int h)
+{
+  cout << w << " " << h << endl;
+  for (int i = 0; i < h; i++)
+  {
+    for (int j = 0; j < w; j++)
+    {
+      if (i == 0 && j == 0)
+        cout << 1 << ' ';
+      else if (i == h - 1 && j == w - 1)
+        cout << -1 << ' ';
+      else
+        cout << rnd.next(-100, 100) << ' ';
+    }
+    cout << endl;
+  }
+}
+
 int main(int argc, char *argv[])
 {
   registerGen(argc, argv, 1);
@@ -83,55 +101,15 @@ int main(int argc, char *argv[])
   predefined("single_cup", "single_cup", SINGLECUP);
 
   testcase("random_nonquadratic", "random_nonquadratic", []()
-           {
-    int w = 20;
-    int h = 25;
-    cout << w << " " << h << endl;
-    for (int i = 0; i < h; i++) {
-      for (int j = 0; j < w; j++) {
-        if (i == 0 && j == 0)
-          cout << 1 << ' ';
-        else if (i == h - 1 && j == w - 1)
-          cout << -1 << ' ';
-        else
-          cout << rnd.next(-100, 100) << ' ';
-      }
-      cout << endl;
-    } });
-
-  testcase("random_quadratic", "random_quadratic", []()
-           {
-    int w = 15;
-    int h = 15;
-    cout << w << " " << h << endl;
-    for (int i = 0; i < h; i++) {
-      for (int j = 0; j < w; j++) {
-        if (i == 0 && j == 0)
-          cout << 1 << ' ';
-        else if (i == h - 1 && j == w - 1)
-          cout << -1 << ' ';
-        else
-          cout << rnd.next(-100, 100) << ' ';
-      }
-      cout << endl;
-    } });
-
+           { make_testcase_input(20, 25); });
+  testcase("random_nonquadratic2", "random_nonquadratic2", []()
+           { make_testcase_input(15, 15); });
   testcase("random_row", "random_row", []()
-           {
-    int w = 100;
-    int h = 1;
-    cout << w << " " << h << endl;
-    for (int i = 0; i < h; i++) {
-      for (int j = 0; j < w; j++) {
-        if (i == 0 && j == 0)
-          cout << 1 << ' ';
-        else if (i == h - 1 && j == w - 1)
-          cout << -1 << ' ';
-        else
-          cout << rnd.next(-100, 100) << ' ';
-      }
-      cout << endl;
-    } });
+           { make_testcase_input(1, 500); });
+  testcase("random_column", "random_column", []()
+           { make_testcase_input(500, 1); });
+  testcase("random_quadratic", "random_quadratic", []()
+           { make_testcase_input(500, 500); });
 
   return 0;
 }
