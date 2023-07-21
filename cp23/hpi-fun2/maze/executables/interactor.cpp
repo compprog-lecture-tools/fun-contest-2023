@@ -31,21 +31,21 @@ int main(int argc, char* argv[]) {
   // input functions of ouf).
   // Remember that you should probably have a query limit and enforce it.
 
-  const auto width = stoi(inf.readWord());
-  const auto height = stoi(inf.readWord());
-  const auto walls = stoull(inf.readWord());
+  const auto width = inf.readInt();
+  const auto height = inf.readInt();
+  const auto walls = inf.readUnsignedLong();
 
   auto maze = vector<vector<bool>>(height, vector<bool>(width, false));
 
-  auto x = stoi(inf.readWord());
-  auto y = stoi(inf.readWord());
+  auto x = inf.readInt();
+  auto y = inf.readInt();
 
-  const auto end_x = stoi(inf.readWord());
-  const auto end_y = stoi(inf.readWord());
+  const auto end_x = inf.readInt();
+  const auto end_y = inf.readInt();
 
   for (auto i = uint64_t{0}; i < walls; ++i) {
-    const auto x = stoi(inf.readWord());
-    const auto y = stoi(inf.readWord());
+    const auto x = inf.readInt();
+    const auto y = inf.readInt();
     maze[y][x] = true;
   }
 
