@@ -1,0 +1,16 @@
+{
+  "based_on": {
+    "data": [
+      "well known in india"
+    ],
+    "type": "other"
+  },
+  "description": "given circles in a hallway, check if there is a path without touching the circles",
+  "difficulty": 3,
+  "tags": [
+    "dfs and similar",
+    "geometry",
+    "graphs",
+    "shortest paths"
+  ]
+}
