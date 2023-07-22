@@ -52,6 +52,12 @@ int main() {
       }
     }
 
+    // Handle connected component with a singe node
+    if (lastFoundNodes.empty()) {
+      maxOverlap = maxOverlap(maxOverlap, 1);
+      continue;
+    }
+
     int startNode = lastFoundNodes[0];
     int minOverlap = graph[lastFoundNodes[0]].size();
     for (int node : lastFoundNodes) {

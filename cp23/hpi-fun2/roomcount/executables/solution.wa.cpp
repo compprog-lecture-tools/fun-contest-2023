@@ -51,6 +51,12 @@ int main() {
     }
   }
 
+  // Handle graph with a singe node
+  if (lastFoundNodes.empty()) {
+    cout << 1 << endl;
+    return 0;
+  }
+
   int startNode = lastFoundNodes[0];
   int minOverlap = graph[lastFoundNodes[0]].size();
   for (int node : lastFoundNodes) {
