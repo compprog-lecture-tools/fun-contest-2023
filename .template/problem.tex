@@ -4,53 +4,19 @@
 
 \makeheader
 
-\placeholder{Problem description} 
-\\
-In 2023 Hasso Plattner is launching his own currency (HPC). In the basement of the newly build buildings at Campus 2 the money press will be guarded by a complex alarm system. 
-You want to be able to print your own HPC and therefore you need the money printing plates from the basement. 
-In the basement is a long hallway of dimensions (width 10m and length 100m) separates you from money press. There are n motion detectors on the ceiling that detect intruders if they pass within a circular range of r. 
-Your goal is to find out, if it is possible to reach the other end of the hallway without triggering the alarm. 
+\placeholder{Problem description}
 
 \paragraph*{Input}
-\placeholder{Input description}
-n: an integer that describes the number of motion detectors \\
-followed by n lines of:
-$x_i$, $y_i$ and $r_i$: the position and the range of the ith motion detector
 
+\placeholder{Input description}
 
 \paragraph*{Output}
-\placeholder{Output description}
-“Yes” if it is possible to reach the other end of the hallway \\
-“No” if it is not possible to reach the other end of the hallway
 
+\placeholder{Output description}
 
 \begin{samples}
   \sample{sample1}
-  \begin{verbatim}
-    50 10 2.5
-    50 5 2.5
-    50 0 2.5 
-    
-    No   
-  \end{verbatim}
-    
-
-    
   \sample{sample2}
-  \begin{verbatim}
-    50 10 2.5
-    40 5 2.5
-    50 0 2.5 
-    
-    Yes  
-  \end{verbatim}
 \end{samples}
-
-\placeholder{Solution sketch}
-\\
-Every motion detector is a node in a graph, furthermore there is a node $n_upper$ and $n_lower$. 
-An alarm node $n_i$ is connected to another alarm node $n_j$ if they are at most $r_i$ + $r_j$ apart from each other. 
-$n_upper$ is connected to each alarm node $n_i$ that is at most $r_i$ apart from upper border, the same hold for $n_lower$ with respect to the lower border. 
-On that graph we execute a dfs or bfs with $n_upper$ as the start node. If $n_lower$ is reachable, there is a line of motion detectors that spans from top to bottom, thus making it impossible to reach the other side of the room.
 
 \end{document}
