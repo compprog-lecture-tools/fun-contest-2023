@@ -33,7 +33,7 @@ def createTest(name, maze):
   if (not start or not end):
     print(f"ERROR creating test '{name}'. Didn't specify start or end.")
     return
-  Path(f"{name}.desc").write_text(f"A maze with size {width}x{height} and {count} walls.")
+  Path(f"{name}.desc").write_text(f"A maze with size {width}x{height} and {count} walls. The maze looks like this: {maze}")
   Path(f"{name}.in").write_text(f"""{width} {height} {count}
 {start[0]} {start[1]}
 {end[0]} {end[1]}
@@ -45,12 +45,11 @@ def createTest(name, maze):
 # destX destY
 # <walls> many lines containing coordinates x and y of the wall
 
-Path(f"sample.in").write_text("""2 3 1
-0 0
-0 2
-0 1                          
+createTest("sample", """
+s 
+# 
+t 
 """)
-Path(f"sample.desc").write_text("small example")
 
 # TODO: Maybe we can create a random sample for the only judge that generates a random maze
 
