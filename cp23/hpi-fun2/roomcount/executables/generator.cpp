@@ -61,12 +61,17 @@ int minTwoComponentsTestcase() {
 }
 
 void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges) {
-  sort(intervalStarts.begin(), intervalStarts.end());
-  for (int i = 0; i < intervalStarts.size(); i++) {
-    int end = intervalStarts[i] + intervalLength;
+  vector<int> startIndices(intervalStarts.size());
+  iota(startIndices.begin(), startIndices.end(), 0);
+  sort(startIndices.begin(), startIndices.end(), [&intervalStarts](int idx1, int idx2) {
+    return intervalStarts[idx1] < intervalStarts[idx2];
+  });
+  for (int i = 0; i < startIndices.size(); i++) {
+    int end = intervalStarts[startIndices[i]] + intervalLength;
     int iterator = i + 1;
-    while (iterator < intervalStarts.size() && intervalStarts[iterator] < end) {
-      edges.push_back({i + 1, ++iterator});
+    while (iterator < startIndices.size() && intervalStarts[startIndices[iterator]] < end) {
+      edges.push_back({startIndices[i] + 1, startIndices[iterator] + 1});
+      iterator++;
     }
   }
 }
