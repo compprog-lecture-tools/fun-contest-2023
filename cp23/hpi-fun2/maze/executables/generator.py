@@ -3,6 +3,42 @@ from pathlib import Path
 
 random.seed(-6232152022358167641)
 
+def createTest(name, maze, description):
+  """
+  name - name of the test that will be used for the created files
+
+  maze - the maze represented as a string with " " and "#" for empty spaces and walls. The start has to be marked as "s" and the target as "t".
+
+  Make sure there is exactly one start and one end in the maze.
+  """
+  count = 0
+  wallString = ""
+  start = None
+  end = None
+
+  lines = [line for line in maze.split("\n") if not len(line) == 0]
+  height = len(lines)
+  width = len(lines[0])
+  for row, line in enumerate(lines, start = 0):
+    for col, char in enumerate(line, start = 0):
+      if (char == "\n" or char == " "): continue
+      if (char == "s"):
+        start = [col, row]
+        continue
+      if (char == "t"):
+        end = [col, row]
+        continue
+      count += 1
+      wallString += f"{col} {row}\n"
+  if (not start or not end):
+    print(f"ERROR creating test '{name}'. Didn't specify start or end.")
+    return
+  Path(f"{name}.desc").write_text(description)
+  Path(f"{name}.in").write_text(f"""{width} {height} {count}
+{start[0]} {start[1]}
+{end[0]} {end[1]}
+{wallString}""")
+
 # Input:
 # w h <walls>
 # startX startY (beginning with 0)
@@ -17,6 +53,28 @@ Path(f"sample.in").write_text("""2 3 1
 Path(f"sample.desc").write_text("small example")
 
 # TODO: Maybe we can create a random sample for the only judge that generates a random maze
+
+createTest("customMaze", """
+#######################
+#s                    #
+# ### ### ### ### ### #
+# #                 # #
+# # ##### ### ##### # #
+# #                 # #
+# ########### ####### #
+# #                 # #
+# ### ### ### ### #####
+#   #                 #
+##### ########### # # #
+#   #                 #
+# ############# # # # #
+#             # # # # #
+# ######### ### ### # #
+# #t      # # # # # # #
+# ####### # # # # ### #
+#         #     #     #
+#######################
+""", "A maze consisting of many passages.")
 
 longRowDimension = 50_000
 
