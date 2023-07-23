@@ -60,34 +60,36 @@ int minTwoComponentsTestcase() {
   return 1;
 }
 
-void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges) {
-  vector<int> startIndices(intervalStarts.size());
-  iota(startIndices.begin(), startIndices.end(), 0);
-  sort(startIndices.begin(), startIndices.end(), [&intervalStarts](int idx1, int idx2) {
-    return intervalStarts[idx1] < intervalStarts[idx2];
-  });
-  for (int i = 0; i < startIndices.size(); i++) {
-    int end = intervalStarts[startIndices[i]] + intervalLength;
+void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges, int offset) {
+  sort(intervalStarts.begin(), intervalStarts.end());
+  for (int i = 0; i < intervalStarts.size(); i++) {
+    int end = intervalStarts[i] + intervalLength;
     int iterator = i + 1;
-    while (iterator < startIndices.size() && intervalStarts[startIndices[iterator]] < end) {
-      edges.push_back({startIndices[i] + 1, startIndices[iterator] + 1});
-      iterator++;
+    while (iterator < intervalStarts.size() && intervalStarts[iterator] < end) {
+      edges.push_back({offset + i, offset + iterator++});
     }
   }
 }
 
-int randomTestcase(int intervalLength, int n, int maxStart) {
-  vector<int> intervalStarts;
-  for (int i = 0; i < n; i++) {
-    intervalStarts.push_back(rnd.next(0, maxStart));
-  }
+int randomTestcase(int intervalLength, int nodesPerComponent, int maxStart, int components = 1) {
+  int n = nodesPerComponent * components;
   vector<pair<int, int>> edges;
-  intervalGraph(intervalStarts, intervalLength, edges);
+  for (int i = 0; i < components; i++) {
+    vector<int> intervalStarts;
+    for (int j = 0; j < nodesPerComponent; j++) {
+      intervalStarts.push_back(rnd.next(0, maxStart));
+    }
+    intervalGraph(intervalStarts, intervalLength, edges, i * nodesPerComponent);
+  }
   shuffle(edges.begin(), edges.end());
+
+  vector<int> randomPermutation(n);
+  iota(randomPermutation.begin(), randomPermutation.end(), 0);
+  shuffle(randomPermutation.begin(), randomPermutation.end());
 
   cout << n << " " << edges.size() << endl;
   for (auto& edge : edges) {
-    cout << edge.first << " " << edge.second << endl;
+    cout << (randomPermutation[edge.first] + 1) << " " << (randomPermutation[edge.second] + 1) << endl;
   }
   return edges.size();
 }
@@ -128,6 +130,17 @@ int main(int argc, char* argv[]) {
       testcase("random_testcase_" + to_string(i),
                "random testcase with interval length = " + to_string(intervalLength) + ", n = " + to_string(n),
                [&n, &intervalLength]() -> int { return randomTestcase(intervalLength, n, n * n / 100); });
+    }
+
+    for (int i = 0; i < 5; i++) {
+      int n = rnd.next(20, 100);
+      int intervalLength = rnd.next(5, 30);
+      int components = rnd.next(2, 20);
+      testcase("random_multi_component_testcase_" + to_string(i),
+               "random testcase with at least " + to_string(components) + " components, interval length = "
+               + to_string(intervalLength) + ", n = " + to_string(n * components),
+               [&n, &intervalLength, &components]() -> int {
+        return randomTestcase(intervalLength, n, n * n / 100, components); });
     }
 
     int maxSize = 100000;
