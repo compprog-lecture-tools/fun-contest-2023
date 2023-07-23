@@ -22,7 +22,7 @@ const string_view SAMPLE2 = R"(5 4
 4 5
 )";
 
-void maxLengthTestcase(int maxSize) {
+int maxLengthTestcase(int maxSize) {
   int n = maxSize;
   int m = n - 1;
 
@@ -31,9 +31,10 @@ void maxLengthTestcase(int maxSize) {
   for (int i = 1; i <= m; i++) {
     cout << i << " " << i + 1 << endl;
   }
+  return m;
 }
 
-void maxWidthTestcase(int maxSize) {
+int maxWidthTestcase(int maxSize) {
   int n = sqrt(2 * maxSize);
   int m = n * (n-1) / 2;
 
@@ -44,16 +45,19 @@ void maxWidthTestcase(int maxSize) {
       cout << i << " " << j << endl;
     }
   }
+  return m;
 }
 
-void minTestcase() {
+int minTestcase() {
   cout << "2 1" << endl;
   cout << "1 2" << endl;
+  return 1;
 }
 
-void minTwoComponentsTestcase() {
-  cout << "3 << 1" << endl;
+int minTwoComponentsTestcase() {
+  cout << "3 1" << endl;
   cout << "2 3" << endl;
+  return 1;
 }
 
 void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges) {
@@ -67,7 +71,7 @@ void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<
   }
 }
 
-void randomTestcase(int intervalLength, int n, int maxStart) {
+int randomTestcase(int intervalLength, int n, int maxStart) {
   vector<int> intervalStarts;
   for (int i = 0; i < n; i++) {
     intervalStarts.push_back(rnd.next(0, maxStart));
@@ -80,6 +84,7 @@ void randomTestcase(int intervalLength, int n, int maxStart) {
   for (auto& edge : edges) {
     cout << edge.first << " " << edge.second << endl;
   }
+  return edges.size();
 }
 
 template <class F>
@@ -88,11 +93,16 @@ void testcase(string name, string desc, F f) {
     desc_file << desc;
     string in_file = name + ".in";
     freopen(in_file.c_str(), "w", stdout);
-    f();
+    int m = f();
+    desc_file << m << " edges";
 }
 
 void predefined(string name, string desc, string_view content) {
-    testcase(name, desc, [&]() { cout << content; });
+    ofstream desc_file(name + ".desc");
+    desc_file << desc;
+    string in_file = name + ".in";
+    freopen(in_file.c_str(), "w", stdout);
+    cout << content;
 }
 
 void sample(int num, string_view content) {
@@ -109,26 +119,26 @@ int main(int argc, char* argv[]) {
 
     for (int i = 0; i < 10; i++) {
       int n = rnd.next(100, 1000);
-      testcase("random_testcase_" + to_string(i), "random_testcase", [&n](){
-        randomTestcase(100, n, n * n / 100);
+      testcase("random_testcase_" + to_string(i), "random testcase with " + to_string(n) + " nodes, ", [&n]()-> int {
+        return randomTestcase(100, n, n * n / 100);
       });
     }
 
-    int maxSize = 1000000;
-    testcase("max_size_length", "max_size_length", [&maxSize](){
-      maxLengthTestcase(maxSize);
+    int maxSize = 100000;
+    testcase("max_size_length", "max length testcase with " + to_string(maxSize) + " nodes, ", [&maxSize]()-> int {
+      return maxLengthTestcase(maxSize);
     });
 
-    testcase("max_size_width", "max_size_width", [&maxSize](){
-      maxWidthTestcase(maxSize);
+    testcase("max_size_width", "max width testcase with " + to_string(maxSize) + " nodes, ", [&maxSize]()-> int {
+      return maxWidthTestcase(maxSize);
     });
 
-    testcase("min_size", "min testcase with 2 nodes, 1 edge", []() {
-      minTestcase();
+    testcase("min_size", "min testcase with 2 nodes, ", []() -> int {
+      return minTestcase();
     });
 
-    testcase("min_two_components", "min testcase with 3 nodes, 1 edge", []() {
-      minTwoComponentsTestcase();
+    testcase("min_two_components", "min testcase with 3 nodes, ", []() -> int {
+      return minTwoComponentsTestcase();
     });
 
     return 0;
