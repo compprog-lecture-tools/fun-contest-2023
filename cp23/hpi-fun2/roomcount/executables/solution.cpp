@@ -54,12 +54,12 @@ int main() {
 
     // Handle connected component with a singe node
     if (lastFoundNodes.empty()) {
-      maxOverlap = maxOverlap(maxOverlap, 1);
+      maxOverlap = max(maxOverlap, (size_t)1);
       continue;
     }
 
     int startNode = lastFoundNodes[0];
-    int minOverlap = graph[lastFoundNodes[0]].size();
+    size_t minOverlap = graph[lastFoundNodes[0]].size();
     for (int node : lastFoundNodes) {
       if (graph[node].size() < minOverlap) {
         startNode = node;

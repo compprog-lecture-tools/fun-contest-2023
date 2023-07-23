@@ -46,6 +46,16 @@ void maxWidthTestcase(int maxSize) {
   }
 }
 
+void minTestcase() {
+  cout << "2 1" << endl;
+  cout << "1 2" << endl;
+}
+
+void minTwoComponentsTestcase() {
+  cout << "3 << 1" << endl;
+  cout << "2 3" << endl;
+}
+
 void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges) {
   sort(intervalStarts.begin(), intervalStarts.end());
   for (int i = 0; i < intervalStarts.size(); i++) {
@@ -111,6 +121,14 @@ int main(int argc, char* argv[]) {
 
     testcase("max_size_width", "max_size_width", [&maxSize](){
       maxWidthTestcase(maxSize);
+    });
+
+    testcase("min_size", "min testcase with 2 nodes, 1 edge", []() {
+      minTestcase();
+    });
+
+    testcase("min_two_components", "min testcase with 3 nodes, 1 edge", []() {
+      minTwoComponentsTestcase();
     });
 
     return 0;
