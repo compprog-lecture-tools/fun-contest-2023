@@ -3,7 +3,7 @@ from pathlib import Path
 
 random.seed(-6232152022358167641)
 
-def createTest(name, maze, description):
+def createTest(name, maze):
   """
   name - name of the test that will be used for the created files
 
@@ -33,7 +33,7 @@ def createTest(name, maze, description):
   if (not start or not end):
     print(f"ERROR creating test '{name}'. Didn't specify start or end.")
     return
-  Path(f"{name}.desc").write_text(description)
+  Path(f"{name}.desc").write_text(f"A maze with size {width}x{height} and {count} walls.")
   Path(f"{name}.in").write_text(f"""{width} {height} {count}
 {start[0]} {start[1]}
 {end[0]} {end[1]}
@@ -53,6 +53,16 @@ Path(f"sample.in").write_text("""2 3 1
 Path(f"sample.desc").write_text("small example")
 
 # TODO: Maybe we can create a random sample for the only judge that generates a random maze
+
+createTest("sampleSmall", """
+#######
+# s   #
+### ###
+#   #t#
+# ##  #
+      #
+  #####
+""")
 
 createTest("customMaze23x19", """
 #######################
@@ -74,7 +84,7 @@ createTest("customMaze23x19", """
 # ####### # # # # ### #
 #         #     #     #
 #######################
-""", "A maze with size 23x19.")
+""")
 
 createTest("customMaze46x33", """
 ##############################################
@@ -110,7 +120,7 @@ createTest("customMaze46x33", """
 # ###### ###### ### ## ## ###### ####### ##
 #                         #                 #
 ##############################################
-""", "A maze with size 46x33.")
+""")
 
 longRowDimension = 50_000
 
