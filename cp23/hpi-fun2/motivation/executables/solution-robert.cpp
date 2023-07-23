@@ -2,7 +2,6 @@
 #include <iostream>
 #include <queue>
 
-
 #define rep(a, b)   for(size_t a = 0; a < (b); ++a)
 #define rep1(a, b)  for(size_t a = 1; a < (b); ++a)
 #define all(a)      (a).begin(),(a).end()
@@ -17,7 +16,7 @@ using ll = long long;
 
 struct Employee {
   ull id;
-  ll demotivation_level;
+  ll demotivation_level = 0;
   bool motivatable = false;
 };
 
@@ -39,18 +38,17 @@ struct Employee {
 void markReachable(Graph& company_hierarchy, vector<Employee>& employees,
                      ull employee, ll path_length, ull threshold) {
   // If any employee is unreachable, all people under them are not reachable too.
-  if (employees[employee].demotivation_level + path_length > static_cast<ll>(threshold)) {
+  if (employees.at(employee).demotivation_level + path_length > static_cast<ll>(threshold)) {
     // No need to traverse further down the tree, since elements are implicitly marked as false
     // in the struct.
-    cout << "no" << endl;
     return;
   }
 
   // If the path length is low enough, the person is still motivatable.
-  employees[employee].motivatable = true;
-  for (const auto& underling : company_hierarchy[employee]) {
+  employees.at(employee).motivatable = true;
+  for (const auto& underling : company_hierarchy.at(employee)) {
     markReachable(company_hierarchy, employees, underling,
-                  path_length + employees[employee].demotivation_level, threshold);
+                  path_length + employees.at(employee).demotivation_level, threshold);
   }
 }
 
@@ -118,6 +116,13 @@ int main() {
     }
   }
 
+  // no_children is required to find the leafs, since a node can have only unmotivatable
+  // children, which turns it from being an inner node to being a leaf.
+  rep1(i, company_hierarchy.size()) {
+    if (employees[i].motivatable && no_children[i] == 0) {
+      q.push(i);
+    }
+  }
 
   while (!q.empty()) {
     auto f = q.front();
@@ -140,6 +145,7 @@ int main() {
       }
       sum--;
 
+      if (sum == 0) sum = 1;
       dp[f] = sum;
     }
 
