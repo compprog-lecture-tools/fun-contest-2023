@@ -99,7 +99,7 @@ void testcase(string name, string desc, F f) {
     string in_file = name + ".in";
     freopen(in_file.c_str(), "w", stdout);
     int m = f();
-    desc_file << "m = " << m;
+    desc_file << ", m = " << m;
 }
 
 void predefined(string name, string desc, string_view content) {
@@ -124,31 +124,28 @@ int main(int argc, char* argv[]) {
 
     for (int i = 0; i < 10; i++) {
       int n = rnd.next(100, 1000);
-      testcase("random_testcase_" + to_string(i), "random testcase with n = " + to_string(n) + ", ", [&n]() -> int {
-        return randomTestcase(100, n, n * n / 100);
-      });
+      int intervalLength = rnd.next(5, 150);
+      testcase("random_testcase_" + to_string(i),
+               "random testcase with interval length = " + to_string(intervalLength) + ", n = " + to_string(n),
+               [&n, &intervalLength]() -> int { return randomTestcase(intervalLength, n, n * n / 100); });
     }
 
     int maxSize = 100000;
-    testcase("max_size_length", "max length testcase with n = " + to_string(maxSize) + ", ", [&maxSize]() -> int {
-      return maxLengthTestcase(maxSize);
-    });
+    testcase("max_size_length",
+             "max length testcase with n = " + to_string(maxSize),
+             [&maxSize]() -> int { return maxLengthTestcase(maxSize); });
 
-    testcase("max_size_width", "max width testcase with n = " + to_string(maxSize) + ", ", [&maxSize]() -> int {
-      return maxWidthTestcase(maxSize);
-    });
+    testcase("max_size_width",
+             "max width testcase with n = " + to_string(maxSize),
+             [&maxSize]() -> int { return maxWidthTestcase(maxSize); });
 
-    testcase("max_size_random", "max size random testcase with n = 10000, ", []() -> int {
-      return randomTestcase(100, 10000, 100000);
-    });
+    testcase("max_size_random",
+             "max size random testcase with n = " + to_string(maxSize / 10),
+             [&maxSize]() -> int { return randomTestcase(100, maxSize / 10, maxSize); });
 
-    testcase("min_size", "min testcase with n = 2, ", []() -> int {
-      return minTestcase();
-    });
+    testcase("min_size", "min testcase with n = 2", []() -> int { return minTestcase(); });
 
-    testcase("min_two_components", "min testcase with n = 3, ", []() -> int {
-      return minTwoComponentsTestcase();
-    });
+    testcase("min_two_components", "min testcase with n = 3", []() -> int { return minTwoComponentsTestcase(); });
 
     return 0;
 }
