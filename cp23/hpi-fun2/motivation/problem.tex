@@ -24,7 +24,7 @@ In a brief knowledge exchange with the head of the coaches, Christian learned th
         employees are directly or indirectly under their current position.
   \item Motivating employees is exhausting, which means that coaches and employees motivating other employees
         will be less motivated, equally to the level of demotivation.
-  \item The agency sends their best coaches with each having a motivational level of 20.
+  \item The agency sends their best coaches with each having a specific motivational level.
 \end{itemize}
 
 Since Christian enforced saving measures, he wants to spend as little as possible. Therfore, as few coaches 
@@ -36,9 +36,9 @@ Christian wants to know who these people are.
 \paragraph*{Input}
 
 The input consists of three lines, describing a single test case.
-The first line contains an integer $n$ ($1 \leq n \leq 10^5$), the number of employees.
-The second line contains $n$ integers. The $i$th integer is $mi$ ($0 \leq mi \leq 20$), the motivational level of employee $i$.
-The third line contains $n - 1$ integers. The $i$th integer is $bi+1$ ($1 \leq bi+1 < i + 1$), the direct boss of colleague $i + 1$.
+The first line contains an integer $n$ ($1 \leq n \leq 10^5$), the number of employees and the motivational level $l$ of the coaches ($1 \leq l \leq 10**5$).
+The second line contains $n$ integers. The $i$th integer is $m_i$ ($-10**6 \leq m_i \leq 10**6$), the motivational level of employee $i$.
+The third line contains $n - 1$ integers. The $i$th integer is $bi+1$ ($1 \leq b_{i+1} < i + 1$), the direct boss of colleague $i + 1$.
 
 \paragraph*{Output}
 
@@ -49,8 +49,8 @@ unmotivatable employees, followed by the numbers of those employees.
 \begin{samples}
   \sample1
   \begin{verbatim}
-    11
-    2 5 3 7 2 1 10 4 1 8 2
+    11 20
+    2 5 3 7 2 1 10 4 1 8 200
     1 2 2 2 5 5 1 8 8 8
 
     3
