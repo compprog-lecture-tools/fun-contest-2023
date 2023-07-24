@@ -31,41 +31,31 @@ int main() {
   rep(initialNode, n) {
     if (found[initialNode]) continue;
     found[initialNode] = true;
-    vector<int> lastFoundNodes;
+    bool foundAnyNodes = false;
+    int minDegreeNode = initialNode;
 
     queue<int> bfsQ;
     bfsQ.push(initialNode);
     while (!bfsQ.empty()) {
       int currentNode = bfsQ.front();
       bfsQ.pop();
-      bool foundNewNodes = false;
 
       for (int overlappingNode : graph[currentNode]) {
         if (found[overlappingNode]) continue;
         found[overlappingNode] = true;
-        if (!foundNewNodes) {
-          foundNewNodes = true;
-          lastFoundNodes.clear();
-        }
         bfsQ.push(overlappingNode);
-        lastFoundNodes.push_back(overlappingNode);
+        foundAnyNodes = true;
+        if (graph[overlappingNode] < graph[minDegreeNode]) minDegreeNode = overlappingNode;
       }
     }
 
     // Handle connected component with a singe node
-    if (lastFoundNodes.empty()) {
+    if (!foundAnyNodes) {
       maxOverlap = max(maxOverlap, (size_t)1);
       continue;
     }
 
-    int startNode = lastFoundNodes[0];
-    size_t minOverlap = graph[startNode].size();
-    for (int node : lastFoundNodes) {
-      if (graph[node].size() < minOverlap) {
-        startNode = node;
-        minOverlap = graph[node].size();
-      }
-    }
+    int startNode = minDegreeNode;
 
     vector<bool> used(n, false);
     int pastIntervals = 0;

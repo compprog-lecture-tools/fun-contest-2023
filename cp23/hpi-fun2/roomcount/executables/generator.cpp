@@ -22,6 +22,57 @@ const string_view SAMPLE2 = R"(5 4
 4 5
 )";
 
+const string_view MIN = R"(2 1
+1 2
+)";
+
+const string_view MIN_2_COMPONENTS = R"(3 1
+2 3
+)";
+
+const string_view ANTI_GREEDY_START = R"(9 14
+8 2
+8 3
+3 4
+4 2
+2 3
+4 8
+4 1
+1 5
+5 7
+6 5
+6 9
+9 7
+6 7
+9 5
+)";
+
+const string_view ANTI_GREEDY_MAX_DEGREE = R"(12 23
+1 2
+1 3
+1 4
+1 5
+2 3
+2 4
+2 5
+3 4
+3 5
+4 5
+3 8
+6 7
+6 8
+6 9
+7 8
+7 9
+8 9
+6 10
+6 11
+6 12
+10 11
+10 12
+11 12
+)";
+
 int maxLengthTestcase(int maxSize) {
   int n = maxSize;
   int m = n - 1;
@@ -46,18 +97,6 @@ int maxWidthTestcase(int maxSize) {
     }
   }
   return m;
-}
-
-int minTestcase() {
-  cout << "2 1" << endl;
-  cout << "1 2" << endl;
-  return 1;
-}
-
-int minTwoComponentsTestcase() {
-  cout << "3 1" << endl;
-  cout << "2 3" << endl;
-  return 1;
 }
 
 void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges, int offset) {
@@ -124,6 +163,15 @@ int main(int argc, char* argv[]) {
     sample(1, SAMPLE1);
     sample(2, SAMPLE2);
 
+    predefined("min_size_testcase", "min testcase with n = 2, m = 1", MIN);
+    predefined("min_two_components_testcase", "min testcase with 2 components, n = 3, m = 1", MIN_2_COMPONENTS);
+    predefined("anti_greedy_start_testcase",
+               "anti greedy testcase where the node with the lowest degree is in the middle of the graph",
+               ANTI_GREEDY_START);
+    predefined("anti_greedy_max_degree_testcase",
+               "anti greedy testcase where the node with the highest degree is not in the largest clique",
+               ANTI_GREEDY_MAX_DEGREE);
+
     for (int i = 0; i < 10; i++) {
       int n = rnd.next(100, 1000);
       int intervalLength = rnd.next(5, 150);
@@ -155,10 +203,6 @@ int main(int argc, char* argv[]) {
     testcase("max_size_random",
              "max size random testcase with n = " + to_string(maxSize / 10),
              [&maxSize]() -> int { return randomTestcase(100, maxSize / 10, maxSize); });
-
-    testcase("min_size", "min testcase with n = 2", []() -> int { return minTestcase(); });
-
-    testcase("min_two_components", "min testcase with n = 3", []() -> int { return minTwoComponentsTestcase(); });
 
     return 0;
 }
