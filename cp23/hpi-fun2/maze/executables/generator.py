@@ -191,7 +191,7 @@ createTest("customMaze47x67", """
 ###############################################
 """)
 
-longRowDimension = 50_000
+longRowDimension = 10_000
 
 # Large row
 Path(f"longRowStartLeft.in").write_text(f"""{longRowDimension} 1 0
@@ -218,7 +218,7 @@ Path(f"longRowMiddleTargetLeft.in").write_text(f"""{longRowDimension} 1 0
 """)
 Path(f"longRowMiddleTargetLeft.desc").write_text("Long row starting in the middle, target on the left.")
 
-dimension = 200
+dimension = 100
 halfPoint = int(dimension/2)
 
 # Large open field
