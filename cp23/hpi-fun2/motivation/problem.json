@@ -1,5 +1,5 @@
 {
-  "description": "traverse hierarchy to find matching candidates",
+  "description": "Minimum limited path cover on a vertex-weighted directed tree",
   "difficulty": 1,
   "tags": [
     "implementation",
