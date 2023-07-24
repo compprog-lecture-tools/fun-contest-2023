@@ -1,9 +1,10 @@
 # Problem
-Find the chromatic number of an interval graph, which is equivalent to the maximum number of overlapping intervals.
+Find the chromatic number of a unit interval graph, which is equivalent to the maximum number of overlapping intervals.
 
 # Solution
 ## First Step: Find the first/last interval
 Use Breadth-First-Search and remember the nodes that were found last.
+These are the nodes with the maximum distance to the start node.
 We will refer to the node corresponding to the first/last of the intervals of nodes found in the BFS as the first/last node.
 Since the first and last node can not befound before all nodes between the start node and them have been found,
 the last found nodes contain at least one of those.
@@ -16,7 +17,7 @@ Since it is irrelevant, wether the first node, last node, or a equivalent node i
 
 ## Second Step: iterate through the intervals to find the maximum overlap
 Use a priority queue, that compares nodes by a score that is the amount of intervals that started, before their corresponding interval ended. Since the intervals are equal length,
-the higher that score is, the later that interval occured. For the first node and all it's neighbors, the score is exactly the number of their edges.
+the higher that score is, the later that interval occured. For the first node and all it's neighbors, the score is exactly their degree.
 
 In each step, the nodes with the lowest score can be removed and a node with the next lowest score can be used to find the next nodes to be added to the queue.
 Their score can be calculated as the sum of their edges and the number of nodes that have already been remove from the queue.
