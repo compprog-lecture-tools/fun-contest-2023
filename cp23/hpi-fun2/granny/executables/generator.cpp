@@ -53,8 +53,8 @@ void bigCase(){
     using ll = long long;
     using Graph = vector<vector<pair<ll,int> > >;
 
-    ll n = pow(10,6);
-    ll maxL = pow(10,5);
+    ll n = 1e6;
+    ll maxL = 1e5;
 
     Graph g(n);
     ll m = 0;
