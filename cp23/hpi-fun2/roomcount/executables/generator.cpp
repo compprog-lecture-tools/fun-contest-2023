@@ -73,6 +73,27 @@ const string_view ANTI_GREEDY_MAX_DEGREE = R"(12 23
 11 12
 )";
 
+const string_view ANTI_GREEDY_ANY_FARTHEST_POINT = R"(8 18
+1 2
+2 3
+2 4
+2 5
+3 4
+3 5
+3 6
+3 7
+3 8
+4 5
+4 6
+4 8
+5 6
+5 7
+5 8
+5 7
+6 8
+7 8
+)";
+
 int maxLengthTestcase(int maxSize) {
   int n = maxSize;
   int m = n - 1;
@@ -171,6 +192,9 @@ int main(int argc, char* argv[]) {
     predefined("anti_greedy_max_degree_testcase",
                "anti greedy testcase where the node with the highest degree is not in the largest clique",
                ANTI_GREEDY_MAX_DEGREE);
+    predefined("anti_greedy_any_farthest_point_testcase",
+               "anti greedy testcase that fails if just any farthest point is taken as the start node",
+               ANTI_GREEDY_ANY_FARTHEST_POINT);
 
     for (int i = 0; i < 10; i++) {
       int n = rnd.next(100, 1000);
