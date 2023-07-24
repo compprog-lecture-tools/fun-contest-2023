@@ -131,16 +131,19 @@ void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<
   }
 }
 
-int randomTestcase(int intervalLength, int nodesPerComponent, int maxStart, int components = 1) {
+int randomTestcase(int intervalLength, int nodesPerComponent, int maxStart, int components = 1, size_t maxSize = SIZE_MAX) {
   int n = nodesPerComponent * components;
   vector<pair<int, int>> edges;
-  for (int i = 0; i < components; i++) {
-    vector<int> intervalStarts;
-    for (int j = 0; j < nodesPerComponent; j++) {
-      intervalStarts.push_back(rnd.next(0, maxStart));
+  do {
+    edges.clear();
+    for (int i = 0; i < components; i++) {
+      vector<int> intervalStarts;
+      for (int j = 0; j < nodesPerComponent; j++) {
+        intervalStarts.push_back(rnd.next(0, maxStart));
+      }
+      intervalGraph(intervalStarts, intervalLength, edges, i * nodesPerComponent);
     }
-    intervalGraph(intervalStarts, intervalLength, edges, i * nodesPerComponent);
-  }
+  } while (edges.size() > maxSize);
   shuffle(edges.begin(), edges.end());
 
   vector<int> randomPermutation(n);
@@ -226,7 +229,7 @@ int main(int argc, char* argv[]) {
 
     testcase("max_size_random",
              "max size random testcase with n = " + to_string(maxSize / 10),
-             [&maxSize]() -> int { return randomTestcase(100, maxSize / 10, maxSize); });
+             [&maxSize]() -> int { return randomTestcase(100, maxSize / 10, maxSize, 1, maxSize); });
 
     return 0;
 }
