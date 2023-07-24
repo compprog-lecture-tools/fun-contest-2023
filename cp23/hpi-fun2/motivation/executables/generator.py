@@ -31,41 +31,41 @@ for name, sample in SAMPLES:
     Path(name + ".in").write_text(sample + '\n')
 
 def large_increasing_chain():
-    sample = ""
+    test_case = ""
 
     employees = 50_000
     threshold = 5_000
-    sample += str(employees) + " " + str(threshold) + '\n'
+    test_case += str(employees) + " " + str(threshold) + '\n'
 
     for i in range(0, employees):
-        sample += str(1) + " "
-    sample += '\n'
+        test_case += str(1) + " "
+    test_case += '\n'
 
     for i in range(1, employees):
-        sample += str(i) + " "
-    sample += '\n'
+        test_case += str(i) + " "
+    test_case += '\n'
 
-    Path('large_increasing_chain.in').write_text(sample)
+    Path('large_increasing_chain.in').write_text(test_case)
 
 
 def large_switching_chain():
-    sample = ""
+    test_case = ""
 
     employees = 50_000
     threshold = 1
-    sample += str(employees) + " " + str(threshold) + '\n'
+    test_case += str(employees) + " " + str(threshold) + '\n'
 
     for i in range(0, employees):
         if i % 2 == 0:
-            sample += str(1) + " "
+            test_case += str(1) + " "
         else:
-            sample += str(-1) + " "
+            test_case += str(-1) + " "
 
-    sample += '\n'
+    test_case += '\n'
 
     for i in range(1, employees):
-        sample += str(i) + " "
-    sample += '\n'
+        test_case += str(i) + " "
+    test_case += '\n'
 
     Path('large_switching_chain.in').write_text(sample)
 
