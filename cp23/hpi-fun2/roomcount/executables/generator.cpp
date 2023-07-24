@@ -219,12 +219,12 @@ int main(int argc, char* argv[]) {
     }
 
     int maxSize = 100000;
-    testcase("max_size_length",
-             "max length testcase with n = " + to_string(maxSize),
+    testcase("max_size_one_path",
+             "max size testcase with one large path with n = " + to_string(maxSize),
              [&maxSize]() -> int { return maxLengthTestcase(maxSize); });
 
-    testcase("max_size_width",
-             "max width testcase with n = " + to_string(maxSize),
+    testcase("max_size_one_clique",
+             "max size testcase with one big clique with n = " + to_string(maxSize),
              [&maxSize]() -> int { return maxWidthTestcase(maxSize); });
 
     testcase("max_size_random",
