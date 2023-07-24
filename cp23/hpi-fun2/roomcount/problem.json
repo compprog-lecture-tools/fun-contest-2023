@@ -5,8 +5,8 @@
     ],
     "type": "other"
   },
-  "description": "Given a graph G=(V,E) where each vertex represents one of n equally long half-open (time) intervals and two vertices u and v are connected iff their corresponding intervals overlap, 
-  output the chromatic number of G / the maximum number of overlapping intervals.","difficulty": 4,
+  "description": "Given a graph G=(V,E) where each vertex represents one of n equally long half-open (time) intervals and two vertices u and v are connected iff their corresponding intervals overlap, output the chromatic number of G / the maximum number of overlapping intervals.",
+  "difficulty": 4,
   "tags": [
     "graphs",
     "schedules",
