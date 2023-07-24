@@ -15,9 +15,7 @@ int main() {
         ll u, v, w; cin >> u >> v >> w;
         --u; --v;
         adj[u].emplace_back(v, w);
-        adj[v].emplace_back(u, w);
         adj[u+n].emplace_back(v+n, w);
-        adj[v+n].emplace_back(u+n, w);
     }
     rep(i, n) {
         if (i > 0) adj[i].emplace_back(i-1+n, 0);
