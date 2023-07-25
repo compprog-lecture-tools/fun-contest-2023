@@ -71,7 +71,7 @@ def large_increasing_chain():
     Path('large_increasing_chain.in').write_text(test_case)
 
 
-def large_switching_chain():
+def switching_chain():
     test_case = ""
 
     employees = 1_000
@@ -89,7 +89,7 @@ def large_switching_chain():
         test_case += f"{i} "
     test_case += '\n'
 
-    Path('large_switching_chain.in').write_text(test_case)
+    Path('switching_chain.in').write_text(test_case)
 
 
 def negative_only_test():
@@ -120,7 +120,7 @@ def negative_only_test():
 def random_test_case(case_number):
     test_case = ""
 
-    employees = 50_000
+    employees = 100_000
     threshold = random.randint(1, 1_000)
 
     test_case += f"{employees} {5*threshold}\n"
@@ -146,7 +146,7 @@ basic_test4()
 
 # Chain test cases: Tree, where each node has only one child
 large_increasing_chain()
-large_switching_chain()
+switching_chain()
 
 # Each node has three children and each motivational level of -1
 negative_only_test()

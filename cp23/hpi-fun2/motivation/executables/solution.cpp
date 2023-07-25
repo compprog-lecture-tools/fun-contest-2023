@@ -15,7 +15,6 @@ using Graph = vector<vector<ull> >;
 using ll = long long;
 
 struct Employee {
-  ull id;
   ll demotivation_level = 0;
   bool motivatable = false;
 };
@@ -27,7 +26,7 @@ struct Employee {
  * @param company_hierarchy
  *          Who is the boss of whom. Given as graph, which can be viewed as a tree.
  * @param employees
- *          IDs & Demotivation level of each employee.
+ *          Demotivation level of each employee.
  * @param employee
  *          The currently looked at employee.
  * @param path_length
@@ -69,7 +68,6 @@ int main() {
 
   rep1(i, no_employees+1) {
     cin >> employees[i].demotivation_level;
-    employees[i].id = i;
   }
 
   /*
