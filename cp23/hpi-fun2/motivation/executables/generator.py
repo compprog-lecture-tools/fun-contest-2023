@@ -56,7 +56,7 @@ def basic_test4():
 def large_increasing_chain():
     test_case = ""
 
-    employees = 50_000
+    employees = 100_000
     threshold = 5_000
     test_case += f"{employees} {threshold}\n"
 
@@ -74,7 +74,7 @@ def large_increasing_chain():
 def large_switching_chain():
     test_case = ""
 
-    employees = 50_000
+    employees = 1_000
     threshold = 1
     test_case += f"{employees} {threshold}\n"
 
