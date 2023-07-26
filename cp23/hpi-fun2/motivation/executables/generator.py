@@ -17,6 +17,24 @@ for name, sample in SAMPLES:
     Path(name + ".in").write_text(sample + '\n')
 
 
+def single_parent_single_child():
+    test_case = (
+        "2 20"
+        "10 10"
+        "1"
+    )
+    Path('single_parent_single_child.in').write_text(test_case)
+
+
+def negative_root_node_weight():
+    test_case = (
+        "5 10"
+        "-100 90 100 110 120"
+        "1 1 1 1"
+    )
+    Path('negative_root_node_weight.in').write_text(test_case)
+
+
 def binary_tree_two_layers():
     test_case = (
         "7 10\n"
@@ -148,11 +166,21 @@ def random_test_case(case_number):
     Path(f"random_test_case_{case_number}.in").write_text(test_case)
 
 
+# ------------------------
+# Small Test Cases
+# ------------------------
+
 # Relatively simple trees
 binary_tree_two_layers()
 single_unreachable_with_negatives()
 exponential_weights()
 single_node_bottleneck()
+single_parent_single_child()
+negative_root_node_weight()
+
+# ------------------------
+# Large Test Cases
+# ------------------------
 
 # Chain test cases: Tree, where each node has only one child
 large_increasing_chain()
@@ -162,5 +190,5 @@ switching_chain()
 negative_only_test()
 
 # Random test cases
-for i in range(1,4):
+for i in range(1, 10):
     random_test_case(i)
