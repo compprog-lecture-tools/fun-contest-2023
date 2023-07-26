@@ -27,6 +27,38 @@ employees below that person anymore.
 Christian wants to know the fewest number of coaches he needs and the number
 of unmotivatable persons in order to do company stuff to them.
 
+\definecolor{lightred}{RGB}{255,102,102}
+\begin{figure}
+  \centering
+
+  \begin{tikzpicture}[rn/.style={shape=circle,draw=black}]
+    \node[rn] (1) at (3,4) {2};
+    \node[rn] (2) at (1,3) {5};
+    \node[rn] (3) at (0,2) {3};
+    \node[rn] (4) at (1,2) {7};
+    \node[rn] (5) at (2,2) {2};
+    \node[rn] (6) at (1.5,1) {1};
+    \node[rn] (7) at (2.5,1) {10};
+    \node[rn] (8) at (5,3) {4};
+    \node[rn] (9) at (4,2) {1};
+    \node[rn] (10) at (5,2) {8};
+    \node[rn] (11) at (6,2) {2};
+
+    \path[->] (1) edge node {} (2);
+    \path[->] (1) edge node {} (8);
+    \path[->] (2) edge node {} (3);
+    \path[->] (2) edge node {} (4);
+    \path[->] (2) edge node {} (5);
+    \path[->] (5) edge node {} (6);
+    \path[->] (5) edge node {} (7);
+    \path[->] (8) edge node {} (9);
+    \path[->] (8) edge node {} (10);
+    \path[->] (8) edge node {} (11);
+
+  \end{tikzpicture}
+  \caption{In Sample 1, all employees can be motivated.}
+\end{figure}
+
 \paragraph*{Input}
 
 The input consists of three lines, describing a single test case.
