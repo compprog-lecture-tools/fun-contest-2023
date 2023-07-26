@@ -57,10 +57,7 @@ void sample(int num, string_view content) {
 }
 
 void generateRandomTestcase(ll n, ll maxL, ll maxM){
-    Graph g(n);
-    ll m = 0;
     vector<ll> backlog;
-    vector<ll> inTreeIndex;
     set<pair<ll, ll>> edges;
     vector<pair<ll,pair<ll, ll> > > outEdges;
     inTreeIndex.push_back(0);
@@ -73,25 +70,21 @@ void generateRandomTestcase(ll n, ll maxL, ll maxM){
 
     // build tree
     for(ll i = 1; i < n; i++){
-        m++;
-        ll r = rnd.next(inTreeIndex.size());
+        ll r = rnd.next(i);
         ll t = rnd.next(maxL);
-        g[r].emplace_back(t,backlog[i]);
-        inTreeIndex.push_back(backlog[i]);
         edges.emplace(r, backlog[i]);
         outEdges.emplace_back(t,pair(r,i));
     }
 
-    for (ll i = 0; i < maxM; ++i) {
-        ll a = rnd.next(inTreeIndex.size());
-        ll b = rnd.next(inTreeIndex.size());
+    ll count = n-1;
+    while (outEdges.size() < maxM) {
+        ll a = rnd.next(count);
+        ll b = rnd.next(count);
 
         if(a == b) continue;
         if (edges.contains(pair(a,b))) continue;
         ll t = rnd.next(maxL);
-        g[a].emplace_back(t,b);
         outEdges.emplace_back(t,pair(a,b));
-        m++;
     }
 
     shuffle(outEdges.begin(), outEdges.end());
