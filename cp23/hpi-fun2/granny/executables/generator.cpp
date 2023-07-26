@@ -58,42 +58,42 @@ void sample(int num, string_view content) {
 void generateRandomTestcase(long long n, long long maxL, long long maxM){
     using namespace std;
     using ll = long long;
-    using Graph = vector<vector<pair<ll,int> > >;
+    using Graph = vector<vector<pair<ll,ll> > >;
 
     Graph g(n);
     ll m = 0;
-    vector<int> backlog;
-    vector<int> inTreeIndex;
+    vector<ll> backlog;
+    vector<ll> inTreeIndex;
     set<pair<ll, ll>> edges;
-    vector<pair<ll,pair<ll> > > outEdges;
+    vector<pair<ll,pair<ll, ll> > > outEdges;
     inTreeIndex.push_back(0);
 
     // backlog
-    for(int i = 1; i < n; i++){
+    for(ll i = 1; i < n; i++){
         backlog.push_back(i);
     }
     shuffle(backlog.begin(), backlog.end());
 
     // build tree
-    for(int i = 1; i < n; i++){
+    for(ll i = 1; i < n; i++){
         m++;
-        int r = rnd.next(inTreeIndex.size());
+        ll r = rnd.next(inTreeIndex.size());
         ll t = rnd.next(maxL);
         g[r].emplace_back(t,backlog[i]);
         inTreeIndex.push_back(backlog[i]);
         edges.emplace(r, backlog[i]);
-        outEdges.emplace(t,pair(r,i));
+        outEdges.emplace_back(t,pair(r,i));
     }
 
-    for (int i = 0; i < maxM; ++i) {
-        int a = rnd.next(inTreeIndex.size());
-        int b = rnd.next(inTreeIndex.size());
+    for (ll i = 0; i < maxM; ++i) {
+        ll a = rnd.next(inTreeIndex.size());
+        ll b = rnd.next(inTreeIndex.size());
 
         if(a == b) continue;
         if (edges.contains(pair(a,b))) continue;
         ll t = rnd.next(maxL);
         g[a].emplace_back(t,b);
-        outEdges.emplace(t,pair(a,b));
+        outEdges.emplace_back(t,pair(a,b));
         m++;
     }
 
