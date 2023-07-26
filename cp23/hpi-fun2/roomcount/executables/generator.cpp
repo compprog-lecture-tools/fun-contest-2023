@@ -201,7 +201,7 @@ int main(int argc, char* argv[]) {
 
     for (int i = 0; i < 10; i++) {
       int n = rnd.next(100, 1000);
-      int intervalLength = rnd.next(5, 150);
+      int intervalLength = 5 + 15 * i;
       testcase("random_testcase_" + to_string(i),
                "random testcase with interval length = " + to_string(intervalLength) + ", n = " + to_string(n),
                [&n, &intervalLength]() -> int { return randomTestcase(intervalLength, n, n * n / 100); });
