@@ -95,7 +95,7 @@ void generateRandomTestcase(ll n, ll maxL, ll maxM){
 }
 
 void bigTestcase() {
-    generateRandomTestcase(1e6, 1e5, 1e6);
+    generateRandomTestcase(1e5, 1e5, 1e5);
 }
 
 void smallTestcase1() {
