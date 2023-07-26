@@ -8,14 +8,12 @@ const string_view SAMPLE1 = R"(3 4
 0 1 1
 1 2 1
 2 3 2
-2 4 1
 )";
 
 const string_view SAMPLE2 = R"(2 4
 0 1 1
 2 1 1
 3 1 1
-4 3 1
 )";
 
 const string_view NO_EDGE = R"(2 1
@@ -66,16 +64,16 @@ int main(int argc, char* argv[]) {
 
     sample(1, SAMPLE1);
     sample(2, SAMPLE2);
-    sample(3, NO_EDGE);
-    sample(4, STAR);
-    sample(5, WEIGHT_0);
+    predefined("no_edge", "one node, no edge", NO_EDGE);
+    predefined("star", "a star with 8 nodes", STAR);
+    predefined("weight_0", "all edges have weight 0", WEIGHT_0);
 
     const int max_n = 2e5;
 
 
     for (int i = 0; i < 20; i++) {
-		testcase("random"+to_string(i), "random ranges", []{
-			println(2, 3);
+	testcase("random"+to_string(i), "random ranges", []{
+	    println(2, 3);
             println(0, 1, 1);
             println(1, 2, 1);
 		});
