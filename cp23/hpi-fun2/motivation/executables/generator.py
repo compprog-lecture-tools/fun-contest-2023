@@ -111,7 +111,7 @@ def negative_only_test():
     # I did not think about it at first, but actually there is
     #       (employees - 3**(hierarchical_levels-1))*3 = employees - 1
     # Each person has exactly 3 people under them.
-    for i in range(0, employees - 3**(hierarchical_levels-1)):
+    for i in range(1, employees - 3**(hierarchical_levels-1)):
         test_case += f"{i} {i} {i} "
 
     Path('negative_only.in').write_text(test_case)
@@ -152,6 +152,5 @@ switching_chain()
 negative_only_test()
 
 # Random test cases
-random_test_case(1)
-random_test_case(2)
-random_test_case(3)
+for i in range(1,4):
+    random_test_case(i)
