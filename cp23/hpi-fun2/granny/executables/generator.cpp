@@ -37,10 +37,6 @@ const string_view SAMPLE3 = R"(3 2
 1 2 0
 2 3 1)"; // 0
 
-const string_view SAMPLE4 = R"(3 2
-1 2 1
-2 3 0)"; // 0
-
 template <class F>
 void testcase(string name, string desc, F f) {
     ofstream desc_file(name + ".desc");
@@ -59,24 +55,23 @@ void sample(int num, string_view content) {
     predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-void bigCase(){
+void generateRandomTestcase(long long n, long long maxL, long long maxM){
     using namespace std;
     using ll = long long;
     using Graph = vector<vector<pair<ll,int> > >;
-
-    ll n = 1e6;
-    ll maxL = 1e5;
 
     Graph g(n);
     ll m = 0;
     vector<int> backlog;
     vector<int> inTreeIndex;
+    set<pair<ll, ll>> edges;
     inTreeIndex.push_back(0);
 
     // backlog
     for(int i = 1; i < n; i++){
         backlog.push_back(i);
     }
+    shuffle(backlog.begin(), backlog.end());
 
     // build tree
     for(int i = 1; i < n; i++){
@@ -85,25 +80,18 @@ void bigCase(){
         ll t = rnd.next(maxL);
         g[r].emplace_back(t,backlog[i]);
         inTreeIndex.push_back(backlog[i]);
+        edges.emplace(r, backlog[i]);
     }
 
-    for (int i = 0; i < 5000; ++i) {
+    for (int i = 0; i < maxM; ++i) {
         int a = rnd.next(inTreeIndex.size());
         int b = rnd.next(inTreeIndex.size());
 
         if(a == b) continue;
-        bool found = false;
-        for (auto &e: g[a]) {
-            if(e.second == b) {
-                found = true;
-                break;
-            }
-        }
-        if(!found) {
-            ll t = rnd.next(maxL);
-            g[a].emplace_back(t,b);
-            m++;
-        }
+        if (edges.contains(pair(a,b))) continue;
+        ll t = rnd.next(maxL);
+        g[a].emplace_back(t,b);
+        m++;
     }
 
     cout << n << " " << m << endl;
@@ -114,20 +102,39 @@ void bigCase(){
     }
 }
 
+void bigTestcase() {
+    generateRandomTestcase(1e6, 1e5, 1e6);
+}
+
+void middleTestcase1() {
+    generateRandomTestcase(100, 50, 50);
+}
+
+void middleTestcase2() {
+    generateRandomTestcase(250, 100, 50);
+}
+
+void middleTestcase3() {
+    generateRandomTestcase(500, 250, 50);
+}
+
 int main(int argc, char* argv[]) {
     registerGen(argc, argv, 1);
     rnd.setSeed(-2611193603731665810ll);
 
     // small examples
     sample(1, SAMPLE_ON_PDF);
-    predefined("smallTestcase1", "n=3, m = 1; Jump and then take", SAMPLE1);
-    predefined("smallTestcase2", "n=3, m = 1; Take and then jump", SAMPLE2);
-    predefined("smallTestcase3", "n=3, m = 2; Take and then jump even tho there is a connection", SAMPLE3);
-    predefined("smallTestcase4", "n=3, m = 2; Jump and then take even tho there is a connection", SAMPLE4);
-    predefined("Anti always dash", "n=5,m=5; Dont dash!", SAMPLE_ON_PDF);
+    predefined("smallTestcase1", "n = 3, m = 1; Dashing is necessary, dash from start", SAMPLE1);
+    predefined("smallTestcase2", "n = 3, m = 1; Dashing is necessary, dash to end", SAMPLE2);
+    predefined("smallTestcase3", "n = 3, m = 2; Dash even tho there is a connection", SAMPLE3);
+    predefined("AntiAlwaysDash", "n = 5,m = 5; Dont dash!", ANTI_DASH);
+    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.", ANTI_UNDIRECTED);
 
-    // big sample
-    testcase("bigTestcase","Its a big testcase",bigCase);
+    // big examples
+    testcase("bigTestcase","Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6",bigTestcase);
+    testcase("middleTestcase1", "Random testcase, n = 100, max path length = , max edges = ", middleTestcase1);
+    testcase("middleTestcase2", "Random testcase, n = 250, max path length = , max edges = ", middleTestcase2);
+    testcase("middleTestcase3", "Random testcase, n = 500, max path length = , max edges = ", middleTestcase3);
     
     return 0;
 }
