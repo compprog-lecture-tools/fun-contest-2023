@@ -15,6 +15,17 @@ const string_view SAMPLE_ON_PDF = R"(6 8
 5 6 2
 )";
 
+const string_view ANTI_DASH = R"(5 5
+1 2 1
+3 5 1
+1 2 5
+2 4 5
+4 5 5)"; // 2
+
+const string_view ANTI_UNDIRECTED = R"(3 3
+1 2 5
+2 3 5
+1 3 1)"; //
 
 const string_view SAMPLE1 = R"(3 1
 2 3 1)"; // 1
@@ -109,10 +120,11 @@ int main(int argc, char* argv[]) {
 
     // small examples
     sample(1, SAMPLE_ON_PDF);
-    testcase("smallTestcase1", "Jump and then take", SAMPLE1);
-    testcase("smallTestcase2", "Take and then jump", SAMPLE2);
-    testcase("smallTestcase3", "Take and then jump even tho there is a connection", SAMPLE3);
-    testcase("smallTestcase4", "Jump and then take even tho there is a connection", SAMPLE4);
+    predefined("smallTestcase1", "n=3, m = 1; Jump and then take", SAMPLE1);
+    predefined("smallTestcase2", "n=3, m = 1; Take and then jump", SAMPLE2);
+    predefined("smallTestcase3", "n=3, m = 2; Take and then jump even tho there is a connection", SAMPLE3);
+    predefined("smallTestcase4", "n=3, m = 2; Jump and then take even tho there is a connection", SAMPLE4);
+    predefined("Anti always dash", "n=5,m=5; Dont dash!", SAMPLE_ON_PDF);
 
     // big sample
     testcase("bigTestcase","Its a big testcase",bigCase);
