@@ -108,16 +108,16 @@ void bigTestcase() {
     generateRandomTestcase(1e6, 1e5, 1e6);
 }
 
-void middleTestcase1() {
-    generateRandomTestcase(100, 50, 50);
+void smallTestcase1() {
+    generateRandomTestcase(10, 50, 20);
 }
 
-void middleTestcase2() {
-    generateRandomTestcase(250, 100, 50);
+void smallTestcase2() {
+    generateRandomTestcase(10, 50, 50);
 }
 
-void middleTestcase3() {
-    generateRandomTestcase(500, 250, 50);
+void smallTestcase3() {
+    generateRandomTestcase(20, 1e5, 100);
 }
 
 int main(int argc, char* argv[]) {
@@ -134,9 +134,9 @@ int main(int argc, char* argv[]) {
 
     // big examples
     testcase("bigTestcase","Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6",bigTestcase);
-    testcase("middleTestcase1", "Random testcase, n = 100, max path length = , max edges = ", middleTestcase1);
-    testcase("middleTestcase2", "Random testcase, n = 250, max path length = , max edges = ", middleTestcase2);
-    testcase("middleTestcase3", "Random testcase, n = 500, max path length = , max edges = ", middleTestcase3);
+    testcase("smallTestcase1", "Random testcase, n = 100, max path length = , max edges = ", smallTestcase1);
+    testcase("smallTestcase2", "Random testcase, n = 250, max path length = , max edges = ", smallTestcase2);
+    testcase("smallTestcase3", "Random testcase, n = 500, max path length = , max edges = ", smallTestcase3);
     
     return 0;
 }
