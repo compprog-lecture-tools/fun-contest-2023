@@ -60,13 +60,15 @@ def large_increasing_chain():
     threshold = 5_000
     test_case += f"{employees} {threshold}\n"
 
+    levels = []
     for i in range(0, employees):
-        test_case += "1 "
-    test_case += '\n'
+        levels.append(1)
+    test_case += " ".join([str(x) for x in levels]) + "\n"
 
+    bosses = []
     for i in range(1, employees):
-        test_case += f"{i} "
-    test_case += '\n'
+        bosses.append(i)
+    test_case += " ".join([str(x) for x in bosses])
 
     Path('large_increasing_chain.in').write_text(test_case)
 
@@ -78,16 +80,19 @@ def switching_chain():
     threshold = 1
     test_case += f"{employees} {threshold}\n"
 
+    levels = []
     for i in range(0, employees):
         if i % 2 == 0:
-            test_case += "1 "
+            levels.append(1)
         else:
-            test_case += "-1 "
-    test_case += '\n'
+            levels.append(-1)
+    test_case += " ".join([str(x) for x in levels]) + "\n"
 
+    bosses = []
     for i in range(1, employees):
+        bosses.append(i)
         test_case += f"{i} "
-    test_case += '\n'
+    test_case += " ".join([str(x) for x in bosses]) + "\n"
 
     Path('switching_chain.in').write_text(test_case)
 
@@ -104,15 +109,18 @@ def negative_only_test():
     test_case += f"{employees} {threshold}\n"
 
     # Each person has negative motivational level
+    levels = []
     for i in range(0, employees):
-        test_case += f"{-i} "
-    test_case += "\n"
+        levels.append(-i)
+    test_case += " ".join([str(x) for x in levels]) + "\n"
 
     # I did not think about it at first, but actually there is
     #       (employees - 3**(hierarchical_levels-1))*3 = employees - 1
     # Each person has exactly 3 people under them.
+    bosses = []
     for i in range(1, employees - 3**(hierarchical_levels-1)):
-        test_case += f"{i} {i} {i} "
+        bosses.extend([i, i, i])
+    test_case += " ".join([str(x) for x in bosses]) + "\n"
 
     Path('negative_only.in').write_text(test_case)
 
@@ -125,15 +133,17 @@ def random_test_case(case_number):
 
     test_case += f"{employees} {5*threshold}\n"
 
+    levels = []
     for i in range(0, employees):
         motivational_level = random.randint(-threshold, threshold)
-        test_case += f"{motivational_level} "
-    test_case += "\n"
+        levels.append(motivational_level)
+    test_case += " ".join([str(x) for x in levels]) + "\n"
 
-    test_case += "1 "
+    bosses = [1]
     for i in range(2, employees):
         boss = random.randint(1, i-1)
-        test_case += f"{boss} "
+        bosses.append(boss)
+    test_case += " ".join([str(x) for x in bosses]) + "\n"
 
     Path(f"random_test_case_{case_number}.in").write_text(test_case)
 
