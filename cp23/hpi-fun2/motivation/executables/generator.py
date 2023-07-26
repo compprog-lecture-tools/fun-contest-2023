@@ -17,47 +17,47 @@ for name, sample in SAMPLES:
     Path(name + ".in").write_text(sample + '\n')
 
 
-def basic_test1():
+def binary_tree_two_layers():
     test_case = (
         "7 10\n"
         "5 5 5 1 1 1 1\n"
         "1 1 3 3 2 2"
     )
-    Path('basic_test1.in').write_text(test_case)
+    Path('binary_tree_two_layers.in').write_text(test_case)
 
 
-def basic_test2():
+def single_unreachable_with_negatives():
     test_case = (
         "11 20\n"
         "1 3 7 -2 2 -6 1 30 3 5 5\n"
         "1 1 1 3 3 3 4 4 8 8"
     )
-    Path('basic_test2.in').write_text(test_case)
+    Path('single_unreachable_with_negatives.in').write_text(test_case)
 
 
-def basic_test3():
+def exponential_weights():
     test_case = (
         "14 15\n"
         "1 2 2 2 4 4 4 4 8 8 8 8 16 16\n"
         "1 1 1 3 3 4 4 6 6 8 8 10 10"
     )
-    Path('basic_test3.in').write_text(test_case)
+    Path('exponential_weights.in').write_text(test_case)
 
 
-def basic_test4():
+def single_node_bottleneck():
     test_case = (
         "6 5\n"
         "1 10 -8 -8 -8 -8\n"
         "1 2 2 2 2"
     )
-    Path('basic_test4.in').write_text(test_case)
+    Path('single_node_bottleneck.in').write_text(test_case)
 
 
 def large_increasing_chain():
     test_case = ""
 
     employees = 100_000
-    threshold = 5_000
+    threshold = 50_000
     test_case += f"{employees} {threshold}\n"
 
     levels = []
@@ -149,10 +149,10 @@ def random_test_case(case_number):
 
 
 # Relatively simple trees
-basic_test1()
-basic_test2()
-basic_test3()
-basic_test4()
+binary_tree_two_layers()
+single_unreachable_with_negatives()
+exponential_weights()
+single_node_bottleneck()
 
 # Chain test cases: Tree, where each node has only one child
 large_increasing_chain()
