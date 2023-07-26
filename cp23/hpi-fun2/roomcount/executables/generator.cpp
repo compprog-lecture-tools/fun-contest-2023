@@ -209,8 +209,8 @@ int main(int argc, char* argv[]) {
 
     for (int i = 0; i < 5; i++) {
       int n = rnd.next(20, 100);
-      int intervalLength = rnd.next(5, 30);
-      int components = rnd.next(2, 20);
+      int intervalLength = 5 + 5 * i;
+      int components = 10 - 2 * i;
       testcase("random_multi_component_testcase_" + to_string(i),
                "random testcase with at least " + to_string(components) + " components, interval length = "
                + to_string(intervalLength) + ", n = " + to_string(n * components),
