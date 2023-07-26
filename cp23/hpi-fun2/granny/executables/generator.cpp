@@ -2,8 +2,9 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+using ll = long long;
+using Graph = vector<vector<pair<ll,ll> > >;
 
-// @ CALLISTA PUT THING HERE
 const string_view SAMPLE_ON_PDF = R"(6 8
 1 2 5
 1 3 7
@@ -25,7 +26,7 @@ const string_view ANTI_DASH = R"(5 5
 const string_view ANTI_UNDIRECTED = R"(3 3
 1 2 5
 2 3 5
-1 3 1)"; //
+1 3 1)";
 
 const string_view SAMPLE1 = R"(3 1
 2 3 1)"; // 1
@@ -55,11 +56,7 @@ void sample(int num, string_view content) {
     predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-void generateRandomTestcase(long long n, long long maxL, long long maxM){
-    using namespace std;
-    using ll = long long;
-    using Graph = vector<vector<pair<ll,ll> > >;
-
+void generateRandomTestcase(ll n, ll maxL, ll maxM){
     Graph g(n);
     ll m = 0;
     vector<ll> backlog;
@@ -98,7 +95,7 @@ void generateRandomTestcase(long long n, long long maxL, long long maxM){
     }
 
     shuffle(outEdges.begin(), outEdges.end());
-    cout << n << " " << m << endl;
+    cout << n << " " << outEdges.size() << endl;
     for (auto &e: outEdges){
         cout << (e.second.first+1) << " " << (e.second.second+1) << " " << e.first << endl;
     }
