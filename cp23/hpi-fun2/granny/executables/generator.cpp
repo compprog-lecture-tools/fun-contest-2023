@@ -65,6 +65,7 @@ void generateRandomTestcase(long long n, long long maxL, long long maxM){
     vector<int> backlog;
     vector<int> inTreeIndex;
     set<pair<ll, ll>> edges;
+    vector<pair<ll,pair<ll> > > outEdges;
     inTreeIndex.push_back(0);
 
     // backlog
@@ -81,6 +82,7 @@ void generateRandomTestcase(long long n, long long maxL, long long maxM){
         g[r].emplace_back(t,backlog[i]);
         inTreeIndex.push_back(backlog[i]);
         edges.emplace(r, backlog[i]);
+        outEdges.emplace(t,pair(r,i));
     }
 
     for (int i = 0; i < maxM; ++i) {
@@ -91,14 +93,14 @@ void generateRandomTestcase(long long n, long long maxL, long long maxM){
         if (edges.contains(pair(a,b))) continue;
         ll t = rnd.next(maxL);
         g[a].emplace_back(t,b);
+        outEdges.emplace(t,pair(a,b));
         m++;
     }
 
+    shuffle(outEdges.begin(), outEdges.end());
     cout << n << " " << m << endl;
-    for (int a = 0; a < n; ++a) {
-        for (auto &b: g[a]) {
-            cout << (a+1) << " " << (b.second+1) << " " << b.first << endl;
-        }
+    for (auto &e: outEdges){
+        cout << (e.second.first+1) << " " << (e.second.second+1) << " " << e.first << endl;
     }
 }
 
