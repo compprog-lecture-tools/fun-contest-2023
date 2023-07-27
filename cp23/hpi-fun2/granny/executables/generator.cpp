@@ -3,7 +3,7 @@
 
 using namespace std;
 using ll = long long;
-using Graph = vector<vector<pair<ll,ll> > >;
+using Graph = vector<vector<pair<ll, ll> > >;
 
 const string_view SAMPLE_ON_PDF = R"(6 8
 1 2 5
@@ -38,7 +38,7 @@ const string_view SAMPLE3 = R"(3 2
 1 2 0
 2 3 1)"; // 0
 
-template <class F>
+template<class F>
 void testcase(string name, string desc, F f) {
     ofstream desc_file(name + ".desc");
     desc_file << desc;
@@ -56,41 +56,40 @@ void sample(int num, string_view content) {
     predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-void generateRandomTestcase(ll n, ll maxL, ll maxM){
+void generateRandomTestcase(ll n, ll maxL, ll maxM) {
     vector<ll> backlog;
     set<pair<ll, ll>> edges;
-    vector<pair<ll,pair<ll, ll> > > outEdges;
-    inTreeIndex.push_back(0);
+    vector<tuple<ll, ll, ll>> outEdges;
 
     // backlog
-    for(ll i = 1; i < n; i++){
+    for (ll i = 1; i < n; i++) {
         backlog.push_back(i);
     }
     shuffle(backlog.begin(), backlog.end());
 
     // build tree
-    for(ll i = 1; i < n; i++){
+    for (ll i = 1; i < n; i++) {
         ll r = rnd.next(i);
         ll t = rnd.next(maxL);
         edges.emplace(r, backlog[i]);
-        outEdges.emplace_back(t,pair(r,i));
+        outEdges.emplace_back(t, r, i);
     }
 
-    ll count = n-1;
+    ll count = n - 1;
     while (outEdges.size() < maxM) {
         ll a = rnd.next(count);
         ll b = rnd.next(count);
 
-        if(a == b) continue;
-        if (edges.contains(pair(a,b))) continue;
+        if (a == b) continue;
+        if (edges.contains(pair(a, b))) continue;
         ll t = rnd.next(maxL);
-        outEdges.emplace_back(t,pair(a,b));
+        outEdges.emplace_back(t, a, b);
     }
 
     shuffle(outEdges.begin(), outEdges.end());
     cout << n << " " << outEdges.size() << endl;
-    for (auto &e: outEdges){
-        cout << (e.second.first+1) << " " << (e.second.second+1) << " " << e.first << endl;
+    for (auto [time, src, dst]: outEdges) {
+        cout << (src + 1) << " " << (dst + 1) << " " << time << endl;
     }
 }
 
@@ -110,7 +109,7 @@ void smallTestcase3() {
     generateRandomTestcase(20, 1e5, 100);
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
     rnd.setSeed(-2611193603731665810ll);
 
@@ -120,13 +119,27 @@ int main(int argc, char* argv[]) {
     predefined("smallTestcase2", "n = 3, m = 1; Dashing is necessary, dash to end", SAMPLE2);
     predefined("smallTestcase3", "n = 3, m = 2; Dash even tho there is a connection", SAMPLE3);
     predefined("AntiAlwaysDash", "n = 5,m = 5; Dont dash!", ANTI_DASH);
-    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.", ANTI_UNDIRECTED);
+    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.",
+               ANTI_UNDIRECTED);
 
     // big examples
-    testcase("bigTestcase","Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6",bigTestcase);
-    testcase("smallTestcase1", "Random testcase, n = 100, max path length = , max edges = ", smallTestcase1);
-    testcase("smallTestcase2", "Random testcase, n = 250, max path length = , max edges = ", smallTestcase2);
-    testcase("smallTestcase3", "Random testcase, n = 500, max path length = , max edges = ", smallTestcase3);
-    
+    testcase("bigTestcase", "Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6", generateRandomTestcase);
+    vector<tuple<ll, ll, ll>> random_testcases = {
+            tuple(10, 50, 20),
+            tuple(10, 50, 50),
+            tuple(20, 1e5, 100),
+            tuple(25, 500, 100),
+            tuple(25, 1e5, 150),
+            tuple(50, 10, 500),
+            tuple(50, 1e5, 700)
+    };
+    for (ll i = 0; i < 7; i++) {
+        auto [n, max_t, max_m] = random_testcases[i];
+        auto this_testcase = [&]() {
+            generateRandomTestcase(n, max_t, max_m);
+        };
+        testcase("randomTestcase" + to_string(i),
+                 "Random testcase " + to_string(i) + ", n = " + to_string(n) + ", max_t = " + to_string(max_t) + ", max_m = " + to_string(max_m), this_testcase);
+    }
     return 0;
 }
