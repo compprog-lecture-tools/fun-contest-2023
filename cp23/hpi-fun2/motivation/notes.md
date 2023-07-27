@@ -2,8 +2,6 @@
 
 The problem is about finding the path coverage of the tree. 
 
-The solution can be found as follows:
-
 ## Solution Idea
 
 > 1. Mark each node as reachable or unreachable (nodes, that exceed the allowed path length).
@@ -23,7 +21,7 @@ The solution can be found as follows:
 Another possibility, which is a little less efficient, would be to apply a DP on the tree and work bottom-up:
 
 > 1. Recursively find all unreachable nodes with the following pseudocode:
-     >    ```
+>    ```
 >    bool mark_reachable(Tree t, Employee e, int path_length) {
 >       if (path_length + e.weight > threshold) {
 >           // All unreached employees are implicitly marked
