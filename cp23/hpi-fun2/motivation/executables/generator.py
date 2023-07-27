@@ -13,9 +13,14 @@ SAMPLES = [
 1 1 3 3"""]
 ]
 
-for name, sample in SAMPLES:
-    Path(name + ".in").write_text(sample + '\n')
-    Path(name + ".desc").write_text(name + '\n')
+Path("sample1.in").write_text(SAMPLES[0][1])
+Path("sample1.desc").write_text("Basic test case; no unreachable nodes.")
+
+Path("sample2.in").write_text(SAMPLES[1][1])
+Path("sample2.desc").write_text("Basic tree case; using negative weights, exceeding weight subtree.")
+
+Path("sample3.in").write_text(SAMPLES[2][1])
+Path("sample3.desc").write_text("No reachable children, bottleneck at root; single coach needed.")
 
 
 def single_parent_single_child():
