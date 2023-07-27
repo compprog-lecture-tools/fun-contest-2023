@@ -97,18 +97,6 @@ void bigTestcase() {
     generateRandomTestcase(1e5, 1e5, 1e5);
 }
 
-void smallTestcase1() {
-    generateRandomTestcase(10, 50, 20);
-}
-
-void smallTestcase2() {
-    generateRandomTestcase(10, 50, 50);
-}
-
-void smallTestcase3() {
-    generateRandomTestcase(20, 1e5, 100);
-}
-
 int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
     rnd.setSeed(-2611193603731665810ll);
@@ -119,10 +107,11 @@ int main(int argc, char *argv[]) {
     predefined("DashToEnd", "n = 3, m = 1; Dashing is necessary, dash to end", DASH_TO_END);
     predefined("UseDash", "n = 3, m = 2; Dash even tho there is a connection", USE_DASH);
     predefined("AntiAlwaysDash", "n = 5,m = 5; Dont dash!", ANTI_DASH);
-    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.", ANTI_UNDIRECTED);
+    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.",
+               ANTI_UNDIRECTED);
 
     // big examples
-    testcase("bigTestcase", "Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6", generateRandomTestcase);
+    testcase("bigTestcase", "Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6", bigTestcase);
     vector<tuple<ll, ll, ll>> random_testcases = {
             tuple(10, 50, 20),
             tuple(10, 50, 50),
@@ -138,7 +127,8 @@ int main(int argc, char *argv[]) {
             generateRandomTestcase(n, max_t, max_m);
         };
         testcase("randomTestcase" + to_string(i),
-                 "Random testcase " + to_string(i) + ", n = " + to_string(n) + ", max_t = " + to_string(max_t) + ", max_m = " + to_string(max_m), this_testcase);
+                 "Random testcase " + to_string(i) + ", n = " + to_string(n) + ", max_t = " + to_string(max_t) +
+                 ", max_m = " + to_string(max_m), this_testcase);
     }
     return 0;
 }
