@@ -72,30 +72,49 @@ void sample(int num, string_view content) {
     predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-struct pairHashFunction
-{
-    size_t operator()(const pair<int ,
-            int> &x) const
-    {
-        return x.first ^ x.second;
-    }
-};
 
 void printRandomGraph(int n, int m){
-    int u, v;
-    unordered_set<pair<int, int>, pairHashFunction> edges;
+    set<pair<int, int>> edges;
     assert(m>=n-1);
+    std::vector<int> unvisited(n);
+    for(int i = 0; i < n; i++){
+        unvisited[i] = i+1;
+    }
+    int u = rnd.next(1, n);
+
+    vector<int> visited = {u};
+    unvisited.erase(remove(unvisited.begin(), unvisited.end(), u), unvisited.end());
+
+    // build tree to make graph connected
     for(int i=1; i<=n-1; i++){
-        // add a path from 0 -> n to make graph connected
-        edges.insert(make_pair(i,i+1));
-        println(i, i+1);
+        int unvisited_size = unvisited.size() - 1;
+        int outside_idx = rnd.next(0, unvisited_size);
+
+        int visited_size = visited.size() - 1;
+        int inside_idx = rnd.next(0, visited_size);
+
+        int u = visited[inside_idx];
+        int v = unvisited[outside_idx];
+
+        edges.insert(make_pair(u,v));
+        println(u, v);
+
+        //remove last visited value from unvisited values
+        unvisited.erase(remove(unvisited.begin(), unvisited.end(), v), unvisited.end());
+        visited.push_back(v);
     }
 
+    int v;
     for(int i=n; i<=m; i++){
         u = rnd.next(1, n);
         v = rnd.next(1, n);
+        if(u == v){
+            i--; continue;
+        }
         pair<int, int> edge = make_pair(u,v);
-        if(edges.count(edge)){ // only add edge if it does not exist yet
+        pair<int, int> reversed_edge = make_pair(v,u);
+
+        if(edges.count(edge) || edges.count(reversed_edge)){ // only add edge if it does not exist yet
             i--; continue;
         } else {
             edges.insert(make_pair(u,v));
