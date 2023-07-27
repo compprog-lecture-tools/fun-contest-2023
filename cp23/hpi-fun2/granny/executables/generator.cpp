@@ -28,13 +28,13 @@ const string_view ANTI_UNDIRECTED = R"(3 3
 2 3 5
 1 3 1)";
 
-const string_view SAMPLE1 = R"(3 1
+const string_view DASH_FROM_START = R"(3 1
 2 3 1)"; // 1
 
-const string_view SAMPLE2 = R"(3 1
+const string_view DASH_TO_END = R"(3 1
 1 2 1)"; // 1
 
-const string_view SAMPLE3 = R"(3 2
+const string_view USE_DASH = R"(3 2
 1 2 0
 2 3 1)"; // 0
 
@@ -115,12 +115,11 @@ int main(int argc, char *argv[]) {
 
     // small examples
     sample(1, SAMPLE_ON_PDF);
-    predefined("smallTestcase1", "n = 3, m = 1; Dashing is necessary, dash from start", SAMPLE1);
-    predefined("smallTestcase2", "n = 3, m = 1; Dashing is necessary, dash to end", SAMPLE2);
-    predefined("smallTestcase3", "n = 3, m = 2; Dash even tho there is a connection", SAMPLE3);
+    predefined("DashFromStart", "n = 3, m = 1; Dashing is necessary, dash from start", DASH_FROM_START);
+    predefined("DashToEnd", "n = 3, m = 1; Dashing is necessary, dash to end", DASH_TO_END);
+    predefined("UseDash", "n = 3, m = 2; Dash even tho there is a connection", USE_DASH);
     predefined("AntiAlwaysDash", "n = 5,m = 5; Dont dash!", ANTI_DASH);
-    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.",
-               ANTI_UNDIRECTED);
+    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.", ANTI_UNDIRECTED);
 
     // big examples
     testcase("bigTestcase", "Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6", generateRandomTestcase);
