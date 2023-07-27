@@ -1,6 +1,8 @@
 from pathlib import Path
 import random
 
+INPUT_LIMIT = 100_000
+
 SAMPLES = [
 ["sample1", """11 20
 2 5 3 7 2 1 10 4 1 8 2
@@ -98,8 +100,8 @@ def single_node_bottleneck():
 def large_increasing_chain():
     test_case = ""
 
-    employees = 100_000
-    threshold = 50_000
+    employees = INPUT_LIMIT
+    threshold = INPUT_LIMIT / 2
     test_case += f"{employees} {threshold}\n"
 
     levels = []
@@ -176,7 +178,7 @@ def negative_only_test():
 def random_test_case(case_number):
     test_case = ""
 
-    employees = 100_000
+    employees = INPUT_LIMIT
     threshold = 5 * random.randint(1, 1_000)
 
     test_case += f"{employees} {threshold}\n"
