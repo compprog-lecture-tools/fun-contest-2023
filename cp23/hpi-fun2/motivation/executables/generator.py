@@ -51,7 +51,7 @@ def binary_tree_two_layers():
         "1 1 3 3 2 2"
     )
     Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text(test_case)
+    Path(filename + ".desc").write_text("Binary tree of 3 layers with unreachable third layer.")
 
 
 def unreachable_subtree_with_negatives():
