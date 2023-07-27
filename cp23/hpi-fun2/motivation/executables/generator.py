@@ -19,8 +19,8 @@ for name, sample in SAMPLES:
 
 def single_parent_single_child():
     test_case = (
-        "2 20"
-        "10 10"
+        "2 20\n"
+        "10 10\n"
         "1"
     )
     Path('single_parent_single_child.in').write_text(test_case)
@@ -28,8 +28,8 @@ def single_parent_single_child():
 
 def negative_root_node_weight():
     test_case = (
-        "5 10"
-        "-100 90 100 110 120"
+        "5 10\n"
+        "-100 90 100 110 120\n"
         "1 1 1 1"
     )
     Path('negative_root_node_weight.in').write_text(test_case)
