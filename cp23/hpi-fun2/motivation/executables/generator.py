@@ -190,7 +190,7 @@ def random_test_case(case_number):
 
     filename = f"random_test_case_{case_number}"
     Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text(filename)
+    Path(filename + ".desc").write_text(f"Randomly generated tree: test case #{case_number}; n={employees}, threshold={threshold}")
 
 
 # ------------------------
