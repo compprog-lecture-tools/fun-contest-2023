@@ -87,7 +87,7 @@ void generateRandomTestcase(ll n, ll maxL, ll maxM) {
     }
 
     shuffle(outEdges.begin(), outEdges.end());
-    cout << n << " " << outEdges.size() << endl;
+    cout << n << " " << maxM << endl;
     for (auto [time, src, dst]: outEdges) {
         cout << (src + 1) << " " << (dst + 1) << " " << time << endl;
     }
