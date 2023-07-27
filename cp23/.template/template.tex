@@ -27,7 +27,6 @@
 \usepackage[most, listings]{tcolorbox}
 \usepackage{longtable}[=v4.13]
 \usepackage{tabu}
-\usepackage{upquote}
 \usepackage{tikz}
 \usetikzlibrary{shapes.misc, positioning}
 
@@ -39,26 +38,43 @@
 
 \pagestyle{scrheadings}
 \setkomafont{pageheadfoot}{}
-\ohead{\small CP2023}
-\ihead{\small Prof. Dr. Friedrich, Dr. Lenzner, Fischbeck, Gawendowicz}
+\ohead{\small CP 2023}
+\ihead{\small Prof.\ Dr.\ Friedrich, Dr.\ Lenzner, Fischbeck, Gawendowicz}
 \cfoot{}
 
 \addtolength{\headheight}{-1.5em}
+
 \newcommand{\makeheader}{%
   \columnratio{0.2,0.6,0.2}
   \begin{paracol}{3}
-  \switchcolumn
-  \center
-  {\Large\textbf{Competitive Programming SS23}}\\
+      \switchcolumn
+  \center{\Large\textbf{Competitive Programming SS23}}\\
   \vspace{2mm}
-  \textbf{Submit until \deadline{} via the \href{https://hpi.de/friedrich/judge/team}{judge}}
+  \textbf{Submit until end of contest}
   \switchcolumn
   \hfill
-  \includegraphics[width=3cm]{hpi-logo.pdf}\\
+  \includegraphics[width=2.5cm]{hpi-logo.pdf}\\
   \end{paracol}
 
   \noindent\textbf{Problem: \problemName{}} (\timelimit{} second timelimit) 
 }
+% \newcommand{\makeheader}{%
+%   \columnratio{0.7}
+%   \begin{paracol}{2}
+%     \begin{leftcolumn}
+%       \noindent{\Large\textbf{(Adv.) Competitive Programming}}\\
+
+%       \noindent{\small\textbf{Submit until \deadline{}}}
+%     \end{leftcolumn}
+%     \begin{rightcolumn}
+%       \vspace*{-8mm}
+%       \includegraphics[width=4cm]{Hasso_Plattner_Institut_Logo.pdf}
+%     \end{rightcolumn}
+%   \end{paracol}
+%   \vspace*{1em}
+
+%   \noindent\textbf{Problem: \problemName{}} (\timelimit{} second timelimit)
+% }
 
 \newcommand{\placeholder}[1]{\textcolor{blue}{#1}}
 
@@ -78,7 +94,7 @@
 }
 
 \newcommand{\bonusnotice}{%
-\textit{Note:} This is a bonus problem that is harder to solve than usual.
+\textit{Note:} This is a problem that is harder to solve than usual.
 Solve the other problems first before spending too much time on this one.
 
 \vspace{1em}

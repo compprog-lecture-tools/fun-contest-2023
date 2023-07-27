@@ -1,0 +1,9 @@
+{
+  "description": "Given a 3-regular bipartite graph, find the size of the biggest matching.",
+  "difficulty": 2,
+  "tags": [
+    "flows",
+    "graph matchings", 
+    "mullets"
+  ]
+}
