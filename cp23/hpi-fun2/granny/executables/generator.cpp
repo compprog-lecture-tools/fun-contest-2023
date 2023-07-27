@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
     predefined("DashToEnd", "n = 3, m = 1; Dashing is necessary, dash to end", DASH_TO_END);
     predefined("UseDash", "n = 3, m = 2; Dash even tho there is a connection", USE_DASH);
     predefined("AntiAlwaysDash", "n = 5,m = 5; Dont dash!", ANTI_DASH);
-    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted as undirected.",
+    predefined("AntiUndirectedGraph", "n = 3, m = 3; The input graph should not be interpreted undirected.",
                ANTI_UNDIRECTED);
 
     // big examples
