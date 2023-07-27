@@ -111,7 +111,7 @@ int main(int argc, char *argv[]) {
                ANTI_UNDIRECTED);
 
     // big examples
-    testcase("bigTestcase", "Random testcase, n = 1e6, max path length = 1e5, max edges = 1e6", bigTestcase);
+    testcase("bigTestcase", "Random testcase, n = 1e5, max path length = 1e5, max edges = 1e5", bigTestcase);
     vector<tuple<ll, ll, ll>> random_testcases = {
             tuple(10, 50, 20),
             tuple(10, 50, 50),
