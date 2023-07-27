@@ -1,4 +1,4 @@
-#include <bits/extc++.h>
+#include <bits/stdc++.h>
 
 #define rep(i, b) for (ll i = 0; i < (b); ++i)
 #define all(a) a.begin(), a.end()
@@ -8,7 +8,6 @@ using namespace std;
 using ll = long long;
 using vi = vector<ll>;
 using vvi = vector<vi>;
-using pii = pair<ll, ll>;
 
 int main() {
     ios::sync_with_stdio(false);
@@ -21,31 +20,24 @@ int main() {
         adj[--u].push_back(--v), adj[v].push_back(u);
     }
 
-    vi seen(n), deg(n);
+    vi seen(n);
     ll ans = 0;
     rep(i, n) sort(all(adj[i]), [&](ll a, ll b) { return sz(adj[a]) > sz(adj[b]); });
-    rep(i, n) deg[i] = sz(adj[i]);
     rep(s, n) {
         if (seen[s]) continue;
-        seen[s] = true;
         vi q{s};
+        seen[s] = true;
         rep(j, sz(q))
             for (ll v: adj[q[j]])
                 if (!seen[v]++) q.push_back(v);
         rep(i, sz(q)) reverse(all(adj[q[i]]));
-        __gnu_pbds::priority_queue<pii, greater<>> pq;
-        vector<decltype(pq)::point_iterator> nodes(n);
-        pq.push({deg[q.back()], q.back()});
-        while (!pq.empty()) {
-            auto [d, u] = pq.top(); pq.pop();
-            if (!deg[u]) continue;
-            deg[u] = 0;
-            for (ll v: adj[u]) {
-                if (!deg[v]) continue;
-                if (nodes[v] == nullptr) nodes[v] = pq.push({--deg[v], v});
-                else pq.modify(nodes[v], {--deg[v], v});
-            }
-            ans = max(ans, sz(pq)+1);
+        rep(i, sz(q)-1) seen[q[i]] = 0;
+        queue<ll> Q({q.back()});
+        while (!Q.empty()) {
+            ll u = Q.front(); Q.pop();
+            for (ll v: adj[u])
+                if (!seen[v]++) Q.push(v);
+            ans = max(ans, sz(Q)+1);
         }
     }
     cout << ans << endl;
