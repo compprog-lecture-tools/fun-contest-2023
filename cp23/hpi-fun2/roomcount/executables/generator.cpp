@@ -95,69 +95,70 @@ const string_view ANTI_GREEDY_ANY_FARTHEST_POINT = R"(8 18
 )";
 
 int maxLengthTestcase(int maxSize) {
-  int n = maxSize;
-  int m = n - 1;
+    int n = maxSize;
+    int m = n - 1;
 
-  cout << n << " " << m << endl;
+    cout << n << " " << m << endl;
 
-  for (int i = 1; i <= m; i++) {
-    cout << i << " " << i + 1 << endl;
-  }
-  return m;
+    for (int i = 1; i <= m; i++) {
+        cout << i << " " << i + 1 << endl;
+    }
+    return m;
 }
 
 int maxWidthTestcase(int maxSize) {
-  int n = sqrt(2 * maxSize);
-  int m = n * (n-1) / 2;
+    int n = sqrt(2 * maxSize);
+    int m = n * (n - 1) / 2;
 
-  cout << n << " " << m << endl;
+    cout << n << " " << m << endl;
 
-  for (int i = 1; i < n; i++) {
-    for (int j = i + 1; j <= n; j++) {
-      cout << i << " " << j << endl;
+    for (int i = 1; i < n; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            cout << i << " " << j << endl;
+        }
     }
-  }
-  return m;
+    return m;
 }
 
-void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector<pair<int, int>> &edges, int offset) {
-  sort(intervalStarts.begin(), intervalStarts.end());
-  for (int i = 0; i < intervalStarts.size(); i++) {
-    int end = intervalStarts[i] + intervalLength;
-    int iterator = i + 1;
-    while (iterator < intervalStarts.size() && intervalStarts[iterator] < end) {
-      edges.push_back({offset + i, offset + iterator++});
+void intervalGraph(vector<int> &intervalStarts, int intervalLength, vector <pair<int, int>> &edges, int offset) {
+    sort(intervalStarts.begin(), intervalStarts.end());
+    for (int i = 0; i < intervalStarts.size(); i++) {
+        int end = intervalStarts[i] + intervalLength;
+        int iterator = i + 1;
+        while (iterator < intervalStarts.size() && intervalStarts[iterator] < end) {
+            edges.push_back({offset + i, offset + iterator++});
+        }
     }
-  }
 }
 
-int randomTestcase(int intervalLength, int nodesPerComponent, int maxStart, int components = 1, size_t maxSize = SIZE_MAX) {
-  int n = nodesPerComponent * components;
-  vector<pair<int, int>> edges;
-  do {
-    edges.clear();
-    for (int i = 0; i < components; i++) {
-      vector<int> intervalStarts;
-      for (int j = 0; j < nodesPerComponent; j++) {
-        intervalStarts.push_back(rnd.next(0, maxStart));
-      }
-      intervalGraph(intervalStarts, intervalLength, edges, i * nodesPerComponent);
+int
+randomTestcase(int intervalLength, int nodesPerComponent, int maxStart, int components = 1, size_t maxSize = SIZE_MAX) {
+    int n = nodesPerComponent * components;
+    vector <pair<int, int>> edges;
+    do {
+        edges.clear();
+        for (int i = 0; i < components; i++) {
+            vector<int> intervalStarts;
+            for (int j = 0; j < nodesPerComponent; j++) {
+                intervalStarts.push_back(rnd.next(0, maxStart));
+            }
+            intervalGraph(intervalStarts, intervalLength, edges, i * nodesPerComponent);
+        }
+    } while (edges.size() > maxSize);
+    shuffle(edges.begin(), edges.end());
+
+    vector<int> randomPermutation(n);
+    iota(randomPermutation.begin(), randomPermutation.end(), 0);
+    shuffle(randomPermutation.begin(), randomPermutation.end());
+
+    cout << n << " " << edges.size() << endl;
+    for (auto &edge: edges) {
+        cout << (randomPermutation[edge.first] + 1) << " " << (randomPermutation[edge.second] + 1) << endl;
     }
-  } while (edges.size() > maxSize);
-  shuffle(edges.begin(), edges.end());
-
-  vector<int> randomPermutation(n);
-  iota(randomPermutation.begin(), randomPermutation.end(), 0);
-  shuffle(randomPermutation.begin(), randomPermutation.end());
-
-  cout << n << " " << edges.size() << endl;
-  for (auto& edge : edges) {
-    cout << (randomPermutation[edge.first] + 1) << " " << (randomPermutation[edge.second] + 1) << endl;
-  }
-  return edges.size();
+    return edges.size();
 }
 
-template <class F>
+template<class F>
 void testcase(string name, string desc, F f) {
     ofstream desc_file(name + ".desc");
     desc_file << desc;
@@ -180,7 +181,7 @@ void sample(int num, string_view content) {
     predefined("sample" + num_str, "Sample #" + num_str, content);
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
     rnd.setSeed(7889991971352209491ll);
 
@@ -200,22 +201,23 @@ int main(int argc, char* argv[]) {
                ANTI_GREEDY_ANY_FARTHEST_POINT);
 
     for (int i = 0; i < 10; i++) {
-      int n = rnd.next(100, 1000);
-      int intervalLength = 5 + 15 * i;
-      testcase("random_testcase_" + to_string(i),
-               "random testcase with interval length = " + to_string(intervalLength) + ", n = " + to_string(n),
-               [&n, &intervalLength]() -> int { return randomTestcase(intervalLength, n, n * n / 100); });
+        int n = rnd.next(100, 1000);
+        int intervalLength = 5 + 15 * i;
+        testcase("random_testcase_" + to_string(i),
+                 "random testcase with interval length = " + to_string(intervalLength) + ", n = " + to_string(n),
+                 [&n, &intervalLength]() -> int { return randomTestcase(intervalLength, n, n * n / 100); });
     }
 
     for (int i = 0; i < 5; i++) {
-      int n = rnd.next(20, 100);
-      int intervalLength = 5 + 5 * i;
-      int components = 10 - 2 * i;
-      testcase("random_multi_component_testcase_" + to_string(i),
-               "random testcase with at least " + to_string(components) + " components, interval length = "
-               + to_string(intervalLength) + ", n = " + to_string(n * components),
-               [&n, &intervalLength, &components]() -> int {
-        return randomTestcase(intervalLength, n, n * n / 100, components); });
+        int n = rnd.next(20, 100);
+        int intervalLength = 5 + 5 * i;
+        int components = 10 - 2 * i;
+        testcase("random_multi_component_testcase_" + to_string(i),
+                 "random testcase with at least " + to_string(components) + " components, interval length = "
+                 + to_string(intervalLength) + ", n = " + to_string(n * components),
+                 [&n, &intervalLength, &components]() -> int {
+                     return randomTestcase(intervalLength, n, n * n / 100, components);
+                 });
     }
 
     int maxSize = 100000;
