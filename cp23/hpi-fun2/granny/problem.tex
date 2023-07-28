@@ -1,0 +1,37 @@
+\input{template.tex}
+
+\begin{document}
+
+\makeheader
+
+Madeline has baked a delicious strawberry cake for Granny and now wants to bring it to her as fast as possible.
+Both Granny and Madeline live in Celeste National Park, where there are a $n$ bus stations.
+These stations are numbered incrementally and connected through $m$ bus lines, each denoting a bus driving from a start to an end station.
+Looking on the bus plan, Madeline tries to figure out the fastest way to get to Granny with the cake.
+Thanks to the wonderful service at the National Park, there is always a bus available at a station -- meaning Madeline won't have to wait at stations.
+
+
+In order to save even more time, Madeline can instantly dash from one station to another -- but only if the station's numbers are adjacent to another.
+For example, she can dash from station 5 to either station 4 or station 6.
+Since dashing exhausts Madeline very much, she can only dash once.
+Madeline currently lives at the first station and Granny lives at the very last station, but since she already visited her in the past, she knows that there is a way for her to get there.
+Considering the bus plan, how fast can she reach granny?
+
+\paragraph*{Input}
+
+The first line contains two integers $n$ and $m$ ($2 \leq n,m \leq 10^5$): the number of bus stations and connections.
+The following $m$ lines each contain 3 integers $s,e$ and $t$ the start and end point of the connection ($1 \leq s,e \leq n$), as well as the time required for the transfer ($1 \leq t \leq 10^5$).
+
+\paragraph*{Output}
+
+Output the length of the shortest path between the first and the $n$-th station.
+
+\begin{samples}
+  \sample{sample1}
+\end{samples}
+
+\paragraph*{Sample explanation}
+
+Sample 1 explanation: Dash from station 1 to station 2. Then take bus to station 3, which takes 1 time unit, making the whole trip 1 time unit.
+
+\end{document}
