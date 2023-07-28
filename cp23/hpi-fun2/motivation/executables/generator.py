@@ -224,5 +224,5 @@ switching_chain()
 negative_only_test()
 
 # Random test cases
-for i in range(1, 4):
+for i in range(1, 3):
     random_test_case(i)
