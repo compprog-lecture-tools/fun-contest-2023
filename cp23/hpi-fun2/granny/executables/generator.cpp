@@ -75,10 +75,9 @@ void generateRandomTestcase(ll n, ll maxL, ll maxM) {
         outEdges.emplace_back(t, r, i);
     }
 
-    ll count = n - 1;
     while (outEdges.size() < maxM) {
-        ll a = rnd.next(count);
-        ll b = rnd.next(count);
+        ll a = rnd.next(n);
+        ll b = rnd.next(n);
 
         if (a == b) continue;
         if (edges.contains(pair(a, b))) continue;
