@@ -101,7 +101,7 @@ def large_increasing_chain():
     test_case = ""
 
     employees = INPUT_LIMIT
-    threshold = int(INPUT_LIMIT / 2)
+    threshold = INPUT_LIMIT // 2
     test_case += f"{employees} {threshold}\n"
 
     levels = []
