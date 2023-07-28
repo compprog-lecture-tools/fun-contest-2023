@@ -1,0 +1,28 @@
+\input{template.tex}
+
+\begin{document}
+
+\makeheader
+
+To accommodate the increasing number of students at HPI, Hasso Plattner plans on building a new lecture hall building. Since he is a very busy man, he instructs the architect to figure out the minimum number of rooms that are needed to handle the lecture traffic by herself.
+
+Fortunately, there is already a schedule for all the lectures that are supposed to take place in the new building.
+Unfortunately, for confidentiality reasons, the full schedule cannot be released. Instead, the architect is given a list containing only the information of which lectures are planned and which of these have conflicting time slots. This list can actually be interpreted as a graph. All lectures are equally long, however they do not necessarily start at regular university times.
+
+Can you help the architect out by determining the number of rooms needed in the new building, using only the graph of conflicting events?
+
+\paragraph*{Input}
+
+The first line contains two integers $n$ and $m$ ($2 \leq n \leq 10^5$, $1 \leq m \leq 10^5$), the number of lectures and the number of overlaps between the lectures.
+The next $m$ lines contain two integers $u_i$ and $v_i$, representing an overlap between lecture $u_i$ and lecture $v_i$. 
+
+\paragraph*{Output}
+
+Print the maximum number of lectures taking place at the same time.
+
+\begin{samples}
+  \sample{sample1}
+  \sample{sample2}
+\end{samples}
+
+\end{document}
