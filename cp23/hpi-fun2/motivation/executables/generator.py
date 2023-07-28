@@ -4,25 +4,25 @@ import random
 INPUT_LIMIT = 100_000
 
 SAMPLES = [
-["sample1", """11 20
+["""11 20
 2 5 3 7 2 1 10 4 1 8 2
-1 2 2 2 5 5 1 8 8 8"""],
-["sample2", """5 7
+1 2 2 2 5 5 1 8 8 8""", "Basic test case; no unreachable nodes."],
+["""5 7
 1 5 10 -2 -2
-1 1 3 3"""],
-["sample3", """5 7
+1 1 3 3""", "Basic tree case; using negative weights, exceeding weight subtree."],
+["""5 7
 8 5 10 -2 -2
-1 1 3 3"""]
+1 1 3 3""", "No reachable children, bottleneck at root; single coach needed."]
 ]
 
-Path("sample1.in").write_text(SAMPLES[0][1])
-Path("sample1.desc").write_text("Basic test case; no unreachable nodes.")
+sample = 1
+for test_case, description in SAMPLES:
+    filename = f"sample{sample}"
 
-Path("sample2.in").write_text(SAMPLES[1][1])
-Path("sample2.desc").write_text("Basic tree case; using negative weights, exceeding weight subtree.")
+    Path(filename + ".in").write_text(test_case)
+    Path(filename + ".desc").write_text(description)
 
-Path("sample3.in").write_text(SAMPLES[2][1])
-Path("sample3.desc").write_text("No reachable children, bottleneck at root; single coach needed.")
+    sample += 1
 
 
 def single_parent_single_child():
