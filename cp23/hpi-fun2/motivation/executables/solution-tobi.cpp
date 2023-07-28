@@ -26,9 +26,9 @@ int main() {
         marked++;
         if (all_of(all(adj[u]), [&](ll v) { return s + m[v] > l; }))
             return 1;
-        return max(1ll, accumulate(all(adj[u]), 0LL, [&](ll a, ll v) {
-            return a + dfs(v, s);
-        }) - 1);
+        ll ans = 0;
+        for (ll v : adj[u]) ans += dfs(v, s);
+        return max(1ll, ans - 1);
     };
     cout << dfs(0, 0) << ' ' << n - marked;
 }
