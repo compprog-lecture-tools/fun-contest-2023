@@ -102,8 +102,6 @@ int main(int argc, char *argv[])
 
   testcase("random_nonquadratic", "random_nonquadratic", []()
            { make_testcase_input(20, 25); });
-  testcase("random_nonquadratic2", "random_nonquadratic2", []()
-           { make_testcase_input(15, 15); });
   testcase("random_row", "random_row", []()
            { make_testcase_input(1, 500); });
   testcase("random_column", "random_column", []()
