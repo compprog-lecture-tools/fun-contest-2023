@@ -107,8 +107,6 @@ int main() {
   rep1(i, company_hierarchy.size()) {
     if (employees[i].motivatable) {
       no_children[bosses[i]]++;
-      if (company_hierarchy[i].size() == 0)
-        q.push(i);
     } else {
       unreachable_nodes++;
     }

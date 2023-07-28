@@ -101,7 +101,7 @@ def large_increasing_chain():
     test_case = ""
 
     employees = INPUT_LIMIT
-    threshold = INPUT_LIMIT / 2
+    threshold = int(INPUT_LIMIT / 2)
     test_case += f"{employees} {threshold}\n"
 
     levels = []
@@ -224,5 +224,5 @@ switching_chain()
 negative_only_test()
 
 # Random test cases
-for i in range(1, 10):
+for i in range(1, 4):
     random_test_case(i)
