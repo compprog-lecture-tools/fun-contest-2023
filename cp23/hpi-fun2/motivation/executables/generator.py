@@ -220,8 +220,7 @@ negative_only_test()
 
 # Random test cases
 # Limit Tests
-for i in range(1, 4):
-    random_test_case(i, INPUT_LIMIT, "large")
-  
-for i in range(4, 8):
+for i in range(1, 6):
     random_test_case(i, random.randint(500, 10_000), "small")
+for i in range(6, 10):
+    random_test_case(i, INPUT_LIMIT, "large")
