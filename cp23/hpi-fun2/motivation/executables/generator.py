@@ -89,10 +89,7 @@ def large_increasing_path():
 
     test_case += ("1 " * employees).strip() + "\n"
 
-    bosses = []
-    for i in range(1, employees):
-        bosses.append(i)
-    test_case += " ".join([str(x) for x in bosses])
+    test_case += " ".join(str(x) for x in range(1, employees))
 
     write_testcase("large_increasing_path", test_case, "A long path (only single child per node), where each child was weight 1.")
 
