@@ -190,7 +190,7 @@ def random_test_case(case_number, input_size, type):
         bosses.append(boss)
     test_case += " ".join([str(x) for x in bosses]) + "\n"
 
-    filename = f"random_test_case_{case_number}_{type}"
+    filename = f"random{case_number}_{type}"
     Path(filename + ".in").write_text(test_case)
     Path(filename + ".desc").write_text(f"Randomly generated tree: test case #{case_number}; n={employees}, threshold={threshold}, type={type}")
 
