@@ -1,6 +1,6 @@
 # Motivation
 
-The problem is about finding the path coverage of the tree. 
+The problem is about finding the path coverage of the tree. The problem should find the number of nodes, whos path lengths exceed the given threshold. This node and all its decendants are marked unreachable.
 
 ## Solution Idea
 
@@ -18,7 +18,7 @@ The problem is about finding the path coverage of the tree.
 
 ## DP Solution 
 
-Another possibility, which is a little less efficient, would be to apply a DP on the tree and work bottom-up:
+To implement the above idea, a DP can be applied. In a very simple fashion, first find all children, that do not exceed the path length, followed by applying the DP structure on the rest of the tree:
 
 > 1. Recursively find all unreachable nodes with the following pseudocode:
 >    ```
@@ -30,30 +30,18 @@ Another possibility, which is a little less efficient, would be to apply a DP on
 >       }
 >    
 >       e.reachable = true
->       reachable_nodes++
->       
->       reachable_children = 0
 >       for (Employee subordinate : t[e]) {
->           reachable_child = mark_reachable(
+>           mark_reachable(
 >               t, subordinate, path_length + e.weight
 >           )
->    
->           reachable_children += reachable_children
 >       }
 >    
->       if (reachable_children == 0) leafs++
 >       return true
 >    }
 >    ```
 > 2. Work in bottom-up fashion in tree, starting at the leafs:
 >    ```
->    if (is_leaf()) {
->        // At least one coach is needed per employee
->        dp[e] = 1
->    } else {
->        // One coach for each child, boss supports coaches, at least one coach 
->        dp[e] = max(1, (#(reachable children) - 1)
->    }
+>    dp[e] = max(1, #(reachable children) - 1)
 >    ```
 > 3. The solution will be found at Christian: `print(dp[1])`
 
