@@ -138,13 +138,7 @@ def negative_only_test():
         levels.append(-i)
     test_case += " ".join([str(x) for x in levels]) + "\n"
 
-    # I did not think about it at first, but actually there is
-    #       (employees - 3**(hierarchical_levels-1))*3 = employees - 1
-    # Each person has exactly 3 people under them.
-    bosses = []
-    for i in range(1, employees - 3**(hierarchical_levels-1)):
-        bosses.extend([i, i, i])
-    test_case += " ".join([str(x) for x in bosses]) + "\n"
+    test_case += " ".join(f"{x} {x} {x}" for x in range(1, employees//3)) + "\n"
 
     write_testcase("negative_only", test_case, "In this tree, each nodes has three children. All weights are negative, which render no child unreachable.")
 
