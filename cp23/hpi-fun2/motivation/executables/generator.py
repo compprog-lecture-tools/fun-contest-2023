@@ -124,7 +124,7 @@ def negative_only_test():
 
     test_case += " ".join(f"{x} {x} {x}" for x in range(1, employees//3)) + "\n"
 
-    write_testcase("negative_only", test_case, "In this tree, each nodes has three children. All weights are negative, which render no child unreachable.")
+    write_testcase("negative_only", test_case, "Ternary tree with negative weights only. All nodes reachable.")
 
 
 def random_test_case(case_number, input_size, type):
