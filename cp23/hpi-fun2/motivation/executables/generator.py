@@ -15,14 +15,11 @@ SAMPLES = [
 1 1 3 3""", "No reachable children, bottleneck at root; single coach needed."]
 ]
 
-sample = 1
-for test_case, description in SAMPLES:
+for sample, (test_case, description) in enumerate(SAMPLES, 1):
     filename = f"sample{sample}"
 
     Path(filename + ".in").write_text(test_case)
     Path(filename + ".desc").write_text(description)
-
-    sample += 1
 
 
 def single_parent_single_child():
