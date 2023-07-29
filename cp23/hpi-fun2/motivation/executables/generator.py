@@ -175,11 +175,11 @@ def negative_only_test():
     Path(filename + ".desc").write_text("In this tree, each nodes has three children. All weights are negative, which render no child unreachable.")
 
 
-def random_test_case(case_number):
+def random_test_case(case_number, input_size, type):
     test_case = ""
 
-    employees = INPUT_LIMIT
-    threshold = 5 * random.randint(1, 1_000)
+    employees = input_size
+    threshold = random.randint(1, employees // 10)
 
     test_case += f"{employees} {threshold}\n"
 
@@ -195,9 +195,9 @@ def random_test_case(case_number):
         bosses.append(boss)
     test_case += " ".join([str(x) for x in bosses]) + "\n"
 
-    filename = f"random_test_case_{case_number}"
+    filename = f"random_test_case_{case_number}_{type}"
     Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text(f"Randomly generated tree: test case #{case_number}; n={employees}, threshold={threshold}")
+    Path(filename + ".desc").write_text(f"Randomly generated tree: test case #{case_number}; n={employees}, threshold={threshold}, type={type}")
 
 
 # ------------------------
@@ -224,5 +224,9 @@ switching_chain()
 negative_only_test()
 
 # Random test cases
-for i in range(1, 3):
-    random_test_case(i)
+# Limit Tests
+for i in range(1, 4):
+    random_test_case(i, INPUT_LIMIT, "large")
+  
+for i in range(4, 8):
+    random_test_case(i, random.randint(500, 10_000), "small")
