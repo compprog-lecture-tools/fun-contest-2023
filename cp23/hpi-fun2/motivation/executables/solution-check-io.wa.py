@@ -6,5 +6,5 @@ assert len(m) == n
 assert all(-10 ** 6 <= x <= 10 ** 6 for x in m)
 p = map(int, input().split())
 assert len(p) == n-1
-assert all(1 <= x <= i for i, x in enumerate(p, 2))
+assert all(1 <= x <= i for i, x in enumerate(p, 1))
 print(-1)
