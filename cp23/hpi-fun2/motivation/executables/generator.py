@@ -103,11 +103,7 @@ def switching_path():
 
     test_case += ("1 -1 " * (employees // 2) + "1" * (employees % 2)).strip() + "\n"
 
-    bosses = []
-    for i in range(1, employees):
-        bosses.append(i)
-        test_case += f"{i} "
-    test_case += " ".join([str(x) for x in bosses]) + "\n"
+    test_case += " ".join(str(x) for x in range(1, employees)) + "\n"
 
     write_testcase("switching_path", test_case, "Long path of nodes. Each node has either weight 1 or -1. No path length is larger 1.")
 
