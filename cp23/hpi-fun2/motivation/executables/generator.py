@@ -24,80 +24,65 @@ for test_case, description in SAMPLES:
 
     sample += 1
 
+def write_testcase(filename, test_case, description):
+    Path(filename + ".in").write_text(test_case)
+    Path(filename + ".desc").write_text(description)
+
 
 def single_parent_single_child():
-    filename = "single_parent_single_child"
-
     test_case = (
         "2 20\n"
         "10 10\n"
         "1"
     )
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("Two nodes, with a single child, each being reachable. The child is reachable, but is directly on the barrier.")
+    write_testcase("single_parent_single_child", test_case, "Two nodes, with a single child, each being reachable. The child is reachable, but is directly on the barrier.")
 
 
 def negative_root_node_weight():
-    filename = "negative_root_node_weight"
-
     test_case = (
         "5 10\n"
         "-100 90 100 110 120\n"
         "1 1 1 1"
     )
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("Root has negative weight and children are partially reachable.")
+    write_testcase("negative_root_node_weight", test_case, "Root has negative weight and children are partially reachable.")
 
 
 def binary_tree_two_layers():
-    filename = "binary_tree_two_layers"
-
     test_case = (
         "7 10\n"
         "5 5 5 1 1 1 1\n"
         "1 1 3 3 2 2"
     )
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("Binary tree of 3 layers with unreachable third layer.")
+    write_testcase("binary_tree_two_layers", test_case, "Binary tree of 3 layers with unreachable third layer.")
 
 
 def unreachable_subtree_with_negatives():
-    filename = "unreachable_subtree_with_negatives"
-
     test_case = (
         "11 20\n"
         "1 3 7 -2 2 -6 1 30 3 5 5\n"
         "1 1 1 3 3 3 4 4 8 8"
     )
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("Unreachable subtree in a tree including negative weights.")
+    write_testcase("unreachable_subtree_with_negatives", test_case, "Unreachable subtree in a tree including negative weights.")
 
 
 def exponential_weights():
-    filename = "exponential_weights"
-
     test_case = (
         "14 15\n"
         "1 2 2 2 4 4 4 4 8 8 8 8 16 16\n"
         "1 1 1 3 3 4 4 6 6 8 8 10 10"
     )
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("Exponentially increasing weights of simple tree.")
+    write_testcase("exponential_weights", test_case, "Exponentially increasing weights of simple tree.")
 
 
 def single_node_bottleneck():
-    filename = "single_node_bottleneck"
-
     test_case = (
         "6 5\n"
         "1 10 -8 -8 -8 -8\n"
         "1 2 2 2 2"
     )
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("There is a single bottleneck in the tree, which renders all its children unreachable.")
+    write_testcase("single_node_bottleneck", test_case, "There is a single bottleneck in the tree, which renders all its children unreachable.")
 
-
-def large_increasing_chain():
+def large_increasing_path():
     test_case = ""
 
     employees = INPUT_LIMIT
@@ -114,12 +99,10 @@ def large_increasing_chain():
         bosses.append(i)
     test_case += " ".join([str(x) for x in bosses])
 
-    filename = "large_increasing_chain"
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("A long chain (only single child per node), where each child was weight 1.\nLimit Test.")
+    write_testcase("large_increasing_path", test_case, "A long path (only single child per node), where each child was weight 1.")
 
 
-def switching_chain():
+def switching_path():
     test_case = ""
 
     employees = 1_000
@@ -140,9 +123,7 @@ def switching_chain():
         test_case += f"{i} "
     test_case += " ".join([str(x) for x in bosses]) + "\n"
 
-    filename = "switching_chain"
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("Long chain of nodes. Each node has either weight 1 or -1. No path length is larger 1.")
+    write_testcase("switching_path", test_case, "Long path of nodes. Each node has either weight 1 or -1. No path length is larger 1.")
 
 
 def negative_only_test():
@@ -170,9 +151,7 @@ def negative_only_test():
         bosses.extend([i, i, i])
     test_case += " ".join([str(x) for x in bosses]) + "\n"
 
-    filename = "negative_only"
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text("In this tree, each nodes has three children. All weights are negative, which render no child unreachable.")
+    write_testcase("negative_only", test_case, "In this tree, each nodes has three children. All weights are negative, which render no child unreachable.")
 
 
 def random_test_case(case_number, input_size, type):
@@ -195,9 +174,8 @@ def random_test_case(case_number, input_size, type):
         bosses.append(boss)
     test_case += " ".join([str(x) for x in bosses]) + "\n"
 
-    filename = f"random_test_case_{case_number}_{type}"
-    Path(filename + ".in").write_text(test_case)
-    Path(filename + ".desc").write_text(f"Randomly generated tree: test case #{case_number}; n={employees}, threshold={threshold}, type={type}")
+    filename = 
+    write_testcase(f"random_test_case_{case_number}_{type}", test_case, f"Randomly generated tree: test case #{case_number}; n={employees}, threshold={threshold}, type={type}")
 
 
 # ------------------------
