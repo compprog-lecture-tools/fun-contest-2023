@@ -161,9 +161,9 @@ negative_root_node_weight()
 # Large Test Cases
 # ------------------------
 
-# Chain test cases: Tree, where each node has only one child
-large_increasing_chain()
-switching_chain()
+# path test cases: Tree, where each node has only one child
+large_increasing_path()
+switching_path()
 
 # Each node has three children and each motivational level of -1
 negative_only_test()
