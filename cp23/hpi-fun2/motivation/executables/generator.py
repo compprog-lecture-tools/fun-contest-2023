@@ -87,10 +87,7 @@ def large_increasing_path():
     threshold = INPUT_LIMIT // 2
     test_case += f"{employees} {threshold}\n"
 
-    levels = []
-    for i in range(0, employees):
-        levels.append(1)
-    test_case += " ".join([str(x) for x in levels]) + "\n"
+    test_case += ("1 " * employees).strip() + "\n"
 
     bosses = []
     for i in range(1, employees):
