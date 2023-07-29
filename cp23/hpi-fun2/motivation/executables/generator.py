@@ -101,13 +101,7 @@ def switching_path():
     threshold = 1
     test_case += f"{employees} {threshold}\n"
 
-    levels = []
-    for i in range(0, employees):
-        if i % 2 == 0:
-            levels.append(1)
-        else:
-            levels.append(-1)
-    test_case += " ".join([str(x) for x in levels]) + "\n"
+    test_case += ("1 -1 " * (employees // 2) + "1" * (employees % 2)).strip() + "\n"
 
     bosses = []
     for i in range(1, employees):
