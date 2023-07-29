@@ -4,21 +4,13 @@ The problem is about finding the path coverage of the tree. The problem should f
 
 ## Solution Idea
 
-> 1. Mark each node as reachable or unreachable (nodes, that exceed the allowed path length).
->    - _The number of unreachable nodes is the second part of the solution_.
->    - Also nodes, that have an unreachable parent are themselves unreachable, even if they do not exceed the path length.
-> 2. Find all leafs of the tree (can be done as part of step 1). 
->    - A leaf is a node, that has no reachable children
->    - Note, that this can also be a node, that is traditionally considered an inner node.
-> 3. Traverse the tree bottom-up:
->    - The number of coaches a node needs is defined by `max(1, #(reachable_children) - 1)`
->    - That means, that there is one path for each reachable child.
->    - Due to the condition, that a boss supports the coaches, having the same motivational level, we need to subtract one.
->    - Also, we always need at least one coach for each node.
+> 1. Find all nodes, that where any parent (direct or in-direct) exceed the threshold, by traversion all paths top-down.
+> 2. Traverse the tree bottom-up and apply a DP structure, where:
+>
+>      ![DP Formula](./dp-formula.png)
+>
 
 ## DP Solution 
-
-To implement the above idea, a DP can be applied. In a very simple fashion, first find all children, that do not exceed the path length, followed by applying the DP structure on the rest of the tree:
 
 > 1. Recursively find all unreachable nodes with the following pseudocode:
 >    ```
