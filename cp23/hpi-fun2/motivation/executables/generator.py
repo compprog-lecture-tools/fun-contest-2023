@@ -15,14 +15,12 @@ SAMPLES = [
 1 1 3 3""", "No reachable children, bottleneck at root; single coach needed."]
 ]
 
-sample = 1
-for test_case, description in SAMPLES:
+for sample, (test_case, description) in enumerate(SAMPLES, 1):
     filename = f"sample{sample}"
 
     Path(filename + ".in").write_text(test_case)
     Path(filename + ".desc").write_text(description)
 
-    sample += 1
 
 def write_testcase(filename, test_case, description):
     Path(filename + ".in").write_text(test_case)
@@ -161,12 +159,7 @@ def random_test_case(case_number, input_size, type):
     threshold = random.randint(1, employees // 10)
 
     test_case += f"{employees} {threshold}\n"
-
-    levels = []
-    for i in range(0, employees):
-        motivational_level = random.randint(-threshold, threshold)
-        levels.append(motivational_level)
-    test_case += " ".join([str(x) for x in levels]) + "\n"
+    test_case += " ".join(str(random.randint(-threshold, threshold)) for x in range(employees)) + "\n"
 
     bosses = [1]
     for i in range(2, employees):
@@ -174,9 +167,8 @@ def random_test_case(case_number, input_size, type):
         bosses.append(boss)
     test_case += " ".join([str(x) for x in bosses]) + "\n"
 
-    filename = 
     write_testcase(f"random_test_case_{case_number}_{type}", test_case, f"Randomly generated tree: test case #{case_number}; n={employees}, threshold={threshold}, type={type}")
-
+    
 
 # ------------------------
 # Small Test Cases
@@ -203,8 +195,7 @@ negative_only_test()
 
 # Random test cases
 # Limit Tests
-for i in range(1, 4):
-    random_test_case(i, INPUT_LIMIT, "large")
-  
-for i in range(4, 8):
+for i in range(1, 6):
     random_test_case(i, random.randint(500, 10_000), "small")
+for i in range(6, 10):
+    random_test_case(i, INPUT_LIMIT, "large")
