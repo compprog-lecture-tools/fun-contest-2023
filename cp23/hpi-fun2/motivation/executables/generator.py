@@ -182,12 +182,7 @@ def random_test_case(case_number, input_size, type):
     threshold = random.randint(1, employees // 10)
 
     test_case += f"{employees} {threshold}\n"
-
-    levels = []
-    for i in range(0, employees):
-        motivational_level = random.randint(-threshold, threshold)
-        levels.append(motivational_level)
-    test_case += " ".join([str(x) for x in levels]) + "\n"
+    test_case += " ".join(str(random.randint(-threshold, threshold)) for x in range(employees)) + "\n"
 
     bosses = [1]
     for i in range(2, employees):
