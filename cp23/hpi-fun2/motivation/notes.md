@@ -1,6 +1,6 @@
 # Motivation
 
-The problem is about finding the path coverage of the tree. The problem should find the number of nodes, whos path lengths exceed the given threshold. This node and all its decendants are marked unreachable.
+The problem is about finding the path coverage of the tree. The problem should find the number of nodes, whos path lengths exceed the given threshold (including all its decendants). Also, it requires to find the number of paths to leafs.
 
 ## Solution Idea
 
