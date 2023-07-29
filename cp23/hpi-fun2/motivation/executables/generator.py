@@ -120,10 +120,7 @@ def negative_only_test():
     test_case += f"{employees} {threshold}\n"
 
     # Each person has negative motivational level
-    levels = []
-    for i in range(0, employees):
-        levels.append(-i)
-    test_case += " ".join([str(x) for x in levels]) + "\n"
+    test_case += " ".join(str(-x) for x in range(employees)) + "\n"
 
     test_case += " ".join(f"{x} {x} {x}" for x in range(1, employees//3)) + "\n"
 
