@@ -1,0 +1,7 @@
+{
+  "description": "Find exit in 2D maze with only local information",
+  "difficulty": 3,
+  "tags": [
+    "graphs"
+  ]
+}
