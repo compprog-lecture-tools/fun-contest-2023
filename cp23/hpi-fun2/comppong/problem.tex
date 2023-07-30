@@ -6,19 +6,19 @@
 
 Since you have heard about a trend at your University to make highly competitive games out of seemingly simple drinking games you created a new upgraded version of the famous Beerpong game. Unlike in the original game, the rules here are a bit different to eliminate every chance of winning the game just by luck. 
 
-The setup consists of a long table with a team on each of the two shorter sides of it. As in the original game, teams take turns throwing a ping pong ball at some cups placed on the table. Every time a team hits a cup the team owning that cup has to drink its content and take the cup from the table. This also holds if someone manages to hit his/her own cup. The team who first manages to throw a ball into all the cups belonging to their opponents wins the game. 
+The setup consists of a long table with a team on each of the two shorter sides of it. As in the original game, teams take turns throwing a ping pong ball at some cups placed on the table. Every time a team hits a cup the team owning that cup has to drink its content and take the cup from the table. This also holds if someone manages to hit their own cup. The team who first manages to throw a ball into all the cups belonging to their opponents wins the game. 
 
-In contrast to the silly luck-based version of the game, the cups are not placed in a triangle on each side of the table but rather in the shape of a rectangle in the table's center. This rectangle contains  $n \cdot m$ cups of which one half belongs to you and the other half to your opponents. The cups are placed in a random permutation which will be changed after each match so that after an arbitrary number of k games the effects of this randomness will be insignificant. 
+In contrast to the silly luck-based version of the game, the cups are not placed in a triangle on each side of the table but rather in the shape of a rectangle in the table's center. This rectangle contains $w \cdot h$ cups of which some belong to you and some to your opponent. 
 
 Since your friends now expect you to perform in this game which might not be totally achievable with your current ping pong ball throwing skills, you have to develop a Strategy. Because of a mysterious ability you developed, you can perfectly guess the number of sips in each cup. To stay as sober as possible, you try to aim for the area of the cup-matrix that has the greatest potential of making your opponents drunk while letting you stay almost sober. To simplify things a bit the size of the area you aim for does not really matter.
 
 
 \paragraph*{Input}
-One line containing the dimensions of the cup matrix ($w,h$) in each game $1 \leq w,h \leq 500$, followed by each $h$ rows containing each $w$ numbers $-100 \leq x \leq 100$ of which a positive value means that the cup belongs to you and a negative value that it belongs to your opponents.
+One line containing the dimensions of the cup matrix ($w,h$) in each game $1 \leq w,h \leq 500$, followed by $h$ rows each containing $w$ numbers $-100 \leq x \leq 100$ where a positive value means that the cup belongs to you and a negative value that it belongs to your opponents.
 It is guaranteed that both players own at least one cup.
 
 \paragraph*{Output}
-One integer $x$ indicating the difference between the number of sips you have to take and the number of sips your opponents have to take if you aim for the area of the cup matrix with that fits best into your strategy.
+One integer $x$, the difference between the number of sips you have to take and the number of sips your opponents have to take if you aim for the area of the cup matrix that maximizes this difference.
 
 \begin{samples}
   \sample{sample1}
