@@ -27,7 +27,27 @@ employees below that person anymore.
 Christian wants to know the fewest number of coaches he needs and the number
 of unmotivatable persons in order to do company stuff to them.
 
-\definecolor{lightred}{RGB}{255,102,102}
+\paragraph*{Input}
+
+The input consists of three lines, describing a single test case.
+The first line contains an integer $n$ ($1 \leq n \leq 10^5$), the number of employees and the motivational level $l$ of the coaches ($1 \leq l \leq 10^5$).
+The second line contains $n$ integers. The $i$th integer, starting with $i = 1$, is $m_i$ ($-10^6 \leq m_i \leq 10^6$), the motivational level of employee $i$.
+The third line contains $n - 1$ integers. The $j$th integer, starting with $j = 1$ is $b_{j+1}$ ($1 \leq b_{j+1} < j + 1$), the direct boss of colleague $j + 1$.
+
+\paragraph*{Output}
+
+Firstly, output the minimal number of coaches required to motivate the company.
+Secondly, output the number of unmotivatable employees, followed by the numbers of those employees.
+
+\paragraph*{Sample explanation}
+
+The following illustrates Sample 1. In order to motivate the company, there are three coaches
+required. They start with Christian, who has a demotiovational level of 2. After motivating him,
+Christian and the coaches have a motivational level of 18 left. Christian then joins the three 
+coaches and advances with one coach to the left, while the other two coaches advance to the right. 
+From there, they proceed until they are exhausted. In the end, all employees could be motivated
+without exhausting the coaches.
+
 \begin{figure}[h!]
   \centering
 
@@ -58,20 +78,6 @@ of unmotivatable persons in order to do company stuff to them.
   \end{tikzpicture}
   \caption{In Sample 1, all employees can be motivated.}
 \end{figure}
-
-\paragraph*{Input}
-
-The input consists of three lines, describing a single test case.
-The first line contains an integer $n$ ($1 \leq n \leq 10^5$), the number of employees and the motivational level $l$ of the coaches ($1 \leq l \leq 10^5$).
-The second line contains $n$ integers. The $i$th integer, starting with $i = 1$, is $m_i$ ($-10^6 \leq m_i \leq 10^6$), the motivational level of employee $i$.
-The third line contains $n - 1$ integers. The $j$th integer, starting with $j = 1$ is $b_{j+1}$ ($1 \leq b_{j+1} < j + 1$), the direct boss of colleague $j + 1$.
-
-\paragraph*{Output}
-
-Firstly, output the minimal number of coaches required to motivate the company.
-Secondly, output the number of unmotivatable employees, followed by the numbers of those employees.
-
-\paragraph*{Sample explanation}
 
 
 \begin{samples}
