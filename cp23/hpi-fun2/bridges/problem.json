@@ -1,0 +1,15 @@
+{
+  "based_on": {
+    "data": [
+      "Common Problem"
+    ],
+    "type": "other"
+  },
+  "description": "finding bridges in a graph",
+  "difficulty": 4,
+  "tags": [
+    "dfs and similar",
+    "dp",
+    "graphs"
+  ]
+}
