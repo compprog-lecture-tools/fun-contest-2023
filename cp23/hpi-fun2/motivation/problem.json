@@ -1,0 +1,9 @@
+{
+  "description": "Minimum limited path cover on a vertex-weighted directed tree",
+  "difficulty": 1,
+  "tags": [
+    "implementation",
+    "trees",
+    "dp"
+  ]
+}
