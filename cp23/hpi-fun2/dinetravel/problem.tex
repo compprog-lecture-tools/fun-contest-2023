@@ -1,0 +1,52 @@
+\input{template.tex}
+
+\begin{document}
+
+\makeheader
+
+\placeholder{Problem description}
+
+One fateful night, the scientist Mabel McFly woke up from the most beautiful dream: Not only did she fly among the stars in a blue box, she also enjoyed an exotic alien dish named “fruit lasagna” that doesn’t exist in real life. Back in harsh reality, she refused to say goodbye to that godlike treat and decided to take matters into her own hands: She would use the time machine she designed to nudge the past in such a way that back in the present, fruit lasagnas will have been a traditional dish deeply intertwined with the foundations of culinary history.
+
+As everyone knows, time travel is a delicate thing. In order to precisely alter history for her dream dish, Mabel now wants to analyze the closest thing there is to the fruit lasagna in this world, the vegetable lasagna.
+As a thorough researcher, she consults many vegetable lasagna historians and notes all important events in a timeline. The historians also inform her about causal dependencies between those events, meaning some event A caused another event B.
+
+When Mabel evaluates all her notes, she realizes: She’s so close! She has uncovered almost the entire history of the vegetable lasagna’s origin. Only a single causal connection is missing and thereby prevents her from understanding the concept of vegetable lasagna on a more fundamental, holistic level.
+
+To estimate how much research still needs to be done, she wants to find the number of possibilities for the last connection so that it still conforms to the timeline given by the historians as well as the other known connections. She knows all the events that she noted directly or indirectly caused vegetable lasagna to emerge.
+
+Can you help Mabel understand the history of the vegetable lasagna so she can synthesize which events she needs to influence favor of the fruit lasagne?
+
+
+Solution sketch:
+Check for consistency by giving each event (=node) its time stamp from the given time line and checking if all outgoing edges have a later time stamp
+Find all events already connected to the very last event, for example by bfs. We could save a boolean for each event that indicates if it’s already connected
+Find the latest event E in the timeline that is not yet connected to the very last event by iterating over the timeline from the end and checking the connectedness marker
+Output the number of events in the timeline after E and as a sample connection E and an arbitrary later event
+Idea: the final graph of all events and their connections will have n nodes, n-1 edges and every node has a path to the final node – so that is a tree where every edge is directed towards the final node. With one missing connection, we therefore have two trees: one of them has the final node as its root (the “final tree”), the other one has event E as its root. As event E comes before the final node, there needs to be a connection from it to the final tree. E can’t be connected to any events E’ that come before E in the timeline because the connection indicates that E would come before E’. So E needs to be connected to an event that comes later in the timeline. As it turns out, every later event is possible for that.
+
+\paragraph*{Input}
+
+The first line contains $n$, the number of events.
+Because Mabel's time-traveller’s notebook is bigger on the inside, she can note $2 \leq n \leq 2\cdot 10^5$ events.
+
+The second line is the timeline and contains events in the order they occurred in.
+Events are given by their ID $e_i \in {0,...,n-1}$.
+The last event in the timeline is the invention of the vegetable lasagna.
+
+Next, there are $n-2$ connections as cause-effect-pairs \texttt{a b} with $a,b \in {0, \ldots ,n-1}$.
+
+\paragraph*{Output}
+
+If the given connections already contradict the given timeline, print \texttt{ask historians again}.
+
+Otherwise, print two lines:
+$p$, the number of possibilities for the last connection
+\texttt{a b} an arbitrary possible connection
+
+\begin{samples}
+    \sample{sample1}
+    \sample{sample2}
+\end{samples}
+
+\end{document}
