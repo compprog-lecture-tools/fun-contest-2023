@@ -4,10 +4,10 @@
 using namespace std;
 
 const string_view SAMPLE2 = R"(5 4
-2  3  1  4 -2
--2  2 -4 -1  2
--3 -5 -1  6 -5
--1 -2  2  6  9
+2 3 1 4 -2
+-2 2 -4 -1 2
+-3 -5 -1 6 -5
+-1 -2 2 6 9
 )";
 
 const string_view SAMPLE1 = R"(3 3
@@ -77,13 +77,13 @@ void make_testcase_input(int w, int h)
     for (int j = 0; j < w; j++)
     {
       if (i == 0 && j == 0)
-        cout << 1 << ' ';
+        cout << 1;
       else if (i == h - 1 && j == w - 1)
-        cout << -1 << ' ';
+        cout << -1;
       else
-        cout << rnd.next(-100, 100) << ' ';
+        cout << rnd.next(-100, 100);
+      cout << " \n"[j == w - 1];
     }
-    cout << endl;
   }
 }
 
