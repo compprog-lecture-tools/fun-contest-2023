@@ -122,7 +122,7 @@ def negative_only_test():
     # Each person has negative motivational level
     test_case += " ".join(str(-x) for x in range(employees)) + "\n"
 
-    test_case += " ".join(f"{x} {x} {x}" for x in range(1, employees//3)) + "\n"
+    test_case += " ".join(f"{x} {x} {x}" for x in range(1, 1 + employees//3)) + "\n"
 
     write_testcase("negative_only", test_case, "Ternary tree with negative weights only. All nodes reachable.")
 
