@@ -1,0 +1,8 @@
+{
+  "description": "Given a flow graph, calculate the maximum residual flow, i.e. the maximum flow that remains when any edge is removed.",
+  "difficulty": 3,
+  "tags": [
+    "flows",
+    "graphs"
+  ]
+}
