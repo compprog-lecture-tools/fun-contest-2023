@@ -93,7 +93,7 @@ int main() {
     return 0;
   }
 
-  ll min_rate = LONG_LONG_MAX;
+  ll min_rate = LLONG_MAX;
 
   rep(i, 0, m) {
     PushRelabel pr(n);
